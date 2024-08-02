@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/02 13:31:36 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/02 14:18:49 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include <stdbool.h>
 
 
-/*********** STRUCTURES ***********/
+/*********** STRUCTURES *************/
 
 typedef struct s_verif // useless structure
 {
@@ -63,7 +63,7 @@ typedef struct s_data
 	int		pos_y;
 }	t_data;
 
-/*********** PROTOTYPES ***********/
+/*********** PROTOTYPES ************/
 
 int	check_ext_cub(char *str);
 int	check_ext_xpm(char *str);
