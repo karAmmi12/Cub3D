@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/01 17:32:54 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/06 17:50:30 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ void	read_file(t_data *data)
 	while (data->fileinfo.file[i])
 	{
 		printf("%s\n", data->fileinfo.file[i]);
+		i++;
+	}
+}
+
+void	print_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		printf("%s\n", map[i]);
 		i++;
 	}
 }
@@ -72,10 +84,11 @@ int	main(int ac, char **av)
 	// 1- recup les infos
 	copy_file(data, av[1]);
 	printf("OK copy file\n"); // a supp
-	read_file(data);
+	read_file(data); //visu
 	// 2- verifier les infos
 	get_info(data->fileinfo.file, data);
 	printf("OK get info\n"); // a supp
+	print_map(data->fileinfo.copy_map); //visu
 	// 3 check map
 	check_map(data);
 	return (0);

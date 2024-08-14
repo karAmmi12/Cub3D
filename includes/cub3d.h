@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/02 14:18:49 by kammi            ###   ########.fr       */
+/*   Updated: 2024/08/14 15:04:23 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,20 @@
 # include <string.h>
 #include <stdbool.h>
 
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 
-/*********** STRUCTURES *************/
+/*********** STRUCTURES ***********/
+
+typedef struct s_map_vars
+{
+	int i;
+	int j;
+	int k;
+	int len_curr;
+	int len_top;
+	int len_bottom;
+} t_map_vars;
 
 typedef struct s_verif // useless structure
 {
@@ -63,7 +75,7 @@ typedef struct s_data
 	int		pos_y;
 }	t_data;
 
-/*********** PROTOTYPES ************/
+/*********** PROTOTYPES ***********/
 
 int	check_ext_cub(char *str);
 int	check_ext_xpm(char *str);
@@ -80,5 +92,7 @@ int	check_before_map(t_data *data);
 
 int	check_map(t_data *data);
 int	ft_tablen(char **tab);
+
+void	print_map(char **map);
 
 #endif

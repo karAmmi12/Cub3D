@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:15:54 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/01 13:51:36 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/14 15:34:51 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,55 +60,76 @@ void	get_texture(char *str, t_data *data)
 	printf("OK get texture\n"); // a supp
 }
 
-void	get_color(char *str, t_data *data)
+int extract_colors(char *str, int *color)
 {
-	int	i;
-	int	j;
-	int	color[3];
+	int i = 0;
+	int j = 0;
+	long temp;
 
-	i = 0;
-	j = 0;
 	while (is_whitespace(str[i]))
 		i++;
-	if (str[i] == 'F')
+	while (str[i] != '\0' && j < 3)
 	{
-		i++;
-		while (is_whitespace(str[i]))
-			i++;
-		while (str[i] != '\0')
+		if (!ft_isdigit(str[i]) && !is_whitespace(str[i]))
+			return -1; // Pas un chiffre
+		if ((str[i] >= '0' && str[i] <= '9') || str[i] == '-')
 		{
-			if (str[i] >= '0' && str[i] <= '9')
-			{
-				color[j] = ft_atoi(&str[i]);
-				j++;
-				while (str[i] >= '0' && str[i] <= '9')
-					i++;
-			}
-			i++;
+			temp = ft_atoi(&str[i]);
+			if (temp > INT_MAX || temp < INT_MIN)
+				return -1; // Overflow
+			color[j] = (int)temp;
+			printf("Color : %d\n", color[j]); // a supp
+			j++;
+			while (str[i] >= '0' && str[i] <= '9')
+				i++;
+			if (str[i] == ',' && j < 3)
+				i++; // Passer la virgule
 		}
-		data->fileinfo.floor[0] = color[0];
-		data->fileinfo.floor[1] = color[1];
-		data->fileinfo.floor[2] = color[2];
+		else
+			i++;
 	}
-	else if (str[i] == 'C')
+	if (j == 3)
+		while (str[i] != '\0')
+		{
+			if (str[i] != ' ' && str[i] != '\t')
+				return -1; // Trop de couleurs
+			i++;
+		}
+	return j; // Retourne le nombre de couleurs extraites
+}
+
+void get_color(char *str, t_data *data)
+{
+	int i = 0;
+	int color[3];
+	int flag;
+
+	while (is_whitespace(str[i]))
+		i++;
+	if (str[i] == 'F' || str[i] == 'C')
 	{
+		flag = str[i];
 		i++;
 		while (is_whitespace(str[i]))
 			i++;
-		while (str[i] != '\0')
+		int num_colors = extract_colors(&str[i], color);
+		if (num_colors != 3 || num_colors == -1)
 		{
-			if (str[i] >= '0' && str[i] <= '9')
-			{
-				color[j] = ft_atoi(&str[i]);
-				j++;
-				while (str[i] >= '0' && str[i] <= '9')
-					i++;
-			}
-			i++;
+			exit_read(data, "Error :\nCode couleur non valide\n");
+			return;
 		}
-		data->fileinfo.celling[0] = color[0];
-		data->fileinfo.celling[1] = color[1];
-		data->fileinfo.celling[2] = color[2];
+		if (flag == 'F')
+		{
+			data->fileinfo.floor[0] = color[0];
+			data->fileinfo.floor[1] = color[1];
+			data->fileinfo.floor[2] = color[2];
+		}
+		else if (flag == 'C')
+		{
+			data->fileinfo.celling[0] = color[0];
+			data->fileinfo.celling[1] = color[1];
+			data->fileinfo.celling[2] = color[2];
+		}
 	}
 	printf("OK get color\n"); // a supp
 }
