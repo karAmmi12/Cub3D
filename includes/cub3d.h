@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/14 15:04:23 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/16 13:14:13 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ typedef struct s_data
 }	t_data;
 
 /*********** PROTOTYPES ***********/
+
+int	is_whitespace(char c);
+
 
 int	check_ext_cub(char *str);
 int	check_ext_xpm(char *str);

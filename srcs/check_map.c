@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:52:50 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/14 15:34:07 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/16 15:25:02 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	get_map_lenght_height(t_data *data)
 		i++;
 	}
 	data->fileinfo.map_height = i;
-	printf("%d\n", data->fileinfo.map_lenght);
-	printf("%d\n", data->fileinfo.map_height);
+	// printf("%d\n", data->fileinfo.map_lenght);
+	// printf("%d\n", data->fileinfo.map_height);
 }
 
 char	**copy_map(char **map, t_data *data)

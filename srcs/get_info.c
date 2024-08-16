@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:15:54 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/14 15:34:51 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/16 17:15:24 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,28 +60,39 @@ void	get_texture(char *str, t_data *data)
 	printf("OK get texture\n"); // a supp
 }
 
-int extract_colors(char *str, int *color)
+/* int extract_colors(char *str, int *color)
 {
-	int i = 0;
-	int j = 0;
-	long temp;
+	int		i;
+	int		j;
+	int		k;
+	long	temp;
 
+	i = 0;
+	j = 0;
+	k = 0;
 	while (is_whitespace(str[i]))
 		i++;
 	while (str[i] != '\0' && j < 3)
 	{
+		if (str[i] == ',' && j < 3 && j != 0)
+				i++; // Passer la virgule
 		if (!ft_isdigit(str[i]) && !is_whitespace(str[i]))
 			return -1; // Pas un chiffre
-		if ((str[i] >= '0' && str[i] <= '9') || str[i] == '-')
+		if ((str[i] >= '0' && str[i] <= '9'))
 		{
 			temp = ft_atoi(&str[i]);
-			if (temp > INT_MAX || temp < INT_MIN)
+			if (temp > INT_MAX)
 				return -1; // Overflow
 			color[j] = (int)temp;
 			printf("Color : %d\n", color[j]); // a supp
 			j++;
 			while (str[i] >= '0' && str[i] <= '9')
+			{
 				i++;
+				k++;
+				if (k > 10)
+					return -1; // Trop grand chiffre
+			}
 			if (str[i] == ',' && j < 3)
 				i++; // Passer la virgule
 		}
@@ -96,6 +107,57 @@ int extract_colors(char *str, int *color)
 			i++;
 		}
 	return j; // Retourne le nombre de couleurs extraites
+} */
+
+int extract_colors(char *str, int *color)
+{
+	int		i;
+	int		j;
+	int		k;
+	long	temp;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (str[i] != '\0' && j < 3)
+	{
+		while (is_whitespace(str[i]))
+			i++;
+		if ((j == 1 || j == 2) && str[i] != ',')
+			return (-1); // Pas de virgule entre les nb
+		if ((j == 1 || j == 2) && str[i] == ',')
+			i++;
+		while (is_whitespace(str[i]))
+			i++;
+		if (!ft_isdigit(str[i]) && !is_whitespace(str[i]))
+			return (-1); // Pas un chiffre
+		if ((str[i] >= '0' && str[i] <= '9'))
+		{
+			temp = ft_atoi(&str[i]);
+			if (temp > INT_MAX)
+				return (-1); // Overflow
+			color[j] = (int)temp;
+			printf("Color : %d\n", color[j]); // a supp
+			j++;
+			while (str[i] >= '0' && str[i] <= '9')
+			{
+				i++;
+				k++;
+				if (k > 10)
+					return (-1); // Trop grand chiffre
+			}
+		}
+		else
+			i++;
+	}
+	if (j == 3)
+		while (str[i] != '\0')
+		{
+			if (str[i] != ' ' && str[i] != '\t')
+				return (-1); // Trop de couleurs
+			i++;
+		}
+	return	(j); // Retourne le nombre de couleurs extraites
 }
 
 void get_color(char *str, t_data *data)
@@ -147,13 +209,16 @@ int	ft_tablen(char **tab)
 void	get_map(char **file_copy, int i, t_data *data)
 {
 	int	j;
+	int	len;
 
 	j = 0;
 	check_before_map(data);
-	data->fileinfo.copy_map = malloc(sizeof(char *) * (ft_tablen(file_copy) - i + 1));
+	len = ft_tablen(file_copy);
+	data->fileinfo.copy_map = malloc(sizeof(char *) * (len - i + 1));
 	if (data->fileinfo.copy_map == NULL)
 		exit_read(data, "Error: Malloc error\n");
-	while (file_copy[i] != NULL)
+	printf("VERIF MAPPPP\n");
+	while (file_copy[i] != NULL) // essayer i < len
 	{
 		data->fileinfo.copy_map[j] = ft_strdup(file_copy[i]);
 		i++;
