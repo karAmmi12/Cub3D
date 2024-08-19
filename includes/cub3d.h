@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/16 13:14:13 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/19 18:07:19 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,24 @@
 
 typedef struct s_map_vars
 {
-	int i;
-	int j;
-	int k;
-	int len_curr;
-	int len_top;
-	int len_bottom;
+	int	i;
+	int	j;
+	int	k;
+	int	len_curr;
+	int	len_top;
+	int	len_bottom;
+	int	player_count;
 } t_map_vars;
 
-typedef struct s_verif // useless structure
-{
-	int		north;
-	int		south;
-	int		east;
-	int		west;
-	int		floor;
-	int		celling;
-}	t_verif;
+// typedef struct s_verif // useless structure
+// {
+// 	int		north;
+// 	int		south;
+// 	int		east;
+// 	int		west;
+// 	int		floor;
+// 	int		celling;
+// }	t_verif;
 
 typedef struct s_file
 {
@@ -59,7 +60,12 @@ typedef struct s_file
 	char	**copy_map;
 	int		map_height;
 	int		map_lenght;
-	t_verif	verif;
+	int		n_flag;
+	int		s_flag;
+	int		e_flag;
+	int		w_flag;
+	int		f_flag;
+	int		c_flag;
 }	t_file;
 
 typedef struct s_data
@@ -86,6 +92,8 @@ int	check_ext_xpm(char *str);
 int	check_file(t_data *data, char *file_name);
 
 void	exit_read(t_data *data, char *str);
+void	clean_exit(t_data *data);
+
 
 int	copy_file(t_data *data, char *filename);
 

@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/06 17:50:30 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/19 18:11:41 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,18 @@ void	init_data(t_data *data)
 	data->fileinfo.celling[1] = -1;
 	data->fileinfo.celling[2] = -1;
 	data->bigline = NULL;
-	data->fileinfo.verif.north = 0;
-	data->fileinfo.verif.south = 0;
-	data->fileinfo.verif.east = 0;
-	data->fileinfo.verif.west = 0;
-	data->fileinfo.verif.floor = 0;
-	data->fileinfo.verif.celling = 0;
+	data->map = NULL;
+	data->fileinfo.copy_map = NULL;
+	data->fileinfo.map_height = 0;
+	data->fileinfo.map_lenght = 0;
+	data->pos_x = 0;
+	data->pos_y = 0;
+	data->fileinfo.n_flag = 0;
+	data->fileinfo.s_flag = 0;
+	data->fileinfo.e_flag = 0;
+	data->fileinfo.w_flag = 0;
+	data->fileinfo.f_flag = 0;
+	data->fileinfo.c_flag = 0;
 }
 
 int	main(int ac, char **av)
@@ -88,8 +94,11 @@ int	main(int ac, char **av)
 	// 2- verifier les infos
 	get_info(data->fileinfo.file, data);
 	printf("OK get info\n"); // a supp
-	print_map(data->fileinfo.copy_map); //visu
+	// print_map(data->fileinfo.copy_map); //visu
 	// 3 check map
 	check_map(data);
+
+	// EXIT || CLEANNING
+	clean_exit(data);
 	return (0);
 }

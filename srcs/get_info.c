@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:15:54 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/16 17:15:24 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/19 17:29:07 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,40 @@ void	get_texture(char *str, t_data *data)
 		i += 2;
 		while (is_whitespace(str[i]))
 			i++;
+		if (data->fileinfo.n_flag == 1)
+			exit_read(data, "Error :\nTexture north in double\n");
 		data->fileinfo.north = ft_strdup(&str[i]);
+		data->fileinfo.n_flag = 1;
 	}
 	else if (str[i] == 'S' && str[i + 1] == 'O')
 	{
 		i += 2;
 		while (is_whitespace(str[i]))
 			i++;
+		if (data->fileinfo.s_flag == 1)
+			exit_read(data, "Error :\nTexture south in double\n");
 		data->fileinfo.south = ft_strdup(&str[i]);
+		data->fileinfo.s_flag = 1;
 	}
 	else if (str[i] == 'W' && str[i + 1] == 'E')
 	{
 		i += 2;
 		while (is_whitespace(str[i]))
 			i++;
+		if (data->fileinfo.w_flag == 1)
+			exit_read(data, "Error :\nTexture west in double\n");
 		data->fileinfo.west = ft_strdup(&str[i]);
+		data->fileinfo.w_flag = 1;
 	}
 	else if (str[i] == 'E' && str[i + 1] == 'A')
 	{
 		i += 2;
 		while (is_whitespace(str[i]))
 			i++;
+		if (data->fileinfo.e_flag == 1)
+			exit_read(data, "Error :\nTexture east in double\n");
 		data->fileinfo.east = ft_strdup(&str[i]);
+		data->fileinfo.e_flag = 1;
 	}
 	printf("OK get texture\n"); // a supp
 }
@@ -182,15 +194,21 @@ void get_color(char *str, t_data *data)
 		}
 		if (flag == 'F')
 		{
+			if (data->fileinfo.f_flag == 1)
+				exit_read(data, "Error :\nCouleur de sol en double\n");
 			data->fileinfo.floor[0] = color[0];
 			data->fileinfo.floor[1] = color[1];
 			data->fileinfo.floor[2] = color[2];
+			data->fileinfo.f_flag = 1;
 		}
 		else if (flag == 'C')
 		{
+			if (data->fileinfo.c_flag == 1)
+				exit_read(data, "Error :\nCouleur de plafond en double\n");
 			data->fileinfo.celling[0] = color[0];
 			data->fileinfo.celling[1] = color[1];
 			data->fileinfo.celling[2] = color[2];
+			data->fileinfo.c_flag = 1;
 		}
 	}
 	printf("OK get color\n"); // a supp
@@ -201,6 +219,8 @@ int	ft_tablen(char **tab)
 	int	i;
 
 	i = 0;
+	if (tab == NULL)
+		return (0);
 	while (tab[i] != NULL)
 		i++;
 	return (i);

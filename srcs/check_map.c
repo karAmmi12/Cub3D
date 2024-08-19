@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:52:50 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/16 15:25:02 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/19 18:10:35 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	get_map_lenght_height(t_data *data)
 	int	j;
 
 	i = 0;
+	// if (data->map == NULL)          // a voir si on le laisse
+	// 	exit_read(data, "Error :\nEmpty map\n");
 	while (data->map[i])
 	{
 		j = 0;
@@ -37,10 +39,13 @@ char	**copy_map(char **map, t_data *data)
 	char	**copy_map;
 	int	i;
 	int	j;
+	int	len = ft_tablen(map); // norm
 
-	copy_map = malloc(sizeof(char *) * (ft_tablen(map) + 1));
+	if (len == 0)
+		exit_read(data, "Error :\n Empty map\n"); // pas de map
+	copy_map = malloc(sizeof(char *) * (len + 1));
 	i = 0;
-	while (i < ft_tablen(map))
+	while (i < len)
 	{
 		copy_map[i] = malloc(sizeof(char) * (ft_strlen(map[i]) + 1));
 		j = 0;
@@ -309,7 +314,7 @@ int validate_line(char **map, int height, t_map_vars *vars)
 		return (validate_middle_line(map, vars));
 }
 
-int validate_map(char **map, int height)
+int validate_map(char **map, int height, t_data *data)
 {
 	t_map_vars vars;
 
@@ -318,9 +323,35 @@ int validate_map(char **map, int height)
 	{
 		initialize_lengths(map, height, &vars);
 		if (!validate_line(map, height, &vars))
+		{
+			printf("Error: Map is not close\n");
 			return (0);
+		}
 		vars.i++;
 	}
+	vars.player_count = 0;
+    vars.i = 0;
+    while (vars.i < height)
+    {
+        vars.j = 0;
+        while (map[vars.i][vars.j])
+        {
+            if (map[vars.i][vars.j] == 'N' || map[vars.i][vars.j] == 'S' ||
+                map[vars.i][vars.j] == 'E' || map[vars.i][vars.j] == 'W')
+            {
+				data->pos_x = vars.j;
+				data->pos_y = vars.i;
+                vars.player_count++;
+            }
+            vars.j++;
+        }
+        vars.i++;
+    }
+    if (vars.player_count != 1)
+    {
+        printf("Error: There must be exactly one player start position (N, S, E, W).\n");
+        return (0);
+    }
 	return (1); // La carte est valide
 }
 
@@ -330,10 +361,10 @@ int	check_map(t_data *data)
 {
 	data->map = copy_map(data->fileinfo.copy_map, data);
 	get_map_lenght_height(data);
-	if (validate_map(data->map, data->fileinfo.map_height))
+	if (validate_map(data->map, data->fileinfo.map_height, data))
 		printf("OK map closed\n");
 	else
-		exit_read(data, "Error: Map not closed\n");
+		clean_exit(data);
 	// flood_fill(data, data->pos_x, data->pos_y, data->fileinfo.copy_map);
 	// print_map(data->fileinfo.copy_map);
 	// check_flood_fill(data);
