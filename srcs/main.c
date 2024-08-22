@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/19 18:11:41 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/22 15:55:26 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
  * 5- faire des maths avec la camera
  * 6- tous free pour quitter bien
 */
+
+/*************** VISUALIZER ****************/
 
 void	read_file(t_data *data)
 {
@@ -44,6 +46,7 @@ void	print_map(char **map)
 		i++;
 	}
 }
+/*************** MAIN ****************/
 
 void	init_data(t_data *data)
 {
@@ -99,6 +102,6 @@ int	main(int ac, char **av)
 	check_map(data);
 
 	// EXIT || CLEANNING
-	clean_exit(data);
+	clean_exit(data, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:15:54 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/19 17:29:07 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/22 14:16:41 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,56 +72,7 @@ void	get_texture(char *str, t_data *data)
 	printf("OK get texture\n"); // a supp
 }
 
-/* int extract_colors(char *str, int *color)
-{
-	int		i;
-	int		j;
-	int		k;
-	long	temp;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	while (is_whitespace(str[i]))
-		i++;
-	while (str[i] != '\0' && j < 3)
-	{
-		if (str[i] == ',' && j < 3 && j != 0)
-				i++; // Passer la virgule
-		if (!ft_isdigit(str[i]) && !is_whitespace(str[i]))
-			return -1; // Pas un chiffre
-		if ((str[i] >= '0' && str[i] <= '9'))
-		{
-			temp = ft_atoi(&str[i]);
-			if (temp > INT_MAX)
-				return -1; // Overflow
-			color[j] = (int)temp;
-			printf("Color : %d\n", color[j]); // a supp
-			j++;
-			while (str[i] >= '0' && str[i] <= '9')
-			{
-				i++;
-				k++;
-				if (k > 10)
-					return -1; // Trop grand chiffre
-			}
-			if (str[i] == ',' && j < 3)
-				i++; // Passer la virgule
-		}
-		else
-			i++;
-	}
-	if (j == 3)
-		while (str[i] != '\0')
-		{
-			if (str[i] != ' ' && str[i] != '\t')
-				return -1; // Trop de couleurs
-			i++;
-		}
-	return j; // Retourne le nombre de couleurs extraites
-} */
-
-int extract_colors(char *str, int *color)
+int	extract_colors(char *str, int *color)
 {
 	int		i;
 	int		j;
@@ -174,10 +125,11 @@ int extract_colors(char *str, int *color)
 
 void get_color(char *str, t_data *data)
 {
-	int i = 0;
-	int color[3];
-	int flag;
+	int	i;
+	int	color[3];
+	int	flag;
 
+	i = 0;
 	while (is_whitespace(str[i]))
 		i++;
 	if (str[i] == 'F' || str[i] == 'C')

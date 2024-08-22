@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:52:50 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/19 18:10:35 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/22 15:55:58 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,16 @@ void	get_map_lenght_height(t_data *data)
 		i++;
 	}
 	data->fileinfo.map_height = i;
-	// printf("%d\n", data->fileinfo.map_lenght);
-	// printf("%d\n", data->fileinfo.map_height);
 }
 
 char	**copy_map(char **map, t_data *data)
 {
 	char	**copy_map;
-	int	i;
-	int	j;
-	int	len = ft_tablen(map); // norm
+	int		i;
+	int		j;
+	int		len;
 
+	len = ft_tablen(map);
 	if (len == 0)
 		exit_read(data, "Error :\n Empty map\n"); // pas de map
 	copy_map = malloc(sizeof(char *) * (len + 1));
@@ -65,193 +64,10 @@ char	**copy_map(char **map, t_data *data)
 	copy_map[i] = NULL;
 	return (copy_map);
 }
-/***********************flood fill***************************** */
-int	check_flood_fill(t_data *data)
-{
-	int	i;
-	int	j;
 
-	i = 0;
-	while (data->fileinfo.copy_map[i])
-	{
-		j = 0;
-		while (data->fileinfo.copy_map[i][j])
-		{
-			if (data->fileinfo.copy_map[i][j] != 'X' && data->fileinfo.copy_map[i][j] != '1'
-				&& data->fileinfo.copy_map[i][j] != ' ')
-				{
-					printf("%c\n", data->fileinfo.copy_map[i][j]);
-					exit_read(data, "Error: Map not closed\n");
-				}
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-void	flood_fill(t_data *data, int x, int y, char **map)
-{
-	if (map[y][x] == '1' || map[y][x] == 'X')
-		return ;
-	map[y][x] = 'X';
-	flood_fill(data, x + 1, y, map);
-	flood_fill(data, x - 1, y, map);
-	flood_fill(data, x, y + 1, map);
-	flood_fill(data, x, y - 1, map);
-	return ;
-}
-/************ancien check ******* */
-int	check_ligne(t_data *data, char **map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	(void)data;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			while (map[i][j] == ' ')
-				j++;
-			if (map[i][j] != '1')
-				return (printf("carac = %c\nLine = %d %d\n", map[i][j], i, j),0);
-			while (map[i][j] != '\0')
-			{
-				while (map[i][j] != ' ' && map[i][j] != '\0')
-					j++;
-				if (map[i][j] == ' ' && map[i][j - 1] == '1')
-					while (map[i][j] == ' ')
-						j++;
-				else if (map[i][j] != '\0')
-					return (printf("carac = %c\nline = %d %d\n", map[i][j], i, j),0);
-				if (map[i][j] != '1' && map[i][j] != '\0')
-					return (printf("Carac = %c\nline = %d %d\n", map[i][j], i, j),0);
-				if (map[i][j] == '\0' && map[i][j - 1] != '1')
-					return (printf("CaraC = %c\nline = %d %d\n", map[i][j], i, j),0);
-				j++;
-			}
-		}
-		i++;
-	}
-	return (1);
-}
-
-int check_colonne(t_data *data, char **map)
-{
-	int i;
-	int j;
-	int max_col;
-	int height;
-
-	j = 0;
-	max_col = data->fileinfo.map_lenght;
-	height = data->fileinfo.map_height - 1;
-	while (j < max_col)
-	{
-		i = 0;
-		while (i < height)
-		{
-			while (i < height && map[i][j] == ' ')
-				i++;
-			if (i < height && map[i][j] != '1')
-				return (printf("carac = %c\nolonne = %d %d\n", map[i][j], i, j), 0);
-			while (i < height && map[i][j])
-			{
-				while (i < height && map[i][j] != ' ' && map[i][j])
-					i++;
-				if (i < height && map[i][j] == ' ' && map[i - 1][j] == '1')
-					while (i < height && map[i][j] == ' ')
-						i++;
-				else if (i < height && map[i][j] != '1' && map[i][j])
-					return (printf("carac = %c\nColonne = %d %d\n", map[i][j], i, j), 0);
-				if (i < height && map[i][j] && map[i - 1][j] != '1')
-					return (printf("CaraC = %c\nColonne = %d %d\n", map[i][j], i, j), 0);
-				i++;
-			}
-		}
-		j++;
-	}
-	return (1);
-}
-
-int	is_map_closed(t_data *data, char **map)
-{
-	if (check_colonne(data, map) && check_ligne(data, map))
-		return (1);
-	return (0);
-}
-/******************************* */
-
-/* int validate_map(char **map, int height)
-{
-	int	i;
-	int	j;
-	int	k;
-	int	len_curr;
-	int	len_top;
-	int	len_bottom;
-
-	i = 0;
-	while (i < height)
-	{
-		len_curr = strlen(map[i]); // Longueur de la ligne actuelle
-		if (i > 0)
-			len_top = strlen(map[i - 1]); // Longueur de la ligne précédente
-		else
-			len_top = 0;
-
-		if (i < height - 1)
-			len_bottom = strlen(map[i + 1]); // Longueur de la ligne suivante
-		else
-			len_bottom = 0;
-
-		// Ignorer les espaces en début de ligne
-		j = 0;
-		while (j < len_curr && map[i][j] == ' ')
-			j++;
-
-		// Vérifier la première et la dernière ligne
-		if (i == 0 || i == height - 1)
-		{
-			k = j;
-			while (k < len_curr)
-			{
-				if (map[i][k] != '1' && map[i][k] != ' ')
-					return (0); // La carte n'est pas valide
-				k++;
-			}
-		}
-		else
-		{
-			// Vérifier que le premier et le dernier caractère sont des '1'
-			if (map[i][j] != '1' || map[i][len_curr - 1] != '1')
-				return (0); // La carte n'est pas valide
-
-			// Vérifier les caractères adjacents aux espaces
-			int k = j;
-			while (k < len_curr)
-			{
-				if (map[i][k] == ' ' && ((k > 0 && map[i][k - 1] != '1' && map[i][k - 1] != ' ') ||
-										 (k < len_curr - 1 && map[i][k + 1] != '1' && map[i][k + 1] != ' ')))
-					return (0); // La carte n'est pas valide
-
-				// Vérifier les règles de longueur de ligne
-				if ((len_curr > len_top && k >= len_top && map[i][k] != '1') ||
-					(len_curr > len_bottom && k >= len_bottom && map[i][k] != '1'))
-					return (0); // La carte n'est pas valide
-				k++;
-			}
-		}
-		i++;
-	}
-	return (1); // La carte est valide
-} */
 /*******fonction decouper0 ******************/
 
-void initialize_lengths(char **map, int height, t_map_vars *vars)
+void	initialize_lengths(char **map, int height, t_map_vars *vars)
 {
 	vars->len_curr = strlen(map[vars->i]); // Longueur de la ligne actuelle
 	if (vars->i > 0)
@@ -265,7 +81,7 @@ void initialize_lengths(char **map, int height, t_map_vars *vars)
 		vars->len_bottom = 0;
 }
 
-int validate_first_last_line(char **map, t_map_vars *vars)
+int	validate_first_last_line(char **map, t_map_vars *vars)
 {
 	vars->k = vars->j;
 	while (vars->k < vars->len_curr)
@@ -277,7 +93,7 @@ int validate_first_last_line(char **map, t_map_vars *vars)
 	return (1);
 }
 
-int validate_middle_line(char **map, t_map_vars *vars)
+int	validate_middle_line(char **map, t_map_vars *vars)
 {
 	// Vérifier que le premier et le dernier caractère sont des '1'
 	if (map[vars->i][vars->j] != '1' || map[vars->i][vars->len_curr - 1] != '1')
@@ -300,7 +116,7 @@ int validate_middle_line(char **map, t_map_vars *vars)
 	return (1);
 }
 
-int validate_line(char **map, int height, t_map_vars *vars)
+int	validate_line(char **map, int height, t_map_vars *vars)
 {
 	// Ignorer les espaces en début de ligne
 	vars->j = 0;
@@ -314,7 +130,35 @@ int validate_line(char **map, int height, t_map_vars *vars)
 		return (validate_middle_line(map, vars));
 }
 
-int validate_map(char **map, int height, t_data *data)
+int	handle_player_count(char **map, int height, t_data *data, t_map_vars *vars)
+{
+	vars->player_count = 0;
+	vars->i = 0;
+	while (vars->i < height)
+	{
+		vars->j = 0;
+		while (map[vars->i][vars->j])
+		{
+			if (map[vars->i][vars->j] == 'N' || map[vars->i][vars->j] == 'S' ||
+				map[vars->i][vars->j] == 'E' || map[vars->i][vars->j] == 'W')
+			{
+				data->pos_x = vars->j;
+				data->pos_y = vars->i;
+				vars->player_count++;
+			}
+			vars->j++;
+		}
+		vars->i++;
+	}
+	if (vars->player_count != 1)
+	{
+		printf("Error: There must be exactly one player start position (N, S, E, W).\n");
+		return (0);
+	}
+	return (1);
+}
+
+int	validate_map(char **map, int height, t_data *data)
 {
 	t_map_vars vars;
 
@@ -329,34 +173,12 @@ int validate_map(char **map, int height, t_data *data)
 		}
 		vars.i++;
 	}
-	vars.player_count = 0;
-    vars.i = 0;
-    while (vars.i < height)
-    {
-        vars.j = 0;
-        while (map[vars.i][vars.j])
-        {
-            if (map[vars.i][vars.j] == 'N' || map[vars.i][vars.j] == 'S' ||
-                map[vars.i][vars.j] == 'E' || map[vars.i][vars.j] == 'W')
-            {
-				data->pos_x = vars.j;
-				data->pos_y = vars.i;
-                vars.player_count++;
-            }
-            vars.j++;
-        }
-        vars.i++;
-    }
-    if (vars.player_count != 1)
-    {
-        printf("Error: There must be exactly one player start position (N, S, E, W).\n");
-        return (0);
-    }
+	if (!handle_player_count(map, height, data, &vars))
+		return (0);
 	return (1); // La carte est valide
 }
 
 /**********/
-
 int	check_map(t_data *data)
 {
 	data->map = copy_map(data->fileinfo.copy_map, data);
@@ -364,10 +186,6 @@ int	check_map(t_data *data)
 	if (validate_map(data->map, data->fileinfo.map_height, data))
 		printf("OK map closed\n");
 	else
-		clean_exit(data);
-	// flood_fill(data, data->pos_x, data->pos_y, data->fileinfo.copy_map);
-	// print_map(data->fileinfo.copy_map);
-	// check_flood_fill(data);
-	// pas faire flood fill mais checker la premiere et derniere ligne en prenant en compte les esapces
+		clean_exit(data, 1);
 	return (0);
 }

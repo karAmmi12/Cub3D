@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/19 18:07:19 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/22 15:55:08 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	check_ext_xpm(char *str);
 int	check_file(t_data *data, char *file_name);
 
 void	exit_read(t_data *data, char *str);
-void	clean_exit(t_data *data);
+void	clean_exit(t_data *data, int exit_code);
 
 
 int	copy_file(t_data *data, char *filename);

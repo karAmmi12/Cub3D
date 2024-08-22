@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:46:56 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/19 17:56:49 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/22 17:34:41 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,7 @@ int	check_before_map(t_data *data)
 {
 	if (data->fileinfo.north == NULL || data->fileinfo.south == NULL ||
 		data->fileinfo.east == NULL || data->fileinfo.west == NULL)
-	{
-		if (data->fileinfo.north)
-			free(data->fileinfo.north);
-		if (data->fileinfo.south)
-			free(data->fileinfo.south);
-		if (data->fileinfo.east)
-			free(data->fileinfo.east);
-		if (data->fileinfo.west)
-			free(data->fileinfo.west);
 		exit_read(data, "Error\nMap mal place\n");
-	}
 	if (data->fileinfo.floor[0] == -1 || data->fileinfo.floor[1] == -1 ||
 		data->fileinfo.floor[2] == -1 || data->fileinfo.celling[0] == -1 ||
 		data->fileinfo.celling[1] == -1 || data->fileinfo.celling[2] == -1)

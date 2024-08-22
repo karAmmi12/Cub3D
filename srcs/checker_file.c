@@ -6,11 +6,11 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:43:19 by apintus           #+#    #+#             */
-/*   Updated: 2024/07/31 13:10:55 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/20 13:55:18 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 int	check_ext_cub(char *str)
 {
