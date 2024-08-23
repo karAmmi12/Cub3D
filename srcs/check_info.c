@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:46:56 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/22 17:34:41 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/23 18:02:26 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int	check_before_map(t_data *data)
 {
 	if (data->fileinfo.north == NULL || data->fileinfo.south == NULL ||
 		data->fileinfo.east == NULL || data->fileinfo.west == NULL)
-		exit_read(data, "Error\nMap mal place\n");
+		exit_read(data, "Error\nToutes les infos ne sont pas avant la map\n");
 	if (data->fileinfo.floor[0] == -1 || data->fileinfo.floor[1] == -1 ||
 		data->fileinfo.floor[2] == -1 || data->fileinfo.celling[0] == -1 ||
 		data->fileinfo.celling[1] == -1 || data->fileinfo.celling[2] == -1)
-		exit_read(data, "Error\nMap mal place\n");
+		exit_read(data, "Error\nToutes les infos ne sont pas avant la map\n");
 	printf("OK check before map\n"); // a supp
 	second_check(data);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:52:50 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/22 15:55:58 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/23 18:00:39 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	get_map_lenght_height(t_data *data)
 {
 	int	i;
 	int	j;
+	int	height;
 
 	i = 0;
+	height = 0;
 	// if (data->map == NULL)          // a voir si on le laisse
 	// 	exit_read(data, "Error :\nEmpty map\n");
 	while (data->map[i])
@@ -27,9 +29,11 @@ void	get_map_lenght_height(t_data *data)
 			j++;
 		if (j > data->fileinfo.map_lenght)
 			data->fileinfo.map_lenght = j;
+		if (data->map[i][0] != '\n')
+			height++;
 		i++;
 	}
-	data->fileinfo.map_height = i;
+	data->fileinfo.map_height = height;
 }
 
 char	**copy_map(char **map, t_data *data)
@@ -152,10 +156,39 @@ int	handle_player_count(char **map, int height, t_data *data, t_map_vars *vars)
 	}
 	if (vars->player_count != 1)
 	{
-		printf("Error: There must be exactly one player start position (N, S, E, W).\n");
+		printf("Error: There must be exactly one playe)r start position (N, S, E, W).\n");
 		return (0);
 	}
 	return (1);
+}
+
+int	last_check_map(char **map, int height)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (map[0][j])
+	{
+		if (map[0][j] == ' ' && map[1][j] == '0')
+		{
+			printf("Error: Map is not closed\n");
+			return (1);
+		}
+		j++;
+	}
+	j = 0;
+	while (map[height - 1][j])
+	{
+		if (map[height - 1][j] == ' ' && map[height - 2][j] == '0')
+		{
+			printf("Error: Map is not closed\n");
+			return (1);
+		}
+		j++;
+	}
+	return (0);
 }
 
 int	validate_map(char **map, int height, t_data *data)
@@ -174,6 +207,8 @@ int	validate_map(char **map, int height, t_data *data)
 		vars.i++;
 	}
 	if (!handle_player_count(map, height, data, &vars))
+		return (0);
+	if (last_check_map(map, height)) // patch espace debut 1ere et derniere ligne
 		return (0);
 	return (1); // La carte est valide
 }
