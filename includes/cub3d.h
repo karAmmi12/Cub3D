@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/22 18:11:00 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/28 16:23:02 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,12 @@ int	check_before_map(t_data *data);
 
 int	check_map(t_data *data);
 int	ft_tablen(char **tab);
+
+int	can_escape(char **map, int i, int j, int height);
+
+char	**copy_map(char **map, t_data *data);
+void	get_map_lenght_height(t_data *data);
+int	onlywhitespace(char *str);
 
 void	print_map(char **map);
 

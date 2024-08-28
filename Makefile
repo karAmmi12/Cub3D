@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: apintus <apintus@student.42.fr>            +#+  +:+       +#+         #
+#    By: kammi <kammi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 12:43:39 by apintus           #+#    #+#              #
-#    Updated: 2024/08/01 17:33:50 by apintus          ###   ########.fr        #
+#    Updated: 2024/08/28 16:24:31 by kammi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #########################################################
 ## ARGUMENTS
 
-NAME = cub3d
+NAME = cub3D
 HEADER = includes/cub3d.h
 CC = cc
 RM = rm -f
@@ -34,6 +34,8 @@ SRCS = srcs/main.c\
 		srcs/get_info.c\
 		srcs/check_info.c\
 		srcs/check_map.c\
+		srcs/check_map2.c\
+		srcs/check_map_utils.c\
 
 OBJS = $(SRCS:.c=.o)
 
@@ -49,7 +51,7 @@ all : $(NAME) $(LIBFT_PATH)
 
 $(NAME) : $(OBJS) $(LIBFT_PATH)
 	@echo "$(GREEN)Linking libraries and building $@...$(RESET)"
-	@$(CC) $(OBJS) $(LIBFT_PATH) -lreadline -o $(NAME)
+	@$(CC) $(OBJS) $(LIBFT_PATH) -o $(NAME)
 	@echo "$(GREEN)Success \n$(RESET)"
 
 %.o : %.c $(HEADER)
