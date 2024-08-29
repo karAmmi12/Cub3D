@@ -3,69 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:00:39 by kammi             #+#    #+#             */
-/*   Updated: 2024/08/28 16:24:58 by kammi            ###   ########.fr       */
+/*   Updated: 2024/08/29 16:18:51 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-/**************  V2 ****************/
-
-// int	can_escape(char **map, int i, int j, int height)
-// {
-// 	int	flag;
-// 	int	j_start;
-// 	int	i_start;
-
-// 	flag = 0;
-// 	j_start = j;
-// 	i_start = i;
-// 	while (map[i][j]) // check right
-// 	{
-// 		if (map[i][j] == '1')
-// 		{
-// 			flag++;
-// 			break;
-// 		}
-// 		j++;
-// 	}
-// 	j = j_start;
-// 	while (i < height) // check down
-// 	{
-// 		if (map[i][j] == '1')
-// 		{
-// 			flag++;
-// 			break;
-// 		}
-// 		i++;
-// 	}
-// 	i = i_start;
-// 	while (j >= 0) // check left
-// 	{
-// 		if (map[i][j] == '1')
-// 		{
-// 			flag++;
-// 			break;
-// 		}
-// 		j--;
-// 	}
-// 	j = j_start;
-// 	while (i >= 0) // check up
-// 	{
-// 		if (map[i][j] == '1')
-// 		{
-// 			flag++;
-// 			break;
-// 		}
-// 		i--;
-// 	}
-// 	if (flag == 4)
-// 		return (0);
-// 	return (1);
-// }
 
 int	check_right(char **map, int i, int j)
 {
@@ -115,15 +60,12 @@ int	can_escape(char **map, int i, int j, int height)
 {
 	int	flag;
 
-	i = 0;
 	flag = 0;
 	flag += check_right(map, i, j);
 	flag += check_down(map, i, j, height);
 	flag += check_left(map, i, j);
 	flag += check_up(map, i, j);
-
 	if (flag == 4)
 		return (0);
 	return (1);
 }
-

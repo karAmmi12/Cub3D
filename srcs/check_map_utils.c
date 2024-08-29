@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:21:54 by kammi             #+#    #+#             */
-/*   Updated: 2024/08/28 16:24:06 by kammi            ###   ########.fr       */
+/*   Updated: 2024/08/29 16:18:19 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,32 @@ void	get_map_lenght_height(t_data *data)
 	data->fileinfo.map_height = height;
 }
 
+void	copy_map_line(char **copy_map, char **map, int i, t_data *data)
+{
+	int	j;
+
+	j = 0;
+	copy_map[i] = malloc(sizeof(char) * (ft_strlen(map[i]) + 1));
+	if (copy_map[i] == NULL)
+		exit_read(data, "Error: Malloc error\n");
+	while (map[i][j])
+	{
+		copy_map[i][j] = map[i][j];
+		if (map[i][j] == 'N' || map[i][j] == 'S'
+			|| map[i][j] == 'W' || map[i][j] == 'E')
+		{
+			data->pos_x = j;
+			data->pos_y = i;
+		}
+		j++;
+	}
+	copy_map[i][j] = '\0';
+}
+
 char	**copy_map(char **map, t_data *data)
 {
 	char	**copy_map;
 	int		i;
-	int		j;
 	int		len;
 
 	len = ft_tablen(map);
@@ -65,21 +86,7 @@ char	**copy_map(char **map, t_data *data)
 	i = 0;
 	while (i < len)
 	{
-		copy_map[i] = malloc(sizeof(char) * (ft_strlen(map[i]) + 1));
-		if (copy_map[i] == NULL)
-			exit_read(data, "Error: Malloc error\n");
-		j = 0;
-		while (map[i][j])
-		{
-			copy_map[i][j] = map[i][j];
-			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'W' || map[i][j] == 'E')
-			{
-				data->pos_x = j;
-				data->pos_y = i;
-			}
-			j++;
-		}
-		copy_map[i][j] = '\0';
+		copy_map_line(copy_map, map, i, data);
 		i++;
 	}
 	copy_map[i] = NULL;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kammi <kammi@student.42.fr>                +#+  +:+       +#+         #
+#    By: apintus <apintus@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 12:43:39 by apintus           #+#    #+#              #
-#    Updated: 2024/08/28 16:24:31 by kammi            ###   ########.fr        #
+#    Updated: 2024/08/29 16:57:57 by apintus          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SRCS = srcs/main.c\
 		srcs/exit.c\
 		srcs/get_file.c\
 		srcs/get_info.c\
+		srcs/get_texture.c\
+		srcs/get_color.c\
 		srcs/check_info.c\
 		srcs/check_map.c\
 		srcs/check_map2.c\

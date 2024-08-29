@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/22 15:55:26 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/29 17:11:04 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int	main(int ac, char **av)
 	// print_map(data->fileinfo.copy_map); //visu
 	// 3 check map
 	check_map(data);
-
 	// EXIT || CLEANNING
 	clean_exit(data, 0);
 	return (0);

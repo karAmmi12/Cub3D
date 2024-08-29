@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/28 16:23:02 by kammi            ###   ########.fr       */
+/*   Updated: 2024/08/29 16:57:46 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,10 @@ void	clean_exit(t_data *data, int exit_code);
 int	copy_file(t_data *data, char *filename);
 
 int	get_info(char **file_copy, t_data *data);
+
+void	get_texture(char *str, t_data *data);
+
+void	get_color(char *str, t_data *data);
 
 int	check_before_map(t_data *data);
 

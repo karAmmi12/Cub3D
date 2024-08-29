@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:43:19 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/23 13:29:25 by kammi            ###   ########.fr       */
+/*   Updated: 2024/08/29 16:26:32 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ int	is_directory(char *str)
 	return (ret);
 }
 
-int
-check_file(t_data *data, char *file_name)
+int	check_file(t_data *data, char *file_name)
 {
 	int	fd;
 
@@ -74,6 +73,5 @@ check_file(t_data *data, char *file_name)
 	if (fd < 0)
 		exit_read(data, "Error: File not found\n");
 	close(fd);
-	printf("OK file\n"); // a supp
 	return (0);
 }

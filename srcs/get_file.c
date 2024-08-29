@@ -6,64 +6,11 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:38:40 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/20 13:53:59 by apintus          ###   ########.fr       */
+/*   Updated: 2024/08/29 17:27:55 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-/* void	process_line(t_data *data, char *line, int	*i)
-{
-	if (data->bigline == NULL)
-	{
-		data->bigline = ft_strdup(line);
-		if (data->bigline == NULL)
-			exit_read(data, "Malloc error1\n");
-		data->bigline = ft_strjoin(data->bigline, "\n");
-		if (data->bigline == NULL)
-			exit_read(data, "Malloc error2\n");
-		(*i)++;
-		return ;
-	}
-	data->bigline = ft_strjoin(data->bigline, line);
-	if (data->bigline == NULL)
-		exit_read(data, "Malloc error4\n");
-	data->bigline = ft_strjoin(data->bigline, "\n");
-	if (data->bigline == NULL)
-		exit_read(data, "Malloc error5\n");
-	(*i)++;
-}
-
-int	copy_file(t_data *data, char *filename)
-{
-	int	fd;
-	int	i;
-	char	*temp;
-
-	i = 0;
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		exit_read(data, "Error: File not found\n");
-	while (1)
-	{
-		temp = get_next_line(fd, 0);
-		if (temp == NULL)
-		{
-			if (i == 0)
-				exit_read(data, "Error: Empty file\n");
-			break ;
-		}
-		process_line(data, temp, &i);
-	}
-	printf("BIGLINE: %s\n", data->bigline); // a supp
-	data->fileinfo.file = ft_split(data->bigline, '\n');
-	if (data->fileinfo.file == NULL)
-		exit_read(data, "Malloc error1\n");
-	free(data->bigline);
-	close(fd);
-	return (1);
-} */
-/***************** NEW VERSION ***********************/
 
 char	*ft_strdup_n(const char *s)
 {
@@ -72,21 +19,22 @@ char	*ft_strdup_n(const char *s)
 	char	*str;
 
 	len = ft_strlen(s);
-	str = (char *)malloc(sizeof(*s) * (len + 1)); // Allocate memory for the new string
+	str = (char *)malloc(sizeof(*s) * (len + 1));
 	if (!str)
 		return (NULL);
 	i = 0;
 	while (i < len)
 	{
-		if (s[i] == '\n' && i == len - 1) // Check if the last character is '\n'
-			str[i] = '\0'; // Replace '\n' with '\0'
+		if (s[i] == '\n' && i == len - 1)
+			str[i] = '\0';
 		else
 			str[i] = s[i];
 		i++;
 	}
-	str[i] = '\0'; // Ensure the string is null-terminated
+	str[i] = '\0';
 	return (str);
 }
+
 int	count_lines( char *filename)
 {
 	int		fd;
@@ -97,21 +45,43 @@ int	count_lines( char *filename)
 	if (fd < 0)
 		return (-1);
 	lines = 0;
-	while ((line = get_next_line(fd, 0)) != NULL)
+	line = get_next_line(fd, 0);
+	while (line != NULL)
 	{
 		lines++;
 		free(line);
+		line = get_next_line(fd, 0);
 	}
 	close(fd);
 	return (lines);
 }
 
+void	read_and_copy_lines(t_data *data, int fd)
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	line = get_next_line(fd, 0);
+	while (line != NULL)
+	{
+		if (line[0] == '\n')
+			data->fileinfo.file[i] = ft_strdup("\n");
+		else
+			data->fileinfo.file[i] = ft_strdup_n(line);
+		if (data->fileinfo.file[i] == NULL)
+			exit_read(data, "Malloc error\n");
+		free(line);
+		i++;
+		line = get_next_line(fd, 0);
+	}
+	data->fileinfo.file[i] = NULL;
+}
+
 int	copy_file(t_data *data, char *filename)
 {
-	int		fd;
-	int		i;
-	char	*line;
-	int		line_count;
+	int	fd;
+	int	line_count;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
@@ -122,19 +92,7 @@ int	copy_file(t_data *data, char *filename)
 	data->fileinfo.file = malloc((line_count + 1) * sizeof(char *));
 	if (data->fileinfo.file == NULL)
 		exit_read(data, "Malloc error\n");
-	i = 0;
-	while ((line = get_next_line(fd, 0)) != NULL)
-	{
-		if (line[0] == '\n')
-			data->fileinfo.file[i] = ft_strdup("\n");
-		else
-			data->fileinfo.file[i] = ft_strdup_n(line);
-		if (data->fileinfo.file[i] == NULL)
-			exit_read(data, "Malloc error\n");
-		free(line);
-		i++;
-	}
-	data->fileinfo.file[i] = NULL;
+	read_and_copy_lines(data, fd);
 	close(fd);
 	return (1);
 }

@@ -3,43 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:52:50 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/28 16:26:47 by kammi            ###   ########.fr       */
+/*   Updated: 2024/08/29 16:26:07 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	last_check_map(char **map, int height)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (map[0][j])
-	{
-		if (map[0][j] == ' ' && map[1][j] == '0')
-		{
-			printf("Error: Map is not closed1\n");
-			return (1);
-		}
-		j++;
-	}
-	j = 0;
-	while (map[height - 1][j])
-	{
-		if (map[height - 1][j] == ' ' && map[height - 2][j] == '0')
-		{
-			printf("Error: Map is not closed2\n");
-			return (1);
-		}
-		j++;
-	}
-	return (0);
-}
 int	other_caracter(char **map, int height)
 {
 	int	i;
@@ -87,26 +59,26 @@ int	handle_player_count(char **map, int height, t_data *data, t_map_vars *vars)
 	}
 	if (vars->player_count != 1)
 	{
-		printf("Error: There must be exactly one player start position (N, S, E, W).\n");
+		printf("Error: There must be exactly one player \
+start position (N, S, E, W).\n");
 		return (1);
 	}
 	return (0);
 }
 
-int	check_hole(char **map, int height, t_data *data)
+int	check_hole(char **map, int height)
 {
 	int	i;
 	int	j;
 	int	flag;
 
-	(void)data;
 	flag = 0;
 	i = 0;
 	j = 0;
-	while(map[i][j])
+	while (i < height)
 	{
 		j = 0;
-		while(map[i][j])
+		while (map[i][j])
 		{
 			if (map[i][j] == '0')
 				flag = can_escape(map, i, j, height);
@@ -124,18 +96,16 @@ int	check_hole(char **map, int height, t_data *data)
 
 int	validate_map(char **map, int height, t_data *data)
 {
-	t_map_vars vars;
+	t_map_vars	vars;
 
 	vars.i = 0;
-	if (check_hole(map, height, data))
+	if (check_hole(map, height))
 		return (0);
 	if (handle_player_count(map, height, data, &vars))
 		return (0);
 	if (other_caracter(map, height))
 		return (0);
-	if (last_check_map(map, height)) // patch espace debut 1ere et derniere ligne
-		return (0);
-	return (1); // La carte est valide
+	return (1);
 }
 
 int	check_map(t_data *data)
