@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/29 17:11:04 by apintus          ###   ########.fr       */
+/*   Updated: 2024/09/25 13:46:13 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,22 @@ void	print_map(char **map)
 }
 /*************** MAIN ****************/
 
+// void	init_ray_struct(t_data *data)
+// {
+// 	data->win = NULL;
+// 	data->mlx = NULL;
+// 	data->ray.px = data->pos_x;
+// 	data->ray.py = data->pos_y;
+// 	if (data->fileinfo.n_flag)
+// 		data->ray.ra = 3 * PI / 2;
+// 	else if (data->fileinfo.s_flag)
+// 		data->ray.ra = PI / 2;
+// 	else if (data->fileinfo.e_flag)
+// 		data->ray.ra = PI;
+// 	else if (data->fileinfo.w_flag)
+// 		data->ray.ra = 0;
+// }
+
 void	init_data(t_data *data)
 {
 	data->fileinfo.file = NULL;
@@ -74,6 +90,10 @@ void	init_data(t_data *data)
 	data->fileinfo.w_flag = 0;
 	data->fileinfo.f_flag = 0;
 	data->fileinfo.c_flag = 0;
+	// init_ray_struct(data);
+	data->cell_size = 40;
+	data->win_height = 1080;
+	data->win_width = 1920;
 }
 
 int	main(int ac, char **av)
@@ -100,6 +120,35 @@ int	main(int ac, char **av)
 	// print_map(data->fileinfo.copy_map); //visu
 	// 3 check map
 	check_map(data);
+	// 4 init map
+	init_map(data);
+	// 5 init mlx
+	data->mlx = mlx_init();
+	if (data->mlx == NULL)
+		return (exit_read(data, "Error: mlx init failed\n"), 1);
+	// 6 init win
+	data->win = mlx_new_window(data->mlx, 1920, 1080, "Cub3D");
+	if (data->win == NULL)
+		return (exit_read(data, "Error: mlx win failed\n"), 1);
+	// 7 init image
+	data->img = mlx_new_image(data->mlx, 1920, 1080);
+	if (data->img == NULL)
+		return (exit_read(data, "Error: mlx img failed\n"), 1);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+	// TEST PIXEL
+	// my_mlx_pixel_put(data, 100, 100, 0x00FF0000);
+	// mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	// 8 init tab
+	init_tab(data);
+	// mlx loop and hook
+	mlx_loop_hook(data->mlx, perform_raycasting, data);
+	mlx_hook(data->win, 2, 1L << 0, key_press, data);
+	mlx_hook(data->win, 3, 1L << 1, key_release, data);
+	mlx_hook(data->win, 4, 1L << 2, mouse_press, data);
+	mlx_hook(data->win, 5, 1L << 3, mouse_release, data);
+	mlx_hook(data->win, 6, 1L << 6, mouse_move, data);
+	mlx_hook(data->win, 17, 1L << 17, close_game, data);
+	mlx_loop(data->mlx);
 	// EXIT || CLEANNING
 	clean_exit(data, 0);
 	return (0);

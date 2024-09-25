@@ -6,7 +6,7 @@
 #    By: apintus <apintus@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 12:43:39 by apintus           #+#    #+#              #
-#    Updated: 2024/08/29 16:57:57 by apintus          ###   ########.fr        #
+#    Updated: 2024/09/25 13:08:28 by apintus          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ HEADER = includes/cub3d.h
 CC = cc
 RM = rm -f
 CFLAGS = -Wall -Werror -Wextra -g3
+MLX = -L mlx -l mlx -I mlx -lXext -lX11 -lm -lz
+
 
 # Colors
 RED = \033[0;31m
@@ -38,6 +40,9 @@ SRCS = srcs/main.c\
 		srcs/check_map.c\
 		srcs/check_map2.c\
 		srcs/check_map_utils.c\
+		srcs/init_map.c\
+		srcs/raycasting.c\
+		srcs/key_handler.c\
 
 OBJS = $(SRCS:.c=.o)
 
@@ -52,8 +57,9 @@ LIBFT_PATH = $(LIBFT_DIR)/libft.a
 all : $(NAME) $(LIBFT_PATH)
 
 $(NAME) : $(OBJS) $(LIBFT_PATH)
+	make -C mlx
 	@echo "$(GREEN)Linking libraries and building $@...$(RESET)"
-	@$(CC) $(OBJS) $(LIBFT_PATH) -o $(NAME)
+	@$(CC) $(OBJS) $(LIBFT_PATH) $(MLX) -o $(NAME)
 	@echo "$(GREEN)Success \n$(RESET)"
 
 %.o : %.c $(HEADER)
@@ -66,6 +72,7 @@ clean :
 	@echo "$(RED)Cleaning object files...🧹$(RESET)"
 	@$(RM) $(OBJS) $(ARCHIVE)
 	@$(LIBFT_MAKE_COMMAND) clean
+	make -C mlx clean
 
 fclean : clean
 	@echo "$(RED)Cleaning all files...🧹$(RESET)"

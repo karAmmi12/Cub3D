@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 18:06:40 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/22 17:33:17 by apintus          ###   ########.fr       */
+/*   Updated: 2024/09/19 12:21:23 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,14 @@ void	clean_exit(t_data *data, int exit_code)
 	clean_map_and_copy(data);
 	free(data);
 	exit(exit_code);
+}
+
+int	close_game(t_data *data)
+{
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
+	clean_exit(data, 0);
+	return (0);
 }
