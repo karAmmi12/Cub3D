@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/09/25 15:47:25 by apintus          ###   ########.fr       */
+/*   Updated: 2024/09/25 17:02:26 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,17 @@ int	init_tab(t_data *data)
 		y++;
 	}
 	return (0);
+}
+
+void	draw_square(t_data *data, int x, int y, int color)
+{
+    for (int i = -1; i <= 1; i++)
+    {
+        for (int j = -1; j <= 1; j++)
+        {
+            my_mlx_pixel_put(data, x + i, y + j, color);
+        }
+    }
 }
 
 void	draw_rect_color(t_data *data, t_vector2_d top_left, t_vector2_d bottom_right, int color)
@@ -140,22 +151,96 @@ void draw_line(t_data *data, int x0, int y0, int x1, int y1, int color)
         }
     }
 }
+t_vector2_f	vector_d_to_f(t_vector2_d v)
+{
+	t_vector2_f	f;
+
+	f.x = v.x;
+	f.y = v.y;
+	return (f);
+}
+
 
 t_vector2_f	dda(t_data *data, t_vector2_f dest)
 {
 	t_vector2_d	origin;
+	t_vector2_d	map;
+	t_vector2_f	dir;
+	t_vector2_f	side_dist;
+	t_vector2_f	delta_dist;
+	t_vector2_f	step;
+	t_vector2_d	cell;
 
 	origin.x = data->tab_width * data->cell_size / 2;
 	origin.y = data->tab_height * data->cell_size / 2;
+	map = origin;
+	dir.x = dest.x - origin.x;
+	dir.y = dest.y - origin.y;
+	if (dir.x == 0)
+		delta_dist.x = 1e30;
+	else
+		delta_dist.x = fabs(1.0f / dir.x);
+	if (dir.y == 0)
+		delta_dist.y = 1e30;
+	else
+		delta_dist.y = fabs(1.0f / dir.y);
+	if (dir.x < 0)
+	{
+		step.x = -1; // Calcul de la direction de déplacement en X
+		side_dist.x = (origin.x - map.x) * delta_dist.x; // Calcul de la distance à parcourir pour atteindre le prochain mur en X
+	}
+	else
+	{
+		step.x = 1;
+		side_dist.x = (map.x + 1.0f - origin.x) * delta_dist.x;
+	}
+	if (dir.y < 0)
+	{
+		step.y = -1;
+		side_dist.y = (origin.y - map.y) * delta_dist.y;
+	}
+	else
+	{
+		step.y = 1;
+		side_dist.y = (map.y + 1.0f - origin.y) * delta_dist.y;
+	}
+
+	while (1)
+	{
+		if (side_dist.x < side_dist.y)
+		{
+			side_dist.x += delta_dist.x;
+			map.x += step.x;
+		}
+		else
+		{
+			side_dist.y += delta_dist.y;
+			map.y += step.y;
+		}
+		// convert map to cell
+		cell.x = map.x / data->cell_size;
+		cell.y = map.y / data->cell_size;
+
+		if (data->tab[cell.y][cell.x] == 1)
+		{
+			return (vector_d_to_f(map));
+		}
+	}
 }
 
 int perform_raycasting(t_data *data)
 {
+	t_vector2_f	dest;
+
 	mlx_clear_window(data->mlx, data->win);
 	print_grind(data);
 	int	center_x = data->tab_width * data->cell_size / 2;
 	int	center_y = data->tab_height * data->cell_size / 2;
-	draw_line(data, center_x, center_y, data->mouse_x, data->mouse_y, WHITE);
+	dest.x = data->mouse_x;
+	dest.y = data->mouse_y;
+	t_vector2_f hit = dda(data, dest);
+	draw_line(data, center_x, center_y, hit.x, hit.y, WHITE);
+	draw_square(data, hit.x, hit.y, RED);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
 }

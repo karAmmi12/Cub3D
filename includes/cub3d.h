@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/09/25 15:33:45 by apintus          ###   ########.fr       */
+/*   Updated: 2024/09/25 17:27:38 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 #define PINK 0xFFC0CB
 #define WHITE 0x00FFFFFF
 #define BLACK 0x00000000
+#define RED 0x00FF0000
+#define GREEN 0x0000FF00
+#define BLUE 0x000000FF
 #define LMB 1
 #define RMB 3
 #define KEY_ESC 65307
@@ -102,10 +105,6 @@ typedef struct s_file
 // 	int		side; // Indicateur de la direction du mur (0 pour X, 1 pour Y)
 // }	t_ray;
 
-typedef struct s_ray
-{
-}	t_ray;
-
 typedef struct s_vector2_d
 {
 	int	x;
@@ -117,6 +116,15 @@ typedef struct s_vector2_f
 	float	x;
 	float	y;
 }	t_vector2_f;
+
+typedef struct s_ray
+{
+	t_vector2_f	hit_point;
+	t_vector2_d	cell;
+	double		len;
+	int			side_hit;
+	double		angle;
+}	t_ray;
 
 typedef struct s_data
 {
