@@ -6,7 +6,7 @@
 #    By: apintus <apintus@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 12:43:39 by apintus           #+#    #+#              #
-#    Updated: 2024/09/25 13:08:28 by apintus          ###   ########.fr        #
+#    Updated: 2024/09/28 17:20:27 by apintus          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS = srcs/main.c\
 		srcs/check_map_utils.c\
 		srcs/init_map.c\
 		srcs/raycasting.c\
+		srcs/raycasting2.c\
 		srcs/key_handler.c\
 
 OBJS = $(SRCS:.c=.o)

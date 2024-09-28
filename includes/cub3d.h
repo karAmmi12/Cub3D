@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/09/25 17:27:38 by apintus          ###   ########.fr       */
+/*   Updated: 2024/09/28 17:23:39 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,24 @@
 
 #define PI 3.1415926535
 #define TWO_PI 6.28318530718
-#define FOV_ANGLE 60
+#define M_PI 3.14159265358979323846
 #define PINK 0xFFC0CB
 #define WHITE 0x00FFFFFF
 #define BLACK 0x00000000
 #define RED 0x00FF0000
 #define GREEN 0x0000FF00
 #define BLUE 0x000000FF
+#define YELLOW 0x00FFFF00
+#define PURPLE 0x00800080
 #define LMB 1
 #define RMB 3
+#define KEY_A 97
+#define KEY_D 100
+#define KEY_W 119
+#define KEY_S 115
 #define KEY_ESC 65307
+#define FOV_ANGLE 60
+#define RENDER_DISTANCE 5 // en cellule
 
 /*********** STRUCTURES ***********/
 
@@ -126,6 +134,13 @@ typedef struct s_ray
 	double		angle;
 }	t_ray;
 
+typedef struct s_player
+{
+	t_vector2_f	pos;
+	t_vector2_d	view_dis_pos;
+	t_vector2_f	dir;
+}	t_player;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -135,7 +150,6 @@ typedef struct s_data
 	t_file	fileinfo;
 	char	**map;
 	char	*bigline;
-	t_ray	ray;
 	float		pos_x;
 	float		pos_y;
 	int		mapHeight;
@@ -157,6 +171,12 @@ typedef struct s_data
 	int	tab_width;
 	int	tab_height;
 	int	cell_size;
+	// ray
+	t_ray	*ray_array;
+	int		ray_count;
+	int		view_dst;
+	float	*ray_angles;
+	t_player	player;
 }	t_data;
 
 /*********** PROTOTYPES ***********/
@@ -208,5 +228,8 @@ int	mouse_move(int x, int y, t_data *data);
 int	init_tab(t_data *data);
 void	set_grid_cell(t_data *data, int x, int y);
 int	perform_raycasting(t_data *data);
-
+int	player_input(t_data *data);
+double	degree_to_radian(double degree);
+void	rays_render(t_data *data);
+void	draw_rect_color(t_data *data, t_vector2_d top_left, t_vector2_d bottom_right, int color);
 #endif

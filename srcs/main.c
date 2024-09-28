@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/09/25 13:46:13 by apintus          ###   ########.fr       */
+/*   Updated: 2024/09/27 17:53:52 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,37 @@ void	init_data(t_data *data)
 	data->win_width = 1920;
 }
 
+void	init_rays(t_data *data)
+{
+	int		i;
+	double	angle_step;
+
+	i = 0;
+	data->ray_count = FOV_ANGLE;
+	data->view_dst = RENDER_DISTANCE * data->cell_size;
+	data->ray_array = malloc(sizeof(t_ray) * data->ray_count);
+	if (data->ray_array == NULL)
+		exit_read(data, "Error: malloc failed\n");
+	angle_step = FOV_ANGLE / data->ray_count; // = 1 useless
+	while (i < data->ray_count)
+	{
+		data->ray_array[i].angle = -FOV_ANGLE / 2 + i * angle_step;
+		i++;
+	}
+	data->ray_angles = malloc(sizeof(float) * data->ray_count);
+	if (data->ray_angles == NULL)
+		exit_read(data, "Error: malloc failed\n");
+}
+
+void	init_player(t_data *data)
+{
+	data->player.pos.x = (float)data->tab_width * (float)data->cell_size / 2.0f;
+	data->player.pos.y = (float)data->tab_height * (float)data->cell_size / 2.0f;
+	printf("player pos x: %f, y: %f\n", data->player.pos.x, data->player.pos.y);
+	data->player.dir.x = 0;
+	data->player.dir.y = -1; // norh
+}
+
 int	main(int ac, char **av)
 {
 	t_data	*data;
@@ -122,6 +153,10 @@ int	main(int ac, char **av)
 	check_map(data);
 	// 4 init map
 	init_map(data);
+
+	init_rays(data);
+	init_tab(data);
+	init_player(data);
 	// 5 init mlx
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
@@ -139,7 +174,7 @@ int	main(int ac, char **av)
 	// my_mlx_pixel_put(data, 100, 100, 0x00FF0000);
 	// mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	// 8 init tab
-	init_tab(data);
+	
 	// mlx loop and hook
 	mlx_loop_hook(data->mlx, perform_raycasting, data);
 	mlx_hook(data->win, 2, 1L << 0, key_press, data);
