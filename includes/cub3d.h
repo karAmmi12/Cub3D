@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/09/28 17:23:39 by apintus          ###   ########.fr       */
+/*   Updated: 2024/09/30 14:42:21 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 #define BLUE 0x000000FF
 #define YELLOW 0x00FFFF00
 #define PURPLE 0x00800080
+#define GREY 0x00A9A9A9
+#define BLACK 0x00000000
 #define LMB 1
 #define RMB 3
 #define KEY_A 97
@@ -44,7 +46,7 @@
 #define KEY_S 115
 #define KEY_ESC 65307
 #define FOV_ANGLE 60
-#define RENDER_DISTANCE 5 // en cellule
+#define RENDER_DISTANCE 50 // en cellule
 
 /*********** STRUCTURES ***********/
 
@@ -132,6 +134,7 @@ typedef struct s_ray
 	double		len;
 	int			side_hit;
 	double		angle;
+	double		perp_len;
 }	t_ray;
 
 typedef struct s_player

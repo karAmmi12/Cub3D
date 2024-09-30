@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/09/28 17:45:51 by apintus          ###   ########.fr       */
+/*   Updated: 2024/09/30 15:24:39 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
+
+	if (x < 0 || y < 0 || x >= data->win_width || y >= data->win_height)
+		return ;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
@@ -98,10 +101,10 @@ void	print_grind(t_data *data)
 			top_left.y = y * data->cell_size;
 			bottom_right.x = top_left.x + data->cell_size;
 			bottom_right.y = top_left.y + data->cell_size;
-			// if (data->tab[y][x] == 1) // VISU 2d
-			// 	draw_rect_color(data, top_left, bottom_right, PINK);
-			// else
-			// 	draw_rect_color(data, top_left, bottom_right, BLACK);
+			if (data->tab[y][x] == 1) // VISU 2d
+				draw_rect_color(data, top_left, bottom_right, PINK);
+			else
+				draw_rect_color(data, top_left, bottom_right, BLACK);
 			x++;
 		}
 		x = 0;
@@ -330,19 +333,21 @@ t_vector2_f	dda(t_data *data, t_ray* ray)
 
 	while (ray_length < data->view_dst * data->view_dst)
 	{
-	  if (side_dist.x < side_dist.y)
+	  if (side_dist.x < side_dist.y) // HIT A VERTICAL LINE
 	  {
 	    side_dist.x += delta_dist.x;
 	    map.x += step.x;
+		ray->perp_len = (side_dist.y - delta_dist.y) * data->cell_size;// FIShing eye effect
 		if (step.x > 0)
 			ray->side_hit = 2; // EAST
 		else
 			ray->side_hit = 3; // WEST
 	  }
-	  else
+	  else // HIT A HORIZONTAL LINE
 	  {
 	    side_dist.y += delta_dist.y;
 	    map.y += step.y;
+		ray->perp_len = (side_dist.x - delta_dist.x) * data->cell_size;// FIShing eye effect
 		if (step.y > 0)
 			ray->side_hit = 1; // SOUTH
 		else
@@ -462,9 +467,9 @@ int is_colliding(t_data *data, float x, float y)
 
 	cell.x = x / data->cell_size;
 	cell.y = y / data->cell_size;
-	if (cell.x < 0 || cell.x >= data->tab_width - 1)
+	if (cell.x < 0 || cell.x >= data->tab_width)
 		return (0);
-	if (cell.y < 0 || cell.y >= data->tab_height - 1)
+	if (cell.y < 0 || cell.y >= data->tab_height)
 		return (0);
 	if (data->tab[(int)cell.y][(int)cell.x] == 1)
 		return (1);
@@ -474,12 +479,14 @@ int is_colliding(t_data *data, float x, float y)
 int	move_forward(t_data *data)
 {
 	t_vector2_f *p_pos;
+	int	move_speed;
 
 	p_pos = &data->player.pos;
-	if (!is_colliding(data, p_pos->x + data->player.dir.x * 10, p_pos->y))
-		p_pos->x += data->player.dir.x * 10;
-	if (!is_colliding(data, p_pos->x, p_pos->y + data->player.dir.y * 10))
-		p_pos->y += data->player.dir.y * 10;
+	move_speed = 10;
+	if (!is_colliding(data, p_pos->x + data->player.dir.x * move_speed, p_pos->y))
+		p_pos->x += data->player.dir.x * move_speed;
+	if (!is_colliding(data, p_pos->x, p_pos->y + data->player.dir.y * move_speed))
+		p_pos->y += data->player.dir.y * move_speed;
 	return (0);
 }
 
@@ -487,21 +494,23 @@ int	move_forward(t_data *data)
 int	move_backward(t_data *data)
 {
 	t_vector2_f *p_pos;
+	int	move_speed;
 
 	p_pos = &data->player.pos;
-	if (!is_colliding(data, p_pos->x - data->player.dir.x * 10, p_pos->y))
-		p_pos->x -= data->player.dir.x * 10;
-	if (!is_colliding(data, p_pos->x, p_pos->y - data->player.dir.y * 10))
-		p_pos->y -= data->player.dir.y * 10;
+	move_speed = 10;
+	if (!is_colliding(data, p_pos->x - data->player.dir.x * move_speed, p_pos->y))
+		p_pos->x -= data->player.dir.x * move_speed;
+	if (!is_colliding(data, p_pos->x, p_pos->y - data->player.dir.y * move_speed))
+		p_pos->y -= data->player.dir.y * move_speed;
 	return (0);
 }
 
 int	input_key(t_data *data)
 {
 	if (data->keyboard[KEY_D])
-		rotate_right(data);
+		rotate_left(data); // inverser
 	if (data->keyboard[KEY_A])
-		rotate_left(data);
+		rotate_right(data); // inverser
 	if (data->keyboard[KEY_W])
 		move_forward(data);
 	if (data->keyboard[KEY_S])
@@ -584,7 +593,7 @@ void	calculate_collisions(t_data *data)
 		}
 		else
 			data->ray_array[i].len = -1;
-		// bresenham(data, origin, data->ray_array[i].hit_point, YELLOW); VISU 2D
+		// bresenham(data, origin, data->ray_array[i].hit_point, YELLOW); //VISU 2D
 		i++;
 	}
 }
@@ -612,7 +621,7 @@ void creat_rays(t_data *data)
 	view_dst_pos.x = data->player.view_dis_pos.x;
 	view_dst_pos.y = data->player.view_dis_pos.y;
 
-    // draw_square(data, view_dst_pos.x, view_dst_pos.y, GREEN);
+    // draw_square(data, view_dst_pos.x, view_dst_pos.y, GREEN); // VISU 2D
 
     // Calculer la longueur de l'opposé pour le champ de vision
     opposite_len = tan(degree_to_radian(FOV_ANGLE / 2)) * data->view_dst;
@@ -620,8 +629,8 @@ void creat_rays(t_data *data)
     // Calculer les vecteurs opposés pour le champ de vision
     opposite_vec[0] = create_vector_f_from_origin(vector_d_to_f(view_dst_pos), angle + M_PI / 2, opposite_len);
     opposite_vec[1] = create_vector_f_from_origin(vector_d_to_f(view_dst_pos), angle - M_PI / 2, opposite_len);
-    // draw_square(data, opposite_vec[0].x, opposite_vec[0].y, BLUE);
-    // draw_square(data, opposite_vec[1].x, opposite_vec[1].y, RED);
+    // draw_square(data, opposite_vec[0].x, opposite_vec[0].y, BLUE); // VISU 2D
+    // draw_square(data, opposite_vec[1].x, opposite_vec[1].y, RED); 	// VISU 2D
 
     // Calculer l'incrément pour chaque rayon
     increment = 1.0f / (data->ray_count - 1.0f);
@@ -646,15 +655,85 @@ void creat_rays(t_data *data)
     // }
 }
 
+void	floor_and_celling(t_data *data)
+{
+	int	floor_color;
+	int	ceiling_color;
+	int	x;
+	int	y;
+
+	// floor_color = data->fileinfo.floor[0] << 16 | data->fileinfo.floor[1] << 8 | data->fileinfo.floor[2];
+	// ceiling_color = data->fileinfo.celling[0] << 16 | data->fileinfo.celling[1] << 8 | data->fileinfo.celling[2];
+	floor_color = PURPLE;
+	ceiling_color = GREY;
+	x = 0;
+	y = 0;
+	while (y < data->win_height / 2)
+	{
+		while (x < data->win_width)
+		{
+			my_mlx_pixel_put(data, x, y, floor_color);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	y = data->win_height / 2;
+	while (y < data->win_height)
+	{
+		while (x < data->win_width)
+		{
+			my_mlx_pixel_put(data, x, y, ceiling_color);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
+
+void	floor_and_ceiling(t_data *data)
+{
+    int		floor_color = PURPLE;
+    int		ceiling_color = GREY;
+    int		half_height = data->win_height / 2;
+    int		*buffer;
+    int		y;
+
+    // Allouer un buffer temporaire pour une ligne
+    buffer = (int *)malloc(data->win_width * sizeof(int));
+    if (!buffer)
+        return;
+
+    // Remplir le buffer avec la couleur du plafond
+    for (int x = 0; x < data->win_width; x++)
+        buffer[x] = ceiling_color;
+
+    // Copier le buffer dans la moitié supérieure de l'image
+    for (y = 0; y < half_height; y++)
+        memcpy(data->addr + y * data->line_length, buffer, data->win_width * sizeof(int));
+
+    // Remplir le buffer avec la couleur du sol
+    for (int x = 0; x < data->win_width; x++)
+        buffer[x] = floor_color;
+
+    // Copier le buffer dans la moitié inférieure de l'image
+    for (y = half_height; y < data->win_height; y++)
+        memcpy(data->addr + y * data->line_length, buffer, data->win_width * sizeof(int));
+
+    // Libérer le buffer temporaire
+    free(buffer);
+}
+
 int perform_raycasting(t_data *data)
 {
     mlx_clear_window(data->mlx, data->win);
-    print_grind(data);
+    // print_grind(data); // VISU 2D
 	input_key(data);
 	// draw_square(data, data->player.pos.x, data->player.pos.y, PURPLE); // VISU 2D
+	floor_and_ceiling(data);
     creat_rays(data);
 	calculate_collisions(data);
-	rays_render(data);
+	rays_render(data); // 3d
     mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
     return (0);
 }

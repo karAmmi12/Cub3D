@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/09/27 17:53:52 by apintus          ###   ########.fr       */
+/*   Updated: 2024/09/30 15:21:58 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	init_rays(t_data *data)
 	double	angle_step;
 
 	i = 0;
-	data->ray_count = FOV_ANGLE;
+	data->ray_count = FOV_ANGLE * 2;
 	data->view_dst = RENDER_DISTANCE * data->cell_size;
 	data->ray_array = malloc(sizeof(t_ray) * data->ray_count);
 	if (data->ray_array == NULL)
@@ -162,11 +162,11 @@ int	main(int ac, char **av)
 	if (data->mlx == NULL)
 		return (exit_read(data, "Error: mlx init failed\n"), 1);
 	// 6 init win
-	data->win = mlx_new_window(data->mlx, 1920, 1080, "Cub3D");
+	data->win = mlx_new_window(data->mlx, data->win_width, data->win_height, "Cub3D");
 	if (data->win == NULL)
 		return (exit_read(data, "Error: mlx win failed\n"), 1);
 	// 7 init image
-	data->img = mlx_new_image(data->mlx, 1920, 1080);
+	data->img = mlx_new_image(data->mlx, data->win_width, data->win_height);
 	if (data->img == NULL)
 		return (exit_read(data, "Error: mlx img failed\n"), 1);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
@@ -174,7 +174,7 @@ int	main(int ac, char **av)
 	// my_mlx_pixel_put(data, 100, 100, 0x00FF0000);
 	// mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	// 8 init tab
-	
+
 	// mlx loop and hook
 	mlx_loop_hook(data->mlx, perform_raycasting, data);
 	mlx_hook(data->win, 2, 1L << 0, key_press, data);
