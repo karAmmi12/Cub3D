@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/09/30 15:24:39 by apintus          ###   ########.fr       */
+/*   Updated: 2024/09/30 18:09:43 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -333,26 +333,47 @@ t_vector2_f	dda(t_data *data, t_ray* ray)
 
 	while (ray_length < data->view_dst * data->view_dst)
 	{
-	  if (side_dist.x < side_dist.y) // HIT A VERTICAL LINE
-	  {
-	    side_dist.x += delta_dist.x;
-	    map.x += step.x;
-		ray->perp_len = (side_dist.y - delta_dist.y) * data->cell_size;// FIShing eye effect
+	//   if (side_dist.x < side_dist.y) // HIT A VERTICAL LINE
+	//   {
+	//     side_dist.x += delta_dist.x;
+	//     map.x += step.x;
+	// 	ray->perp_len = (side_dist.y - delta_dist.y) * data->cell_size;// FIShing eye effect
+	// 	if (step.x > 0)
+	// 		ray->side_hit = 2; // EAST
+	// 	else
+	// 		ray->side_hit = 3; // WEST
+	//   }
+	//   else // HIT A HORIZONTAL LINE
+	//   {
+	//     side_dist.y += delta_dist.y;
+	//     map.y += step.y;
+	// 	ray->perp_len = (side_dist.x - delta_dist.x) * data->cell_size;// FIShing eye effect
+	// 	if (step.y > 0)
+	// 		ray->side_hit = 1; // SOUTH
+	// 	else
+	// 		ray->side_hit = 0; // NORTH
+	//   }
+
+	if (side_dist.x < side_dist.y) // HIT A VERTICAL LINE
+	{
+		side_dist.x += delta_dist.x;
+		map.x += step.x;
+		ray->perp_len = (side_dist.x - delta_dist.x) * data->cell_size; // Corrected line
 		if (step.x > 0)
 			ray->side_hit = 2; // EAST
 		else
 			ray->side_hit = 3; // WEST
-	  }
-	  else // HIT A HORIZONTAL LINE
-	  {
-	    side_dist.y += delta_dist.y;
-	    map.y += step.y;
-		ray->perp_len = (side_dist.x - delta_dist.x) * data->cell_size;// FIShing eye effect
+	}
+	else // HIT A HORIZONTAL LINE
+	{
+		side_dist.y += delta_dist.y;
+		map.y += step.y;
+		ray->perp_len = (side_dist.y - delta_dist.y) * data->cell_size; // Corrected line
 		if (step.y > 0)
-			ray->side_hit = 1; // SOUTH
-		else
 			ray->side_hit = 0; // NORTH
-	  }
+		else
+			ray->side_hit = 1; // SOUTH
+	}
 
 	  ray_length = get_vector_d_length_squared(origin, map);
 
