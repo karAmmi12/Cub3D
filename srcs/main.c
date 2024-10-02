@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/01 18:26:50 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/02 17:26:10 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	init_data(t_data *data)
 	data->fileinfo.w_flag = 0;
 	data->fileinfo.f_flag = 0;
 	data->fileinfo.c_flag = 0;
-	data->cell_size = 40;
+	data->cell_size = 64;
 	data->win_height = 720;
 	data->win_width = 1280;
 }
@@ -100,7 +100,6 @@ int	main(int ac, char **av)
 	// 2- verifier les infos
 	get_info(data->fileinfo.file, data);
 	printf("OK get info\n"); // a supp
-	// print_map(data->fileinfo.copy_map); //visu
 	// 3 check map
 	check_map(data);
 	// 4 init GAMe
@@ -126,9 +125,6 @@ int	main(int ac, char **av)
 	// 8 init addr
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
 	data->addr2 = mlx_get_data_addr(data->img2, &data->bits_per_pixel2, &data->line_length2, &data->endian2);
-	// TEST PIXEL
-	// my_mlx_pixel_put(data, 100, 100, 0x00FF0000);
-	// mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 
 	// mlx loop and hook
 	mlx_loop_hook(data->mlx, perform_raycasting, data);

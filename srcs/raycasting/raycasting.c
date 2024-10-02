@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/02 11:43:22 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/02 17:32:33 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,20 +179,15 @@ void creat_rays(t_data *data)
 // GARDER fct qui boucle dans la mlx_loop_hook maiss
 int perform_raycasting(t_data *data)
 {
-    // data->player.pos.y = data->tab_height * data->cell_size - data->player.pos.y;
-
 	// mlx_clear_window(data->mlx, data->win);
+	printf("player pos x: %f, y: %f\n", data->player.pos.x, data->player.pos.y); // debug
 	print_grind(data); // VISU 2D
 	input_key(data);
-	// draw_square(data, data->player.pos.x, data->player.pos.y, PURPLE); // VISU 2D
 	floor_and_ceiling(data); //3d
 	creat_rays(data);
 	calculate_collisions(data);
 	rays_render(data); // 3d
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->win2, data->img2, 0, 0);
-
-    // data->player.pos.y = data->tab_height * data->cell_size - data->player.pos.y;
-
 	return (0);
 }

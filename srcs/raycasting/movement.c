@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:15:09 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/02 11:50:10 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/02 15:29:54 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	rotate_left(t_data *data)
 	double	rot_speed;
 	double	old_dir_x;
 
-	rot_speed = 0.1;
+	rot_speed = ROTATE_SPEED;
 	old_dir_x = data->player.dir.x;
 	data->player.dir.x = data->player.dir.x * cos(-rot_speed) - data->player.dir.y * sin(-rot_speed);
 	data->player.dir.y = old_dir_x * sin(-rot_speed) + data->player.dir.y * cos(-rot_speed);
@@ -30,7 +30,7 @@ int	rotate_right(t_data *data)
 	double	rot_speed;
 	double	old_dir_x;
 
-	rot_speed = 0.1;
+	rot_speed = ROTATE_SPEED;
 	old_dir_x = data->player.dir.x;
 	data->player.dir.x = data->player.dir.x * cos(rot_speed) - data->player.dir.y * sin(rot_speed);
 	data->player.dir.y = old_dir_x * sin(rot_speed) + data->player.dir.y * cos(rot_speed);
@@ -56,14 +56,19 @@ int is_colliding(t_data *data, float x, float y)
 // GARDER fct pour gerer les touches | AJOUTER LES FLECHES
 int	input_key(t_data *data)
 {
-	if (data->keyboard[KEY_D])
-		rotate_left(data); // inverser
-	if (data->keyboard[KEY_A])
-		rotate_right(data); // inverser
+	if (data->keyboard[202]) // fleche de droite
+		rotate_left(data);
+	if (data->keyboard[201]) // fleche de gauche
+		rotate_right(data);
 	if (data->keyboard[KEY_W])
 		move_forward(data);
 	if (data->keyboard[KEY_S])
 		move_backward(data);
+	if (data->keyboard[KEY_A])
+		move_left(data);
+	if (data->keyboard[KEY_D])
+		move_right(data);
+
 	data->player.view_dis_pos.x = data->player.dir.x * data->view_dst + data->player.pos.x;
 	data->player.view_dis_pos.y = data->player.dir.y * data->view_dst + data->player.pos.y;
 	// printf("view_dis_pos x: %f, y: %f\n", data->player.view_dis_pos.x, data->player.view_dis_pos.y);

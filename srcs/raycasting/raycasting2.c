@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 16:48:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/01 17:29:53 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/02 17:17:12 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	rays_render(t_data *data)
 	while(i < data->ray_count)
 	{
 		ray = &data->ray_array[i];
-		if (ray->perp_len == -1) // before was len
+		if (ray->perp_len == -1)
 			continue;
 
-		slice_height = 1.0f / ray->perp_len; // before was len
+		slice_height = 1.0f / ray->perp_len;
 		slice_height *= data->win_height;
 		slice_height *= 2;
 
@@ -47,10 +47,6 @@ void	rays_render(t_data *data)
 		br.x = (i + 1) * slice_width;
 		br.y = data->win_height / 2 + slice_height / 2;
 
-		// tl.x = i * slice_width;
-		// tl.y = data->win_height / 2 + slice_height / 2;
-		// br.x = i * slice_width + slice_width;
-		// br.y = data->win_height / 2 - slice_height / 2;
 		draw_rect_color(data, tl, br, color);
 
 		i++;

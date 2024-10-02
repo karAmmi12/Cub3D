@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:27:38 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/01 18:28:31 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/02 17:56:10 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+// visu 2d
 void	my_mlx_pixel_put2(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -35,6 +36,7 @@ void	my_mlx_pixel_put2(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+// visu 2d
 void	draw_rect_color2(t_data *data, t_vector2_d top_left, t_vector2_d bottom_right, int color)
 {
 	int	x;
@@ -82,6 +84,7 @@ void	floor_and_ceiling(t_data *data)
 	int		half_height = data->win_height / 2;
 	int		*buffer;
 	int		y;
+	int		x;
 
 	// Allouer un buffer temporaire pour une ligne
 	buffer = (int *)malloc(data->win_width * sizeof(int));
@@ -89,21 +92,33 @@ void	floor_and_ceiling(t_data *data)
 		return;
 
 	// Remplir le buffer avec la couleur du plafond
-	for (int x = 0; x < data->win_width; x++)
+	x = 0;
+	while(x < data->win_width)
+	{
 		buffer[x] = ceiling_color;
-
+		x++;
+	}
 	// Copier le buffer dans la moitié supérieure de l'image
-	for (y = 0; y < half_height; y++)
-		memcpy(data->addr + y * data->line_length, buffer, data->win_width * sizeof(int));
-
+	y = 0;
+	while (y < half_height)
+	{
+		ft_memcpy(data->addr + y * data->line_length, buffer, data->win_width * sizeof(int));
+		y++;
+	}
 	// Remplir le buffer avec la couleur du sol
-	for (int x = 0; x < data->win_width; x++)
+	x =	0;
+	while (x < data->win_width)
+	{
 		buffer[x] = floor_color;
-
+		x++;
+	}
 	// Copier le buffer dans la moitié inférieure de l'image
-	for (y = half_height; y < data->win_height; y++)
-		memcpy(data->addr + y * data->line_length, buffer, data->win_width * sizeof(int));
-
+	y = half_height;
+	while (y < data->win_height)
+	{
+		ft_memcpy(data->addr + y * data->line_length, buffer, data->win_width * sizeof(int));
+		y++;
+	}
 	// Libérer le buffer temporaire
 	free(buffer);
 }

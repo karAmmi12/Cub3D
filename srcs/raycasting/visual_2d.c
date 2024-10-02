@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:53:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/01 18:32:08 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/02 14:04:12 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	bresenham(t_data *data, t_vector2_d origin, t_vector2_f dst, int color)
 	int	e2;
 	int	x;
 	int	y;
-
+	
 	dx = abs((int)dst.x - (int)origin.x);
 	dy = abs((int)dst.y - (int)origin.y);
 	sx = (origin.x < dst.x) ? 1 : -1;

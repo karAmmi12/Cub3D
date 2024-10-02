@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/01 18:32:18 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/02 18:00:38 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,12 @@
 #define KEY_W 119
 #define KEY_S 115
 #define KEY_ESC 65307
+#define KEY_LEFT 65361
+#define KEY_RIGHT 65363
 #define FOV_ANGLE 60
 #define RAY_COUNT 640
+#define MOVE_SPEED 10
+#define ROTATE_SPEED 0.1
 #define RENDER_DISTANCE 50 // en cellule
 
 /*********** STRUCTURES ***********/
@@ -173,7 +177,7 @@ typedef struct s_data
 	int		line_length2;
 	int		endian2;
 	// keyboard
-	int	keyboard[200];
+	int	keyboard[203];
 	int	mouse_button;
 	int	mouse_x;
 	int	mouse_y;
@@ -246,10 +250,7 @@ void	draw_rect_color(t_data *data, t_vector2_d top_left, t_vector2_d bottom_righ
 void	init_game(t_data *data);
 void	init_player(t_data *data);
 void	init_rays(t_data *data);
-int init_tab(t_data *data, char **map, int map_height, int map_width);
-// void	init_player(t_data *data);
-
-
+int		init_tab(t_data *data, char **map);
 
 // Vector Utils
 double	get_angle(t_vector2_d origin, int x, int y);
@@ -266,8 +267,8 @@ int	rotate_left(t_data *data);
 int	rotate_right(t_data *data);
 int	move_forward(t_data *data);
 int	move_backward(t_data *data);
-//moveLEFT
-//moveRIGHT
+int	move_left(t_data *data);
+int	move_right(t_data *data);
 int is_colliding(t_data *data, float x, float y);
 
 // Coloriage ou Drawing (j hesite)

@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 14:52:18 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/01 15:54:47 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/02 17:30:49 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ void	get_map_Width_Height(t_data *data)
 		data->mapHeight++;
 		i++;
 	}
+	data->tab_height = data->mapHeight;
+	data->tab_width = data->mapWidth;
 }
 
 // Fonction d'initialisation de la carte
