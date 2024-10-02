@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coloriage.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:27:38 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/02 17:56:10 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/02 18:33:31 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	draw_rect_color(t_data *data, t_vector2_d top_left, t_vector2_d bottom_righ
 // GARDER fct pour dessiner le sol et le plafond (A MODIFIER NORM)
 void	floor_and_ceiling(t_data *data)
 {
-	int		floor_color = PURPLE;
-	int		ceiling_color = GREY;
+	int		floor_color = rgb_to_mlx(0, data->fileinfo.floor[0], data->fileinfo.floor[1], data->fileinfo.floor[2]);
+	int		ceiling_color = rgb_to_mlx(0, data->fileinfo.celling[0], data->fileinfo.celling[1], data->fileinfo.celling[2]);
 	int		half_height = data->win_height / 2;
 	int		*buffer;
 	int		y;
