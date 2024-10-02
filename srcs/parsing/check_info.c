@@ -6,11 +6,11 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:46:56 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/29 16:14:48 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/01 13:17:48 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	second_check(t_data *data)
 {

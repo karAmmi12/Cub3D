@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/09/30 15:21:58 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/01 18:26:50 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,6 @@ void	print_map(char **map)
 }
 /*************** MAIN ****************/
 
-// void	init_ray_struct(t_data *data)
-// {
-// 	data->win = NULL;
-// 	data->mlx = NULL;
-// 	data->ray.px = data->pos_x;
-// 	data->ray.py = data->pos_y;
-// 	if (data->fileinfo.n_flag)
-// 		data->ray.ra = 3 * PI / 2;
-// 	else if (data->fileinfo.s_flag)
-// 		data->ray.ra = PI / 2;
-// 	else if (data->fileinfo.e_flag)
-// 		data->ray.ra = PI;
-// 	else if (data->fileinfo.w_flag)
-// 		data->ray.ra = 0;
-// }
-
 void	init_data(t_data *data)
 {
 	data->fileinfo.file = NULL;
@@ -90,41 +74,9 @@ void	init_data(t_data *data)
 	data->fileinfo.w_flag = 0;
 	data->fileinfo.f_flag = 0;
 	data->fileinfo.c_flag = 0;
-	// init_ray_struct(data);
 	data->cell_size = 40;
-	data->win_height = 1080;
-	data->win_width = 1920;
-}
-
-void	init_rays(t_data *data)
-{
-	int		i;
-	double	angle_step;
-
-	i = 0;
-	data->ray_count = FOV_ANGLE * 2;
-	data->view_dst = RENDER_DISTANCE * data->cell_size;
-	data->ray_array = malloc(sizeof(t_ray) * data->ray_count);
-	if (data->ray_array == NULL)
-		exit_read(data, "Error: malloc failed\n");
-	angle_step = FOV_ANGLE / data->ray_count; // = 1 useless
-	while (i < data->ray_count)
-	{
-		data->ray_array[i].angle = -FOV_ANGLE / 2 + i * angle_step;
-		i++;
-	}
-	data->ray_angles = malloc(sizeof(float) * data->ray_count);
-	if (data->ray_angles == NULL)
-		exit_read(data, "Error: malloc failed\n");
-}
-
-void	init_player(t_data *data)
-{
-	data->player.pos.x = (float)data->tab_width * (float)data->cell_size / 2.0f;
-	data->player.pos.y = (float)data->tab_height * (float)data->cell_size / 2.0f;
-	printf("player pos x: %f, y: %f\n", data->player.pos.x, data->player.pos.y);
-	data->player.dir.x = 0;
-	data->player.dir.y = -1; // norh
+	data->win_height = 720;
+	data->win_width = 1280;
 }
 
 int	main(int ac, char **av)
@@ -151,12 +103,8 @@ int	main(int ac, char **av)
 	// print_map(data->fileinfo.copy_map); //visu
 	// 3 check map
 	check_map(data);
-	// 4 init map
-	init_map(data);
-
-	init_rays(data);
-	init_tab(data);
-	init_player(data);
+	// 4 init GAMe
+	init_game(data);
 	// 5 init mlx
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
@@ -165,15 +113,22 @@ int	main(int ac, char **av)
 	data->win = mlx_new_window(data->mlx, data->win_width, data->win_height, "Cub3D");
 	if (data->win == NULL)
 		return (exit_read(data, "Error: mlx win failed\n"), 1);
+	data->win2 = mlx_new_window(data->mlx, data->win_width, data->win_height, "Cub2D");
+	if (data->win2 == NULL)
+		return (exit_read(data, "Error: mlx win failed\n"), 1);
 	// 7 init image
 	data->img = mlx_new_image(data->mlx, data->win_width, data->win_height);
 	if (data->img == NULL)
 		return (exit_read(data, "Error: mlx img failed\n"), 1);
+	data->img2 = mlx_new_image(data->mlx, data->win_width, data->win_height);
+	if (data->img2 == NULL)
+		return (exit_read(data, "Error: mlx img failed\n"), 1);
+	// 8 init addr
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+	data->addr2 = mlx_get_data_addr(data->img2, &data->bits_per_pixel2, &data->line_length2, &data->endian2);
 	// TEST PIXEL
 	// my_mlx_pixel_put(data, 100, 100, 0x00FF0000);
 	// mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	// 8 init tab
 
 	// mlx loop and hook
 	mlx_loop_hook(data->mlx, perform_raycasting, data);

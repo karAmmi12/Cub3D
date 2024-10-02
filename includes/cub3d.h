@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/09/30 17:00:34 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/01 18:32:18 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 #define KEY_S 115
 #define KEY_ESC 65307
 #define FOV_ANGLE 60
+#define RAY_COUNT 640
 #define RENDER_DISTANCE 50 // en cellule
 
 /*********** STRUCTURES ***********/
@@ -148,6 +149,7 @@ typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
+	void	*win2;
 	int		win_height;
 	int		win_width;
 	t_file	fileinfo;
@@ -164,6 +166,12 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	// image 2
+	void	*img2;
+	char	*addr2;
+	int		bits_per_pixel2;
+	int		line_length2;
+	int		endian2;
 	// keyboard
 	int	keyboard[200];
 	int	mouse_button;
@@ -228,11 +236,50 @@ int	mouse_press(int button, int x, int y, t_data *data);
 int	mouse_release(int button, int x, int y, t_data *data);
 int	mouse_move(int x, int y, t_data *data);
 
-int	init_tab(t_data *data);
 void	set_grid_cell(t_data *data, int x, int y);
 int	perform_raycasting(t_data *data);
 int	player_input(t_data *data);
 double	degree_to_radian(double degree);
 void	rays_render(t_data *data);
 void	draw_rect_color(t_data *data, t_vector2_d top_left, t_vector2_d bottom_right, int color);
+// Init Game
+void	init_game(t_data *data);
+void	init_player(t_data *data);
+void	init_rays(t_data *data);
+int init_tab(t_data *data, char **map, int map_height, int map_width);
+// void	init_player(t_data *data);
+
+
+
+// Vector Utils
+double	get_angle(t_vector2_d origin, int x, int y);
+double	degree_to_radian(double degree);
+t_vector2_f	create_vector_f_from_origin(t_vector2_f origin, double angle, int len);
+t_vector2_f	vector_d_to_f(t_vector2_d v);
+t_vector2_f	vector_f_lerp(t_vector2_f a, t_vector2_f b, double t);
+float	get_vector_d_length_squared(t_vector2_d a, t_vector2_d b);
+double	get_vector_f_len(t_vector2_d origin, t_vector2_f dst);
+
+// Movement
+int	input_key(t_data *data);
+int	rotate_left(t_data *data);
+int	rotate_right(t_data *data);
+int	move_forward(t_data *data);
+int	move_backward(t_data *data);
+//moveLEFT
+//moveRIGHT
+int is_colliding(t_data *data, float x, float y);
+
+// Coloriage ou Drawing (j hesite)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	draw_rect_color(t_data *data, t_vector2_d top_left, t_vector2_d bottom_right, int color);
+void	floor_and_ceiling(t_data *data);
+
+// 2d
+void	draw_square(t_data *data, int x, int y, int color);
+void	print_grind(t_data *data);
+void	bresenham(t_data *data, t_vector2_d origin, t_vector2_f dst, int color);
+void	my_mlx_pixel_put2(t_data *data, int x, int y, int color);
+void	draw_rect_color2(t_data *data, t_vector2_d top_left, t_vector2_d bottom_right, int color);
+
 #endif

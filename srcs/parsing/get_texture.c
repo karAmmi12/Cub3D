@@ -6,11 +6,11 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:38:23 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/29 16:43:58 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/01 13:18:39 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	get_north_texture(char *str, int *i, t_data *data)
 {

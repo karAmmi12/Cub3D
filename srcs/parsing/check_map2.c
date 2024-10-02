@@ -6,11 +6,11 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:00:39 by kammi             #+#    #+#             */
-/*   Updated: 2024/08/29 16:18:51 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/01 13:18:14 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	check_right(char **map, int i, int j)
 {

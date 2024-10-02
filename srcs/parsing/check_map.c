@@ -6,11 +6,11 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:52:50 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/29 16:26:07 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/01 13:18:10 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	other_caracter(char **map, int height)
 {

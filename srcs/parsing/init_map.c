@@ -6,11 +6,11 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 14:52:18 by apintus           #+#    #+#             */
-/*   Updated: 2024/09/23 16:16:28 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/01 15:54:47 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 char	*ft_strcpy(char *dest, const char *src)
 {
@@ -62,14 +62,13 @@ void	make_map_rectangular(t_data *data)
 		{
 			new_line = malloc(max_len + 1);
 			if (!new_line)
-				return; // Gérer l'erreur de malloc
+				return;
 			ft_strcpy(new_line, data->fileinfo.copy_map[i]);
 			ft_memset(new_line + len, '1', max_len - len);
 			new_line[max_len] = '\0';
 			free(data->fileinfo.copy_map[i]);
 			data->fileinfo.copy_map[i] = new_line;
 		}
-		// Remplacer tous les espaces par des '1'
 		j = 0;
 		while (j < max_len)
 		{
@@ -111,5 +110,4 @@ void	init_map(t_data *data)
 	printf("pos y = %f\n", data->pos_y); //visu
 	printf("map width = %d\n", data->mapWidth); //visu
 	printf("map height = %d\n", data->mapHeight); //visu
-	// Autres initialisations si nécessaire
 }

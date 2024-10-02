@@ -6,11 +6,11 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:15:54 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/29 17:09:58 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/01 13:18:33 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../includes/cub3d.h"
+#include	"../../includes/cub3d.h"
 
 int	is_whitespace(char c)
 {

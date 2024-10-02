@@ -6,11 +6,11 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:52:32 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/29 16:59:46 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/01 13:18:23 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../includes/cub3d.h"
+#include	"../../includes/cub3d.h"
 
 int	parse_color_component(char *str, int *i, long *temp)
 {

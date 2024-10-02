@@ -6,7 +6,7 @@
 #    By: apintus <apintus@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 12:43:39 by apintus           #+#    #+#              #
-#    Updated: 2024/09/28 17:20:27 by apintus          ###   ########.fr        #
+#    Updated: 2024/10/01 15:35:50 by apintus          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,19 +30,25 @@ RESET = \033[0m
 ## SOURCES
 
 SRCS = srcs/main.c\
-		srcs/checker_file.c\
 		srcs/exit.c\
-		srcs/get_file.c\
-		srcs/get_info.c\
-		srcs/get_texture.c\
-		srcs/get_color.c\
-		srcs/check_info.c\
-		srcs/check_map.c\
-		srcs/check_map2.c\
-		srcs/check_map_utils.c\
-		srcs/init_map.c\
-		srcs/raycasting.c\
-		srcs/raycasting2.c\
+		srcs/parsing/checker_file.c\
+		srcs/parsing/get_file.c\
+		srcs/parsing/get_info.c\
+		srcs/parsing/get_texture.c\
+		srcs/parsing/get_color.c\
+		srcs/parsing/check_info.c\
+		srcs/parsing/check_map.c\
+		srcs/parsing/check_map2.c\
+		srcs/parsing/check_map_utils.c\
+		srcs/parsing/init_map.c\
+		srcs/parsing/init_game.c\
+		srcs/raycasting/raycasting.c\
+		srcs/raycasting/raycasting2.c\
+		srcs/raycasting/visual_2d.c\
+		srcs/raycasting/vector_utils.c\
+		srcs/raycasting/movement.c\
+		srcs/raycasting/movement2.c\
+		srcs/raycasting/coloriage.c\
 		srcs/key_handler.c\
 
 OBJS = $(SRCS:.c=.o)

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 16:48:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/09/30 17:00:28 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/01 17:29:53 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	rays_render(t_data *data)
 {
@@ -32,16 +32,12 @@ void	rays_render(t_data *data)
 		slice_height = 1.0f / ray->perp_len; // before was len
 		slice_height *= data->win_height;
 		slice_height *= 2;
-		if (i == 30)
-		{
-			printf("slice_height: %f\n", slice_height);
-			printf("slice_width: %d\n", slice_width);
-		}
-		if (ray->side_hit == 0) // NOrth
-			color = RED;
-		else if (ray->side_hit == 1) //SOuth
+
+		if (ray->side_hit == 0) // SOUTH
 			color = BLUE;
-		else if (ray->side_hit == 2) // East
+		else if (ray->side_hit == 1) // NORD
+			color = RED;
+		else if (ray->side_hit == 2) // EAST
 			color = YELLOW;
 		else
 			color = GREEN; // West

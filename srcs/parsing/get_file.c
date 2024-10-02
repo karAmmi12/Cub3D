@@ -6,11 +6,11 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:38:40 by apintus           #+#    #+#             */
-/*   Updated: 2024/08/29 17:27:55 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/01 13:18:27 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 char	*ft_strdup_n(const char *s)
 {
