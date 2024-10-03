@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:33:30 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/02 17:31:22 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/03 16:35:27 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,34 @@ void	init_player(t_data *data)
 	}
 }
 
+int	init_texture(t_data *data)
+{
+	data->text[0].img = NULL;
+	data->text[1].img = NULL;
+	data->text[2].img = NULL;
+	data->text[3].img = NULL;
+	data->text[0].width_img = 0;
+	data->text[1].width_img = 0;
+	data->text[2].width_img = 0;
+	data->text[3].width_img = 0;
+	data->text[0].height_img = 0;
+	data->text[1].height_img = 0;
+	data->text[2].height_img = 0;
+	data->text[3].height_img = 0;
+	if (load_texture(data, &data->text[0], data->fileinfo.north) == 1)
+		return (1);
+	if (load_texture(data, &data->text[1], data->fileinfo.south) == 1)
+		return (1);
+	if (load_texture(data, &data->text[2], data->fileinfo.east) == 1)
+		return (1);
+	if (load_texture(data, &data->text[3], data->fileinfo.west) == 1)
+		return (1);
+	return (0);
+}
+
 void	init_game(t_data *data)
 {
 	init_map(data);
 	init_rays(data);
 	init_tab(data ,data->fileinfo.copy_map);
-	init_player(data);
 }

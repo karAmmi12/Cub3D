@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/02 18:34:21 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/03 16:36:33 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 #define PI 3.1415926535
 #define TWO_PI 6.28318530718
 #define M_PI 3.14159265358979323846
+#define PI_2 1.57079632679
 #define PINK 0xFFC0CB
 #define WHITE 0x00FFFFFF
 #define BLACK 0x00000000
@@ -67,16 +68,6 @@ typedef struct s_map_vars
 	int	player_count;
 } t_map_vars;
 
-// typedef struct s_verif // useless structure
-// {
-// 	int		north;
-// 	int		south;
-// 	int		east;
-// 	int		west;
-// 	int		floor;
-// 	int		celling;
-// }	t_verif;
-
 // struct parsing
 typedef struct s_file
 {
@@ -98,27 +89,16 @@ typedef struct s_file
 	int		c_flag;
 }	t_file;
 
-
-// typedef struct s_ray
-// {
-// 	float	px; // Position X du joueur
-// 	float	py; // Position Y du joueur
-// 	float	xstep; // Pas en X
-// 	float	ystep; // Pas en Y
-// 	float	ax; // Angle X
-// 	float	ay; // Angle Y
-// 	float	ra; // Ray angle (angle du rayon)
-// 	int		map_x; // Coordonnée X de la case de la grille
-// 	int		map_y; // Coordonnée Y de la case de la grille
-// 	float	side_dist_x; // Distance à parcourir jusqu'à la première intersection avec une ligne verticale de la grille en X
-// 	float	side_dist_y; // Distance à parcourir jusqu'à la première intersection avec une ligne horizontale de la grille en Y
-// 	float	delta_dist_x; // Distance à parcourir pour traverser une case de la grille en X
-// 	float	delta_dist_y; // Distance à parcourir pour traverser une case de la grille en Y
-// 	int		step_x; // Direction de déplacement en X
-// 	int		step_y; // Direction de déplacement en Y
-// 	float	perp_wall_dist; // Distance perpendiculaire au mur
-// 	int		side; // Indicateur de la direction du mur (0 pour X, 1 pour Y)
-// }	t_ray;
+typedef struct s_text
+{
+	void	*img;
+	char	*text_addr;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
+	int		width_img;
+	int		height_img;
+}	t_text;
 
 typedef struct s_vector2_d
 {
@@ -192,6 +172,8 @@ typedef struct s_data
 	int		view_dst;
 	float	*ray_angles;
 	t_player	player;
+	// texture
+	t_text	text[4];
 }	t_data;
 
 /*********** PROTOTYPES ***********/
@@ -251,6 +233,7 @@ void	init_game(t_data *data);
 void	init_player(t_data *data);
 void	init_rays(t_data *data);
 int		init_tab(t_data *data, char **map);
+int		init_texture(t_data *data);
 
 // Vector Utils
 double	get_angle(t_vector2_d origin, int x, int y);
@@ -276,6 +259,9 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_rect_color(t_data *data, t_vector2_d top_left, t_vector2_d bottom_right, int color);
 void	floor_and_ceiling(t_data *data);
 int		rgb_to_mlx(int t, int r, int g, int b);
+int		get_tex_x(t_data *data, t_ray *ray, t_text *texture);
+int		get_text_pixel(t_text *text, int x, int y);
+int		load_texture(t_data *data, t_text *text, char *path);
 
 
 // 2d

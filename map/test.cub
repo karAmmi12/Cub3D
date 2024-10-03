@@ -1,7 +1,7 @@
-NO textures/test/forbidden.xpm
-SO textures/test/south.xpm
-WE textures/test/west.xpm
-EA textures/test/east.xpm
+NO textures/ancientstone.xpm
+SO textures/bluestone.xpm
+WE textures/brick.xpm
+EA textures/greystone.xpm
 
 F 49,140,231
 C 75,0,130

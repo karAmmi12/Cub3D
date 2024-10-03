@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/02 17:26:10 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/03 16:35:53 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,12 @@ int	main(int ac, char **av)
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
 		return (exit_read(data, "Error: mlx init failed\n"), 1);
+
+	// TEXTUREs
+	init_player(data);
+	if (init_texture(data) == 1)
+		exit_read(data, "Error: texture failed\n");
+
 	// 6 init win
 	data->win = mlx_new_window(data->mlx, data->win_width, data->win_height, "Cub3D");
 	if (data->win == NULL)

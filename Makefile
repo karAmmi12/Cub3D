@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kammi <kammi@student.42.fr>                +#+  +:+       +#+         #
+#    By: apintus <apintus@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 12:43:39 by apintus           #+#    #+#              #
-#    Updated: 2024/10/02 18:46:40 by kammi            ###   ########.fr        #
+#    Updated: 2024/10/03 16:03:09 by apintus          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRCS = srcs/main.c\
 		srcs/raycasting/movement2.c\
 		srcs/raycasting/coloriage.c\
 		srcs/raycasting/colors_utils.c\
+		srcs/raycasting/texture.c\
 		srcs/key_handler.c\
 
 OBJS = $(SRCS:.c=.o)
