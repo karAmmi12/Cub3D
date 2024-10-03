@@ -1,19 +1,10 @@
-NO textures/ancientstone.xpm
-SO textures/bluestone.xpm
-WE textures/brick.xpm
-EA textures/greystone.xpm
+NO textures/cover/astro.xpm
+SO textures/cover/ye.xpm
+WE textures/cover/heros.xpm
+EA textures/cover/goodkidmadcity.xpm
+F 169,169,169
+C 49,140,231
 
-F 49,140,231
-C 75,0,130
-
-
-111111111
-100100001
-100100001
-100000001
-100000001
-100000001
-100000001
-100000111
-10E000001
-111111111
+111
+1N1
+111
