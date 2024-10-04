@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/02 17:32:33 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/04 13:53:01 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ void creat_rays(t_data *data)
 int perform_raycasting(t_data *data)
 {
 	// mlx_clear_window(data->mlx, data->win);
-	printf("player pos x: %f, y: %f\n", data->player.pos.x, data->player.pos.y); // debug
+	// printf("player pos x: %f, y: %f\n", data->player.pos.x, data->player.pos.y); // debug
 	print_grind(data); // VISU 2D
 	input_key(data);
 	floor_and_ceiling(data); //3d

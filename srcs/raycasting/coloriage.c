@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coloriage.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:27:38 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/02 18:33:31 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/04 14:58:33 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,37 +24,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-// visu 2d
-void	my_mlx_pixel_put2(t_data *data, int x, int y, int color)
-{
-	char	*dst;
 
-	if (x < 0 || y < 0 || x >= data->win_width || y >= data->win_height)
-		return ;
-
-	dst = data->addr2 + (y * data->line_length2 + x * (data->bits_per_pixel2 / 8));
-	*(unsigned int *)dst = color;
-}
-
-// visu 2d
-void	draw_rect_color2(t_data *data, t_vector2_d top_left, t_vector2_d bottom_right, int color)
-{
-	int	x;
-	int	y;
-
-	x = top_left.x;
-	y = top_left.y;
-	while (y < bottom_right.y)
-	{
-		while (x < bottom_right.x)
-		{
-			my_mlx_pixel_put2(data, x, y, color);
-			x++;
-		}
-		x = top_left.x;
-		y++;
-	}
-}
 
 // GARDER fct pour dessiner les rectangle de couleur
 void	draw_rect_color(t_data *data, t_vector2_d top_left, t_vector2_d bottom_right, int color)

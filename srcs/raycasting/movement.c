@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:15:09 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/03 12:53:50 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/04 15:00:30 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,5 @@ int	input_key(t_data *data)
 
 	data->player.view_dis_pos.x = data->player.dir.x * data->view_dst + data->player.pos.x;
 	data->player.view_dis_pos.y = data->player.dir.y * data->view_dst + data->player.pos.y;
-	// printf("view_dis_pos x: %f, y: %f\n", data->player.view_dis_pos.x, data->player.view_dis_pos.y);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:33:30 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/03 16:35:27 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/04 13:51:40 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	init_player(t_data *data)
 {
 	data->player.pos.x = data->pos_x * data->cell_size + data->cell_size / 2;
 	data->player.pos.y = data->pos_y * data->cell_size + data->cell_size / 2;
+	printf("player pos x: %f, y: %f\n", data->player.pos.x, data->player.pos.y); // debug
 	if (data->fileinfo.copy_map[(int)data->pos_y][(int)data->pos_x] == 'N')
 	{
 		data->player.dir.x = 0;

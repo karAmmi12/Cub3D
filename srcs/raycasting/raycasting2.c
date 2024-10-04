@@ -6,12 +6,13 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 16:48:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/03 18:25:37 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/04 15:04:06 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+// Version colorer sans texture
 // void	rays_render(t_data *data)
 // {
 // 	const int	slice_width = data->win_width / data->ray_count;
@@ -64,18 +65,13 @@ void rays_render(t_data *data)
     if (ray->len == -1)
       continue;
 
-	float slice_height = (float)(data->win_height / ray->perp_len);
+  	float slice_height = (float)(data->win_height / ray->perp_len);
     t_vector2_d tl = {i * slice_width, data->win_height / 2 - slice_height / 2};
     t_vector2_d br = {i * slice_width + slice_width, data->win_height / 2 + slice_height / 2};
 
     t_text *texture = &data->text[ray->side_hit]; // Reference to the texture according on side_hit
 
     int tex_x = get_tex_x(data, ray, texture);
-	 // Inverser tex_x pour les murs orientés vers le sud et l'est
-    if (ray->side_hit == 0 || ray->side_hit == 2)
-    {
-      tex_x = texture->width_img - tex_x - 1;
-    }
     double tex_y = 0;
 
     double step = texture->height_img / slice_height;
@@ -93,3 +89,5 @@ void rays_render(t_data *data)
     }
   }
 }
+
+
