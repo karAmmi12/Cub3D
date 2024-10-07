@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/04 15:03:58 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/04 18:44:56 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_rect_color(t_data *data, t_vector2_d top_left, t_vector2_d bottom_right, int color);
 void	floor_and_ceiling(t_data *data);
 int		rgb_to_mlx(int t, int r, int g, int b);
-int		get_tex_x(t_data *data, t_ray *ray, t_text *texture);
+int		get_tex_x(t_data *data, t_ray *ray, t_text *texture, int i);
 int		get_text_pixel(t_text *text, int x, int y);
 int		load_texture(t_data *data, t_text *text, char *path);
 

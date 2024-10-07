@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 16:48:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/04 15:04:06 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/04 19:14:17 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void rays_render(t_data *data)
 
     t_text *texture = &data->text[ray->side_hit]; // Reference to the texture according on side_hit
 
-    int tex_x = get_tex_x(data, ray, texture);
+    int tex_x = get_tex_x(data, ray, texture, i);
     double tex_y = 0;
 
     double step = texture->height_img / slice_height;

@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:49:39 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/04 15:05:06 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/04 19:37:20 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,45 +52,52 @@ int	get_angle_f(t_vector2_f origin, t_vector2_f target)
 	return (angle);
 }
 
-int get_tex_x(t_data *data, t_ray *ray, t_text *texture)
-{
-	double	hit_x;
-	double	hit_y;
-	double	wall_hit_x;
-	int		tex_x;
-
-	hit_x = ray->hit_point.x;
-	hit_y = ray->hit_point.y;
-
-	if (ray->side_hit == 0 || ray->side_hit == 1) // Mur horizontal (Sud, Nord)
-		wall_hit_x  = fmod(hit_x, data->cell_size) / data->cell_size;
-	else // Mur vertical (Est, Ouest)
-		wall_hit_x = fmod(hit_y, data->cell_size) / data->cell_size;
-	tex_x = (int)(wall_hit_x * (double)texture->width_img);
-	if ((ray->side_hit == 0 && cos(ray->angle) > 0) || (ray->side_hit == 1 && sin(ray->angle) < 0))
-		tex_x = texture->width_img - tex_x - 1;
-
-	return (tex_x);
-}
+// DROIT
 // int get_tex_x(t_data *data, t_ray *ray, t_text *texture, int i)
 // {
-//   // Calculer la position exacte du mur touché
-//   double wall_hit_x;
-//   if (ray->side_hit == 0 || ray->side_hit == 1) // Mur horizontal (Sud, Nord)
-//     wall_hit_x = data->player.pos.x + ray->perp_len * cos(ray->angle);
-//   else // Mur vertical (Est, Ouest)
-//     wall_hit_x = data->player.pos.y + ray->perp_len * sin(ray->angle);
+// 	double	wall_hit_x;
+// 	int		tex_x;
 
-//   // Calculer la position relative à la cellule
-//   wall_hit_x -= floor(wall_hit_x);
-//   if (i == 320)
-// 	printf("wall_hit_x: %f\n", wall_hit_x);
+// 	if (ray->side_hit == 0 || ray->side_hit == 1) // Mur horizontal (Sud, Nord)
+// 	{
+// 		wall_hit_x  = fmod(ray->hit_point.x, data->cell_size) / data->cell_size;
+// 	}
+// 	else // Mur vertical (Est, Ouest)
+// 	{
+// 		wall_hit_x = fmod(ray->hit_point.y, data->cell_size) / data->cell_size;
+// 	}
 
-//   // Convertir la position en coordonnées de texture
-//   int tex_x = (int)(wall_hit_x * (double)texture->width_img);
-//   if ((ray->side_hit == 0 && cos(ray->angle) > 0) || (ray->side_hit == 1 && cos(ray->angle) < 0))
-//     tex_x = texture->width_img - tex_x - 1;
+// 	// printf("hit_point.x = %f\n", ray->hit_point.x);
+// 	if (i > 310 && i < 330)
 
-//   return tex_x;
+// 		printf("wall_hit_x = %f | ray_hit = %f\n", wall_hit_x, ray->hit_point.x);
+// 	tex_x = (int)(wall_hit_x * (double)texture->width_img);
+// 	if (ray->side_hit == 0)
+// 		tex_x = texture->width_img - tex_x - 1;
+
+// 	return (tex_x);
 // }
+
+// NETTE
+int get_tex_x(t_data *data, t_ray *ray, t_text *texture, int i)
+{
+  // Calculer la position exacte du mur touché
+  double wall_hit_x;
+  if (ray->side_hit == 0 || ray->side_hit == 1) // Mur horizontal (Sud, Nord)
+    wall_hit_x = data->player.pos.x + ray->perp_len * cos(ray->angle);
+  else // Mur vertical (Est, Ouest)
+    wall_hit_x = data->player.pos.y + ray->perp_len * sin(ray->angle);
+
+	if (i > 310 && i < 330)
+		printf("wall_hit_x = %f\n", wall_hit_x);
+  // Calculer la position relative à la cellule
+	  wall_hit_x -= floor(wall_hit_x);
+
+  // Convertir la position en coordonnées de texture
+  int tex_x = (int)(wall_hit_x * (double)texture->width_img);
+  if ((ray->side_hit == 0 && cos(ray->angle) > 0) || (ray->side_hit == 1 && cos(ray->angle) < 0))
+    tex_x = texture->width_img - tex_x - 1;
+
+  return tex_x;
+}
 
