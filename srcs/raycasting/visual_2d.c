@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:53:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/07 18:18:01 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 17:05:52 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	my_mlx_pixel_put2(t_data *data, int x, int y, int color)
 
 	if (x < 0 || y < 0 || x >= data->win_width || y >= data->win_height)
 		return ;
-
-	dst = data->addr2 + (y * data->line_length2 + x * (data->bits_per_pixel2 / 8));
+	dst = data->addr2 + (y * data->line_length2 + x
+			* (data->bits_per_pixel2 / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -150,7 +150,6 @@ void	bresenham(t_data *data, t_vector2_d origin, t_vector2_d dst, int color)
 	y = (int)origin.y;
 	while (1)
 	{
-		// Assurez-vous que les coordonnées sont dans les limites de l'écran
 		if (x >= 0 && x < data->win_width && y >= 0 && y < data->win_height)
 			my_mlx_pixel_put2(data, x, y, color);
 		if (x == (int)dst.x && y == (int)dst.y)

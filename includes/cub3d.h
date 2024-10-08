@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/08 16:31:17 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 17:03:41 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 #define KEY_LEFT 65361
 #define KEY_RIGHT 65363
 #define FOV_ANGLE 90
-#define RAY_COUNT 640
+#define RAY_COUNT 1920
 #define MOVE_SPEED 10
 #define ROTATE_SPEED 0.1
 #define RENDER_DISTANCE 50 // en cellule
@@ -177,6 +177,19 @@ typedef struct s_dda_vars
 	t_vector2_d	hit_point;
 	double	ray_length;
 } t_dda_vars;
+
+// struct de var pour la norme
+typedef struct s_ray_create_vars
+{
+	t_vector2_d	origin;
+	double		angle;
+	t_vector2_d	view_dst_pos;
+	int			opp_len;
+	t_vector2_d	opp_vec[2];
+	double		increm;
+	int			i;
+	t_vector2_d	vec;
+} t_ray_create_vars;
 
 typedef struct s_data
 {
@@ -317,5 +330,11 @@ void	print_grind(t_data *data);
 void	bresenham(t_data *data, t_vector2_d origin, t_vector2_d dst, int color);
 void	my_mlx_pixel_put2(t_data *data, int x, int y, int color);
 void	draw_rect_color2(t_data *data, t_vector2_d top_left, t_vector2_d bottom_right, int color);
+
+// DDA
+t_vector2_d	dda(t_data *data, t_ray *ray);
+void	initialize_dda_vars(t_data *data, t_ray *ray, t_dda_vars *v);
+void	calculate_initial_distances(t_dda_vars *v);
+void	calculate_initial_distances2(t_dda_vars *v);
 
 #endif

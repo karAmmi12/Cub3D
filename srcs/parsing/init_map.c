@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 14:52:18 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/08 15:38:44 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 17:17:10 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,23 @@ static int	get_max_line_length(char **map)
 	return (max_len);
 }
 
-// Fonction pour rendre la carte rectangulaire
+void	change_void_in_wall(t_data *data, int max_len, int i)
+{
+	int	j;
+
+	j = 0;
+	while (j < max_len)
+	{
+		if (data->info.copy_map[i][j] == ' ')
+			data->info.copy_map[i][j] = '1';
+		j++;
+	}
+}
+
 void	make_map_rectangular(t_data *data)
 {
 	int		max_len;
 	int		i;
-	int		j;
 	int		len;
 	char	*new_line;
 
@@ -69,13 +80,7 @@ void	make_map_rectangular(t_data *data)
 			free(data->info.copy_map[i]);
 			data->info.copy_map[i] = new_line;
 		}
-		j = 0;
-		while (j < max_len)
-		{
-			if (data->info.copy_map[i][j] == ' ')
-				data->info.copy_map[i][j] = '1';
-			j++;
-		}
+		change_void_in_wall(data, max_len, i);
 		i++;
 	}
 }

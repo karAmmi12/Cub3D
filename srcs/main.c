@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/08 15:37:45 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 17:09:40 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 */
 
 /*************** VISUALIZER ****************/
-
 void	read_file(t_data *data)
 {
 	int	i;
@@ -48,6 +47,21 @@ void	print_map(char **map)
 }
 /*************** MAIN ****************/
 
+void	init_data2(t_data *data)
+{
+	data->pos_x = 0;
+	data->pos_y = 0;
+	data->info.n_flag = 0;
+	data->info.s_flag = 0;
+	data->info.e_flag = 0;
+	data->info.w_flag = 0;
+	data->info.f_flag = 0;
+	data->info.c_flag = 0;
+	data->cell_size = 64;
+	data->win_height = 1080;
+	data->win_width = 1920;
+}
+
 void	init_data(t_data *data)
 {
 	data->info.file = NULL;
@@ -66,17 +80,7 @@ void	init_data(t_data *data)
 	data->info.copy_map = NULL;
 	data->info.map_height = 0;
 	data->info.map_lenght = 0;
-	data->pos_x = 0;
-	data->pos_y = 0;
-	data->info.n_flag = 0;
-	data->info.s_flag = 0;
-	data->info.e_flag = 0;
-	data->info.w_flag = 0;
-	data->info.f_flag = 0;
-	data->info.c_flag = 0;
-	data->cell_size = 64;
-	data->win_height = 1080;
-	data->win_width = 1920;
+	init_data2(data);
 }
 
 int	main(int ac, char **av)
