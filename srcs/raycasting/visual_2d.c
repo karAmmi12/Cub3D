@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:53:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/04 14:58:39 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/07 18:18:01 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	print_grind(t_data *data)
 //VISU 2D pour modfiier la map avec la souris
 void	set_grid_cell(t_data *data, int x, int y)
 {
-	t_vector2_d	tab_pos;
+	t_vector2_i	tab_pos;
 
 	tab_pos.x = x / data->cell_size;
 	tab_pos.y = y / data->cell_size;
@@ -130,7 +130,7 @@ void draw_line(t_data *data, int x0, int y0, int x1, int y1, int color)
 }
 
 //VISU 2D WTFFF SUPER MULTI RAYON JAUUU
-void	bresenham(t_data *data, t_vector2_d origin, t_vector2_f dst, int color)
+void	bresenham(t_data *data, t_vector2_d origin, t_vector2_d dst, int color)
 {
 	int	dx;
 	int	dy;

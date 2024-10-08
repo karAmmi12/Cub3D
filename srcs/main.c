@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/04 14:44:39 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/07 19:10:13 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	init_data(t_data *data)
 	data->fileinfo.f_flag = 0;
 	data->fileinfo.c_flag = 0;
 	data->cell_size = 64;
-	data->win_height = 720;
-	data->win_width = 1280;
+	data->win_height = 1080;
+	data->win_width = 1920;
 }
 
 int	main(int ac, char **av)

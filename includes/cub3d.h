@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/04 18:44:56 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 13:14:25 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@
 #define KEY_ESC 65307
 #define KEY_LEFT 65361
 #define KEY_RIGHT 65363
-#define FOV_ANGLE 60
-#define RAY_COUNT 640
+#define FOV_ANGLE 90
+#define RAY_COUNT 1920
 #define MOVE_SPEED 10
 #define ROTATE_SPEED 0.1
 #define RENDER_DISTANCE 50 // en cellule
@@ -100,10 +100,16 @@ typedef struct s_text
 	int		height_img;
 }	t_text;
 
-typedef struct s_vector2_d
+typedef struct s_vector2_i
 {
 	int	x;
 	int	y;
+}	t_vector2_i;
+
+typedef struct s_vector2_d
+{
+	double	x;
+	double	y;
 }	t_vector2_d;
 
 typedef struct s_vector2_f
@@ -114,7 +120,8 @@ typedef struct s_vector2_f
 
 typedef struct s_ray
 {
-	t_vector2_f	hit_point;
+	t_vector2_f	hit_point_f;
+	t_vector2_d	hit_point;
 	t_vector2_d	cell;
 	double		len;
 	int			side_hit;
@@ -267,7 +274,7 @@ int		load_texture(t_data *data, t_text *text, char *path);
 // 2d
 void	draw_square(t_data *data, int x, int y, int color);
 void	print_grind(t_data *data);
-void	bresenham(t_data *data, t_vector2_d origin, t_vector2_f dst, int color);
+void	bresenham(t_data *data, t_vector2_d origin, t_vector2_d dst, int color);
 void	my_mlx_pixel_put2(t_data *data, int x, int y, int color);
 void	draw_rect_color2(t_data *data, t_vector2_d top_left, t_vector2_d bottom_right, int color);
 
