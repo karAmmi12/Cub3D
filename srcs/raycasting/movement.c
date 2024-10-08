@@ -6,13 +6,12 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:15:09 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/04 15:00:30 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 16:02:23 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-// GARDER mais modifier pour que ce soit les fleches
 int	rotate_left(t_data *data)
 {
 	double	rot_speed;
@@ -20,11 +19,13 @@ int	rotate_left(t_data *data)
 
 	rot_speed = ROTATE_SPEED;
 	old_dir_x = data->player.dir.x;
-	data->player.dir.x = data->player.dir.x * cos(-rot_speed) - data->player.dir.y * sin(-rot_speed);
-	data->player.dir.y = old_dir_x * sin(-rot_speed) + data->player.dir.y * cos(-rot_speed);
+	data->player.dir.x = data->player.dir.x * cos(-rot_speed)
+		- data->player.dir.y * sin(-rot_speed);
+	data->player.dir.y = old_dir_x * sin(-rot_speed)
+		+ data->player.dir.y * cos(-rot_speed);
 	return (0);
 }
-// GARDER mais modifier pour que ce soit les fleches
+
 int	rotate_right(t_data *data)
 {
 	double	rot_speed;
@@ -32,13 +33,14 @@ int	rotate_right(t_data *data)
 
 	rot_speed = ROTATE_SPEED;
 	old_dir_x = data->player.dir.x;
-	data->player.dir.x = data->player.dir.x * cos(rot_speed) - data->player.dir.y * sin(rot_speed);
-	data->player.dir.y = old_dir_x * sin(rot_speed) + data->player.dir.y * cos(rot_speed);
+	data->player.dir.x = data->player.dir.x * cos(rot_speed)
+		- data->player.dir.y * sin(rot_speed);
+	data->player.dir.y = old_dir_x * sin(rot_speed)
+		+ data->player.dir.y * cos(rot_speed);
 	return (0);
 }
 
-// GARDER fct pour verifier si il y a une collision
-int is_colliding(t_data *data, float x, float y)
+int	is_colliding(t_data *data, float x, float y)
 {
 	t_vector2_d	cell;
 
@@ -53,12 +55,12 @@ int is_colliding(t_data *data, float x, float y)
 	return (0);
 }
 
-// GARDER fct pour gerer les touches | AJOUTER LES FLECHES
+// Arrow keys are reversed for 3d render
 int	input_key(t_data *data)
 {
-	if (data->keyboard[202]) // fleche de droite
+	if (data->keyboard[202])
 		rotate_left(data);
-	if (data->keyboard[201]) // fleche de gauche
+	if (data->keyboard[201])
 		rotate_right(data);
 	if (data->keyboard[KEY_W])
 		move_forward(data);
@@ -68,8 +70,9 @@ int	input_key(t_data *data)
 		move_left(data);
 	if (data->keyboard[KEY_D])
 		move_right(data);
-
-	data->player.view_dis_pos.x = data->player.dir.x * data->view_dst + data->player.pos.x;
-	data->player.view_dis_pos.y = data->player.dir.y * data->view_dst + data->player.pos.y;
+	data->player.view_dis_pos.x = data->player.dir.x * data->view_dst
+		+ data->player.pos.x;
+	data->player.view_dis_pos.y = data->player.dir.y * data->view_dst
+		+ data->player.pos.y;
 	return (0);
 }

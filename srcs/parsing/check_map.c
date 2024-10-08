@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:52:50 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/01 13:18:10 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 15:38:05 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,9 @@ int	validate_map(char **map, int height, t_data *data)
 
 int	check_map(t_data *data)
 {
-	data->map = copy_map(data->fileinfo.copy_map, data);
+	data->map = copy_map(data->info.copy_map, data);
 	get_map_lenght_height(data);
-	if (validate_map(data->map, data->fileinfo.map_height, data))
+	if (validate_map(data->map, data->info.map_height, data))
 		printf("OK map closed\n");
 	else
 		clean_exit(data, 1);

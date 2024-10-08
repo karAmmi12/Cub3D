@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 18:06:40 by apintus           #+#    #+#             */
-/*   Updated: 2024/09/19 12:21:23 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 15:37:37 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	clean_map_and_copy(t_data *data)
 	int	i;
 
 	i = 0;
-	if (data->fileinfo.copy_map)
+	if (data->info.copy_map)
 	{
-		while (data->fileinfo.copy_map[i])
+		while (data->info.copy_map[i])
 		{
-			free(data->fileinfo.copy_map[i]);
+			free(data->info.copy_map[i]);
 			i++;
 		}
-		free(data->fileinfo.copy_map);
+		free(data->info.copy_map);
 	}
 	if (data->map)
 	{
@@ -49,22 +49,22 @@ void	clean_exit(t_data *data, int exit_code)
 	int	i;
 
 	i = 0;
-	if (data->fileinfo.north)
-		free(data->fileinfo.north);
-	if (data->fileinfo.south)
-		free(data->fileinfo.south);
-	if (data->fileinfo.east)
-		free(data->fileinfo.east);
-	if (data->fileinfo.west)
-		free(data->fileinfo.west);
-	if (data->fileinfo.file)
+	if (data->info.north)
+		free(data->info.north);
+	if (data->info.south)
+		free(data->info.south);
+	if (data->info.east)
+		free(data->info.east);
+	if (data->info.west)
+		free(data->info.west);
+	if (data->info.file)
 	{
-		while (data->fileinfo.file[i])
+		while (data->info.file[i])
 		{
-			free(data->fileinfo.file[i]);
+			free(data->info.file[i]);
 			i++;
 		}
-		free(data->fileinfo.file);
+		free(data->info.file);
 	}
 	clean_map_and_copy(data);
 	free(data);

@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/07 19:10:13 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 15:37:45 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	read_file(t_data *data)
 	int	i;
 
 	i = 0;
-	while (data->fileinfo.file[i])
+	while (data->info.file[i])
 	{
-		printf("%s\n", data->fileinfo.file[i]);
+		printf("%s\n", data->info.file[i]);
 		i++;
 	}
 }
@@ -50,30 +50,30 @@ void	print_map(char **map)
 
 void	init_data(t_data *data)
 {
-	data->fileinfo.file = NULL;
-	data->fileinfo.north = NULL;
-	data->fileinfo.south = NULL;
-	data->fileinfo.west = NULL;
-	data->fileinfo.east = NULL;
-	data->fileinfo.floor[0] = -1;
-	data->fileinfo.floor[1] = -1;
-	data->fileinfo.floor[2] = -1;
-	data->fileinfo.celling[0] = -1;
-	data->fileinfo.celling[1] = -1;
-	data->fileinfo.celling[2] = -1;
+	data->info.file = NULL;
+	data->info.north = NULL;
+	data->info.south = NULL;
+	data->info.west = NULL;
+	data->info.east = NULL;
+	data->info.floor[0] = -1;
+	data->info.floor[1] = -1;
+	data->info.floor[2] = -1;
+	data->info.celling[0] = -1;
+	data->info.celling[1] = -1;
+	data->info.celling[2] = -1;
 	data->bigline = NULL;
 	data->map = NULL;
-	data->fileinfo.copy_map = NULL;
-	data->fileinfo.map_height = 0;
-	data->fileinfo.map_lenght = 0;
+	data->info.copy_map = NULL;
+	data->info.map_height = 0;
+	data->info.map_lenght = 0;
 	data->pos_x = 0;
 	data->pos_y = 0;
-	data->fileinfo.n_flag = 0;
-	data->fileinfo.s_flag = 0;
-	data->fileinfo.e_flag = 0;
-	data->fileinfo.w_flag = 0;
-	data->fileinfo.f_flag = 0;
-	data->fileinfo.c_flag = 0;
+	data->info.n_flag = 0;
+	data->info.s_flag = 0;
+	data->info.e_flag = 0;
+	data->info.w_flag = 0;
+	data->info.f_flag = 0;
+	data->info.c_flag = 0;
 	data->cell_size = 64;
 	data->win_height = 1080;
 	data->win_width = 1920;
@@ -98,7 +98,7 @@ int	main(int ac, char **av)
 	printf("OK copy file\n"); // a supp
 	read_file(data); //visu
 	// 2- verifier les infos
-	get_info(data->fileinfo.file, data);
+	get_info(data->info.file, data);
 	printf("OK get info\n"); // a supp
 	// 3 check map
 	check_map(data);

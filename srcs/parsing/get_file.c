@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:38:40 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/01 13:18:27 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 15:38:17 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,16 @@ void	read_and_copy_lines(t_data *data, int fd)
 	while (line != NULL)
 	{
 		if (line[0] == '\n')
-			data->fileinfo.file[i] = ft_strdup("\n");
+			data->info.file[i] = ft_strdup("\n");
 		else
-			data->fileinfo.file[i] = ft_strdup_n(line);
-		if (data->fileinfo.file[i] == NULL)
+			data->info.file[i] = ft_strdup_n(line);
+		if (data->info.file[i] == NULL)
 			exit_read(data, "Malloc error\n");
 		free(line);
 		i++;
 		line = get_next_line(fd, 0);
 	}
-	data->fileinfo.file[i] = NULL;
+	data->info.file[i] = NULL;
 }
 
 int	copy_file(t_data *data, char *filename)
@@ -89,8 +89,8 @@ int	copy_file(t_data *data, char *filename)
 	line_count = count_lines(filename);
 	if (line_count < 0)
 		exit_read(data, "Error: Could not count lines\n");
-	data->fileinfo.file = malloc((line_count + 1) * sizeof(char *));
-	if (data->fileinfo.file == NULL)
+	data->info.file = malloc((line_count + 1) * sizeof(char *));
+	if (data->info.file == NULL)
 		exit_read(data, "Malloc error\n");
 	read_and_copy_lines(data, fd);
 	close(fd);

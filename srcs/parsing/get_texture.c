@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:38:23 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/01 13:18:39 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 15:38:28 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	get_north_texture(char *str, int *i, t_data *data)
 	*i += 2;
 	while (is_whitespace(str[*i]))
 		(*i)++;
-	if (data->fileinfo.n_flag == 1)
+	if (data->info.n_flag == 1)
 		exit_read(data, "Error :\nTexture north in double\n");
-	data->fileinfo.north = ft_strdup(&str[*i]);
-	data->fileinfo.n_flag = 1;
+	data->info.north = ft_strdup(&str[*i]);
+	data->info.n_flag = 1;
 }
 
 void	get_south_texture(char *str, int *i, t_data *data)
@@ -28,10 +28,10 @@ void	get_south_texture(char *str, int *i, t_data *data)
 	*i += 2;
 	while (is_whitespace(str[*i]))
 		(*i)++;
-	if (data->fileinfo.s_flag == 1)
+	if (data->info.s_flag == 1)
 		exit_read(data, "Error :\nTexture south in double\n");
-	data->fileinfo.south = ft_strdup(&str[*i]);
-	data->fileinfo.s_flag = 1;
+	data->info.south = ft_strdup(&str[*i]);
+	data->info.s_flag = 1;
 }
 
 void	get_west_texture(char *str, int *i, t_data *data)
@@ -39,10 +39,10 @@ void	get_west_texture(char *str, int *i, t_data *data)
 	*i += 2;
 	while (is_whitespace(str[*i]))
 		(*i)++;
-	if (data->fileinfo.w_flag == 1)
+	if (data->info.w_flag == 1)
 		exit_read(data, "Error :\nTexture west in double\n");
-	data->fileinfo.west = ft_strdup(&str[*i]);
-	data->fileinfo.w_flag = 1;
+	data->info.west = ft_strdup(&str[*i]);
+	data->info.w_flag = 1;
 }
 
 void	get_east_texture(char *str, int *i, t_data *data)
@@ -50,10 +50,10 @@ void	get_east_texture(char *str, int *i, t_data *data)
 	*i += 2;
 	while (is_whitespace(str[*i]))
 		(*i)++;
-	if (data->fileinfo.e_flag == 1)
+	if (data->info.e_flag == 1)
 		exit_read(data, "Error :\nTexture east in double\n");
-	data->fileinfo.east = ft_strdup(&str[*i]);
-	data->fileinfo.e_flag = 1;
+	data->info.east = ft_strdup(&str[*i]);
+	data->info.e_flag = 1;
 }
 
 void	get_texture(char *str, t_data *data)

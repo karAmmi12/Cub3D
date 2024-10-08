@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:52:32 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/01 13:18:23 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 15:38:11 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,21 @@ void	set_color(int flag, int *color, t_data *data)
 {
 	if (flag == 'F')
 	{
-		if (data->fileinfo.f_flag == 1)
+		if (data->info.f_flag == 1)
 			exit_read(data, "Error :\nCouleur de sol en double\n");
-		data->fileinfo.floor[0] = color[0];
-		data->fileinfo.floor[1] = color[1];
-		data->fileinfo.floor[2] = color[2];
-		data->fileinfo.f_flag = 1;
+		data->info.floor[0] = color[0];
+		data->info.floor[1] = color[1];
+		data->info.floor[2] = color[2];
+		data->info.f_flag = 1;
 	}
 	else if (flag == 'C')
 	{
-		if (data->fileinfo.c_flag == 1)
+		if (data->info.c_flag == 1)
 			exit_read(data, "Error :\nCouleur de plafond en double\n");
-		data->fileinfo.celling[0] = color[0];
-		data->fileinfo.celling[1] = color[1];
-		data->fileinfo.celling[2] = color[2];
-		data->fileinfo.c_flag = 1;
+		data->info.celling[0] = color[0];
+		data->info.celling[1] = color[1];
+		data->info.celling[2] = color[2];
+		data->info.c_flag = 1;
 	}
 }
 

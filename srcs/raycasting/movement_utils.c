@@ -1,52 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement2.c                                        :+:      :+:    :+:   */
+/*   movement_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:22:37 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/04 12:42:08 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 16:01:44 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-// GARDER fct pour avancer
 int	move_forward(t_data *data)
 {
-	t_vector2_f *p_pos;
-	int		move_speed;
+	t_vector2_f	*p_pos;
+	int			move_speed;
 
 	p_pos = &data->player.pos;
 	move_speed = MOVE_SPEED;
-	if (!is_colliding(data, p_pos->x + data->player.dir.x * move_speed, p_pos->y))
+	if (!is_colliding(data, p_pos->x + data->player.dir.x * move_speed,
+			p_pos->y))
 		p_pos->x += data->player.dir.x * move_speed;
-	if (!is_colliding(data, p_pos->x, p_pos->y - data->player.dir.y * move_speed))
+	if (!is_colliding(data, p_pos->x,
+			p_pos->y - data->player.dir.y * move_speed))
 		p_pos->y -= data->player.dir.y * move_speed;
 	return (0);
 }
 
-// GARDER fct pour reculer
 int	move_backward(t_data *data)
 {
-	t_vector2_f *p_pos;
-	int		move_speed;
+	t_vector2_f	*p_pos;
+	int			move_speed;
 
 	p_pos = &data->player.pos;
 	move_speed = MOVE_SPEED;
-	if (!is_colliding(data, p_pos->x - data->player.dir.x * move_speed, p_pos->y))
+	if (!is_colliding(data, p_pos->x - data->player.dir.x * move_speed,
+			p_pos->y))
 		p_pos->x -= data->player.dir.x * move_speed;
-	if (!is_colliding(data, p_pos->x, p_pos->y + data->player.dir.y * move_speed))
+	if (!is_colliding(data, p_pos->x,
+			p_pos->y + data->player.dir.y * move_speed))
 		p_pos->y += data->player.dir.y * move_speed;
 	return (0);
 }
 
 int	move_left(t_data *data)
 {
-	t_vector2_f *p_pos;
-	int		move_speed;
-	t_vector2_f perp_dir;
+	t_vector2_f	*p_pos;
+	int			move_speed;
+	t_vector2_f	perp_dir;
 
 	p_pos = &data->player.pos;
 	move_speed = MOVE_SPEED;
@@ -61,9 +63,9 @@ int	move_left(t_data *data)
 
 int	move_right(t_data *data)
 {
-	t_vector2_f *p_pos;
-	int		move_speed;
-	t_vector2_f perp_dir;
+	t_vector2_f	*p_pos;
+	int			move_speed;
+	t_vector2_f	perp_dir;
 
 	p_pos = &data->player.pos;
 	move_speed = MOVE_SPEED;

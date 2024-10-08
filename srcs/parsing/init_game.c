@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:33:30 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/04 13:51:40 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 15:38:37 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	init_tab(t_data *data, char **map)
 			else
 				data->tab[y][x] = 0;
 			x++;
-	}
+		}
 		y++;
 	}
 	return (0);
@@ -66,25 +66,24 @@ void	init_player(t_data *data)
 {
 	data->player.pos.x = data->pos_x * data->cell_size + data->cell_size / 2;
 	data->player.pos.y = data->pos_y * data->cell_size + data->cell_size / 2;
-	printf("player pos x: %f, y: %f\n", data->player.pos.x, data->player.pos.y); // debug
-	if (data->fileinfo.copy_map[(int)data->pos_y][(int)data->pos_x] == 'N')
+	if (data->info.copy_map[(int)data->pos_y][(int)data->pos_x] == 'N')
 	{
 		data->player.dir.x = 0;
-		data->player.dir.y = 1; // NORTH inverser pour 3d
+		data->player.dir.y = 1;
 	}
-	else if (data->fileinfo.copy_map[(int)data->pos_y][(int)data->pos_x] == 'S')
+	else if (data->info.copy_map[(int)data->pos_y][(int)data->pos_x] == 'S')
 	{
 		data->player.dir.x = 0;
-		data->player.dir.y = -1; // SOUTH inverser pour 3d
+		data->player.dir.y = -1;
 	}
-	else if (data->fileinfo.copy_map[(int)data->pos_y][(int)data->pos_x] == 'E')
+	else if (data->info.copy_map[(int)data->pos_y][(int)data->pos_x] == 'E')
 	{
-		data->player.dir.x = 1; // EAST
+		data->player.dir.x = 1;
 		data->player.dir.y = 0;
 	}
-	else if (data->fileinfo.copy_map[(int)data->pos_y][(int)data->pos_x] == 'W')
+	else if (data->info.copy_map[(int)data->pos_y][(int)data->pos_x] == 'W')
 	{
-		data->player.dir.x = -1; // WEST
+		data->player.dir.x = -1;
 		data->player.dir.y = 0;
 	}
 }
@@ -103,13 +102,13 @@ int	init_texture(t_data *data)
 	data->text[1].height_img = 0;
 	data->text[2].height_img = 0;
 	data->text[3].height_img = 0;
-	if (load_texture(data, &data->text[0], data->fileinfo.north) == 1)
+	if (load_texture(data, &data->text[0], data->info.north) == 1)
 		return (1);
-	if (load_texture(data, &data->text[1], data->fileinfo.south) == 1)
+	if (load_texture(data, &data->text[1], data->info.south) == 1)
 		return (1);
-	if (load_texture(data, &data->text[2], data->fileinfo.east) == 1)
+	if (load_texture(data, &data->text[2], data->info.east) == 1)
 		return (1);
-	if (load_texture(data, &data->text[3], data->fileinfo.west) == 1)
+	if (load_texture(data, &data->text[3], data->info.west) == 1)
 		return (1);
 	return (0);
 }
@@ -118,5 +117,5 @@ void	init_game(t_data *data)
 {
 	init_map(data);
 	init_rays(data);
-	init_tab(data ,data->fileinfo.copy_map);
+	init_tab(data, data->info.copy_map);
 }

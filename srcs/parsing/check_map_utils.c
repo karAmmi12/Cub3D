@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:21:54 by kammi             #+#    #+#             */
-/*   Updated: 2024/10/01 13:18:04 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 15:38:00 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ void	get_map_lenght_height(t_data *data)
 		j = 0;
 		while (data->map[i][j])
 			j++;
-		if (j > data->fileinfo.map_lenght)
-			data->fileinfo.map_lenght = j;
+		if (j > data->info.map_lenght)
+			data->info.map_lenght = j;
 		if (data->map[i][0] != '\n' && !onlywhitespace(data->map[i]))
 			height++;
 		i++;
 	}
-	data->fileinfo.map_height = height;
+	data->info.map_height = height;
 }
 
 void	copy_map_line(char **copy_map, char **map, int i, t_data *data)

@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/08 13:14:25 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/08 16:31:17 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 #define KEY_LEFT 65361
 #define KEY_RIGHT 65363
 #define FOV_ANGLE 90
-#define RAY_COUNT 1920
+#define RAY_COUNT 640
 #define MOVE_SPEED 10
 #define ROTATE_SPEED 0.1
 #define RENDER_DISTANCE 50 // en cellule
@@ -67,6 +67,17 @@ typedef struct s_map_vars
 	int	len_bottom;
 	int	player_count;
 } t_map_vars;
+
+// struct de var pour la norme
+typedef struct s_flo_cel_vars
+{
+	int		floor_color;
+	int		ceiling_color;
+	int		half_height;
+	int		*buffer;
+	int		y;
+	int		x;
+} t_flo_cel_vars;
 
 // struct parsing
 typedef struct s_file
@@ -136,6 +147,37 @@ typedef struct s_player
 	t_vector2_f	dir;
 }	t_player;
 
+// struct de var pour la norme
+typedef struct s_ray_render_vars
+{
+	int			i;
+	int			y;
+	float		slice_height;
+	t_ray		*ray;
+	t_vector2_d	tl;
+	t_vector2_d	br;
+	t_text		*texture;
+	int			tex_x;
+	double		tex_y;
+	double		step;
+	int			color;
+	int			x;
+} t_ray_render_vars;
+
+// struct de var pour la norme
+typedef struct s_dda_vars
+{
+	t_vector2_d	origin;
+	t_vector2_d	map;
+	t_vector2_d	dir;
+	t_vector2_d	side_dist;
+	t_vector2_d	delta_dist;
+	t_vector2_d	step;
+	t_vector2_i	cell;
+	t_vector2_d	hit_point;
+	double	ray_length;
+} t_dda_vars;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -143,7 +185,7 @@ typedef struct s_data
 	void	*win2;
 	int		win_height;
 	int		win_width;
-	t_file	fileinfo;
+	t_file	info;
 	char	**map;
 	char	*bigline;
 	float		pos_x;
@@ -245,11 +287,9 @@ int		init_texture(t_data *data);
 // Vector Utils
 double	get_angle(t_vector2_d origin, int x, int y);
 double	degree_to_radian(double degree);
-t_vector2_f	create_vector_f_from_origin(t_vector2_f origin, double angle, int len);
-t_vector2_f	vector_d_to_f(t_vector2_d v);
-t_vector2_f	vector_f_lerp(t_vector2_f a, t_vector2_f b, double t);
-float	get_vector_d_length_squared(t_vector2_d a, t_vector2_d b);
-double	get_vector_f_len(t_vector2_d origin, t_vector2_f dst);
+t_vector2_d	vector_d_lerp(t_vector2_d a, t_vector2_d b, double t);
+double	get_vector_double_len(t_vector2_d origin, t_vector2_d dst);
+t_vector2_d	create_vector_d_from_origin(t_vector2_d origin, double angle, int len);
 
 // Movement
 int	input_key(t_data *data);
@@ -266,7 +306,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_rect_color(t_data *data, t_vector2_d top_left, t_vector2_d bottom_right, int color);
 void	floor_and_ceiling(t_data *data);
 int		rgb_to_mlx(int t, int r, int g, int b);
-int		get_tex_x(t_data *data, t_ray *ray, t_text *texture, int i);
+int		get_tex_x(t_data *data, t_ray *ray, t_text *texture);
 int		get_text_pixel(t_text *text, int x, int y);
 int		load_texture(t_data *data, t_text *text, char *path);
 
