@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:15:09 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/08 16:02:23 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 16:55:25 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,28 @@ int	rotate_right(t_data *data)
 int	is_colliding(t_data *data, float x, float y)
 {
 	t_vector2_d	cell;
+	float		margin;
+	float		corners[4][2];
+	int			i;
 
-	cell.x = x / data->cell_size;
-	cell.y = y / data->cell_size;
-	if (cell.x < 0 || cell.x >= data->tab_width)
-		return (0);
-	if (cell.y < 0 || cell.y >= data->tab_height)
-		return (0);
-	if (data->tab[(int)cell.y][(int)cell.x] == 1)
-		return (1);
+	margin = 3.0;
+	corners[0][0] = x - margin;
+	corners[0][1] = y - margin;
+	corners[1][0] = x + margin;
+	corners[1][1] = y - margin;
+	corners[2][0] = x - margin;
+	corners[2][1] = y + margin;
+	corners[3][0] = x + margin;
+	corners[3][1] = y + margin;
+	i = 0;
+	while (i < 4)
+	{
+		cell.x = corners[i][0] / data->cell_size;
+		cell.y = corners[i][1] / data->cell_size;
+		if (data->tab[(int)cell.y][(int)cell.x] == 1)
+			return (1);
+		i++;
+	}
 	return (0);
 }
 
@@ -74,5 +87,6 @@ int	input_key(t_data *data)
 		+ data->player.pos.x;
 	data->player.view_dis_pos.y = data->player.dir.y * data->view_dst
 		+ data->player.pos.y;
+	printf("x: %f, y: %f\n", data->player.pos.x, data->player.pos.y);
 	return (0);
 }

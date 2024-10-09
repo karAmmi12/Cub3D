@@ -6,7 +6,7 @@
 #    By: apintus <apintus@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 12:43:39 by apintus           #+#    #+#              #
-#    Updated: 2024/10/09 15:26:02 by apintus          ###   ########.fr        #
+#    Updated: 2024/10/09 16:05:29 by apintus          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,15 +44,15 @@ SRCS = srcs/main.c\
 		srcs/parsing/check_map_utils.c\
 		srcs/parsing/init_map.c\
 		srcs/parsing/init_game.c\
-		srcs/raycasting/raycasting.c\
-		srcs/raycasting/raycasting2.c\
-		srcs/raycasting/vector_utils.c\
-		srcs/raycasting/movement.c\
-		srcs/raycasting/movement_utils.c\
-		srcs/raycasting/colors_utils.c\
-		srcs/raycasting/texture.c\
-		srcs/raycasting/dda.c\
-		srcs/raycasting/dda_utils.c\
+		srcs/game/raycasting.c\
+		srcs/game/raycasting2.c\
+		srcs/game/vector_utils.c\
+		srcs/game/movement.c\
+		srcs/game/movement_utils.c\
+		srcs/game/colors_utils.c\
+		srcs/game/texture.c\
+		srcs/game/dda.c\
+		srcs/game/dda_utils.c\
 		srcs/key_handler.c\
 
 OBJS = $(SRCS:.c=.o)
