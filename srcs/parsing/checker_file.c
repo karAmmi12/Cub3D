@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:43:19 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/01 13:18:19 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 13:28:56 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ int	check_file(t_data *data, char *file_name)
 	int	fd;
 
 	if (is_directory(file_name))
-		exit_read(data, "Error: File is a directory\n");
+		exit_read(data, "Error: File is a directory\n", 0);
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		exit_read(data, "Error: File not found\n");
+		exit_read(data, "Error: File not found\n", 0);
 	close(fd);
 	return (0);
 }

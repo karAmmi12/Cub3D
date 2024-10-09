@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:21:54 by kammi             #+#    #+#             */
-/*   Updated: 2024/10/08 15:38:00 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 13:28:50 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	copy_map_line(char **copy_map, char **map, int i, t_data *data)
 	j = 0;
 	copy_map[i] = malloc(sizeof(char) * (ft_strlen(map[i]) + 1));
 	if (copy_map[i] == NULL)
-		exit_read(data, "Error: Malloc error\n");
+		exit_read(data, "Error: Malloc error\n", 0);
 	while (map[i][j])
 	{
 		copy_map[i][j] = map[i][j];
@@ -79,10 +79,10 @@ char	**copy_map(char **map, t_data *data)
 
 	len = ft_tablen(map);
 	if (len == 0)
-		exit_read(data, "Error :\n Empty map\n");
+		exit_read(data, "Error :\n Empty map\n", 0);
 	copy_map = malloc(sizeof(char *) * (len + 1));
 	if (copy_map == NULL)
-		exit_read(data, "Error: Malloc error\n");
+		exit_read(data, "Error: Malloc error\n", 0);
 	i = 0;
 	while (i < len)
 	{

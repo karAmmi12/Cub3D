@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:40:30 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/02 12:05:42 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 13:05:23 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ int	mouse_release(int button, int x, int y, t_data *data)
 	return (0);
 }
 
-int	mouse_move(int x, int y, t_data *data)
-{
-	printf("x: %d, y: %d\n", x, y);
-	data->mouse_x = x;
-	data->mouse_y = y;
-	if (data->mouse_button != 0)
-	{
-		set_grid_cell(data, x, y);
-	}
-	return (0);
-}
+// int	mouse_move(int x, int y, t_data *data)
+// {
+// 	printf("x: %d, y: %d\n", x, y);
+// 	data->mouse_x = x;
+// 	data->mouse_y = y;
+// 	if (data->mouse_button != 0)
+// 	{
+// 		set_grid_cell(data, x, y);
+// 	}
+// 	return (0);
+// }
 
 int	key_press(int keycode, t_data *data)
 {

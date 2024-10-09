@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:33:30 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/08 15:38:37 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 13:29:46 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_rays(t_data *data)
 	data->view_dst = RENDER_DISTANCE * data->cell_size;
 	data->ray_array = malloc(sizeof(t_ray) * data->ray_count);
 	if (data->ray_array == NULL)
-		exit_read(data, "Error: malloc failed\n");
+		exit_read(data, "Error: malloc failed\n", 0);
 	angle_step = FOV_ANGLE / data->ray_count;
 	while (i < data->ray_count)
 	{
@@ -59,7 +59,7 @@ void	init_rays(t_data *data)
 	}
 	data->ray_angles = malloc(sizeof(float) * data->ray_count);
 	if (data->ray_angles == NULL)
-		exit_read(data, "Error: malloc failed\n");
+		exit_read(data, "Error: malloc failed\n", 0);
 }
 
 void	init_player(t_data *data)
@@ -113,9 +113,22 @@ int	init_texture(t_data *data)
 	return (0);
 }
 
+void	init_keyboard(int keyboard[], int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		keyboard[i] = 0;
+		i++;
+	}
+}
+
 void	init_game(t_data *data)
 {
 	init_map(data);
 	init_rays(data);
 	init_tab(data, data->info.copy_map);
+	init_keyboard(data->keyboard, 203);
 }

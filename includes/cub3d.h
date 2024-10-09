@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/08 17:03:41 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 13:25:35 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 #define KEY_LEFT 65361
 #define KEY_RIGHT 65363
 #define FOV_ANGLE 90
-#define RAY_COUNT 1920
+#define RAY_COUNT 32
 #define MOVE_SPEED 10
 #define ROTATE_SPEED 0.1
 #define RENDER_DISTANCE 50 // en cellule
@@ -247,10 +247,10 @@ int	check_ext_xpm(char *str);
 
 int	check_file(t_data *data, char *file_name);
 
-void	exit_read(t_data *data, char *str);
-void	clean_exit(t_data *data, int exit_code);
+void	exit_read(t_data *data, char *str, int flag);
+void	clean_exit(t_data *data, int exit_code, int flag);
 int		close_game(t_data *data);
-
+void	clean_textures(t_data *data);
 
 int	copy_file(t_data *data, char *filename);
 

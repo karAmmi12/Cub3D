@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:52:50 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/08 15:38:05 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 13:25:01 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,6 @@ int	check_map(t_data *data)
 	if (validate_map(data->map, data->info.map_height, data))
 		printf("OK map closed\n");
 	else
-		clean_exit(data, 1);
+		clean_exit(data, 1, 0);
 	return (0);
 }

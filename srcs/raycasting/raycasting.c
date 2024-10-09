@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/08 17:04:45 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 12:35:56 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	calculate_collisions(t_data *data)
 		}
 		else
 			data->ray_array[i].len = -1;
-		bresenham(data, origin, data->ray_array[i].hit_point, YELLOW);//VISU 2D
+		// bresenham(data, origin, data->ray_array[i].hit_point, YELLOW);//VISU 2D
 		i++;
 	}
 }
@@ -65,13 +65,13 @@ void	creat_rays(t_data *data)
 
 int	perform_raycasting(t_data *data)
 {
-	print_grind(data);// VISU 2D
+	// print_grind(data);// VISU 2D
 	input_key(data);
 	floor_and_ceiling(data);
 	creat_rays(data);
 	calculate_collisions(data);
 	rays_render(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	mlx_put_image_to_window(data->mlx, data->win2, data->img2, 0, 0);
+	// mlx_put_image_to_window(data->mlx, data->win2, data->img2, 0, 0); //2D
 	return (0);
 }

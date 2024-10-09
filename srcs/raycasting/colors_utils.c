@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:22:57 by kammi             #+#    #+#             */
-/*   Updated: 2024/10/08 15:53:28 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 12:56:41 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ void	floor_and_ceiling(t_data *data)
 	if (!v.buffer)
 		return ;
 	v.x = 0;
-	while (v.x++ < data->win_width)
+	while (v.x++ < data->win_width - 1)
 		v.buffer[v.x] = v.ceiling_color;
 	v.y = 0;
 	while (v.y++ < v.half_height)
 		ft_memcpy(data->addr + v.y * data->line_length, v.buffer,
 			data->win_width * sizeof(int));
 	v.x = 0;
-	while (v.x++ < data->win_width)
+	while (v.x++ < data->win_width - 1)
 		v.buffer[v.x] = v.floor_color;
 	v.y = v.half_height;
 	while (v.y++ < data->win_height)

@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:15:54 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/08 15:38:22 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 13:29:24 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	get_map(char **file_copy, int i, t_data *data)
 	len = ft_tablen(file_copy);
 	data->info.copy_map = malloc(sizeof(char *) * (len - i + 1));
 	if (data->info.copy_map == NULL)
-		exit_read(data, "Error: Malloc error\n");
+		exit_read(data, "Error: Malloc error\n", 0);
 	while (file_copy[i] != NULL)
 	{
 		data->info.copy_map[j] = ft_strdup(file_copy[i]);
@@ -111,7 +111,7 @@ int	get_info(char **file_copy, t_data *data)
 			break ;
 		}
 		else if (file_copy[i][j] != '\0')
-			exit_read(data, "Error: Wrong info\n");
+			exit_read(data, "Error: Wrong info\n", 0);
 	}
 	return (0);
 }

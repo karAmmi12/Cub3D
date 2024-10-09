@@ -6,16 +6,16 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 18:06:40 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/08 15:37:37 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 14:13:00 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	exit_read(t_data *data, char *str)
+void	exit_read(t_data *data, char *str, int flag)
 {
 	ft_putstr_fd(str, 2);
-	clean_exit(data, 1);
+	clean_exit(data, 1, flag);
 }
 
 void	clean_map_and_copy(t_data *data)
@@ -44,7 +44,31 @@ void	clean_map_and_copy(t_data *data)
 	}
 }
 
-void	clean_exit(t_data *data, int exit_code)
+void	clean_tab(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (data->tab)
+	{
+		while (i < data->tab_height)
+		{
+			free(data->tab[i]);
+			i++;
+		}
+		free(data->tab);
+	}
+}
+
+void	clean_ray_array(t_data *data)
+{
+	if (data->ray_array)
+		free(data->ray_array);
+	if (data->ray_angles)
+		free(data->ray_angles);
+}
+
+void	clean_info(t_data *data)
 {
 	int	i;
 
@@ -66,17 +90,43 @@ void	clean_exit(t_data *data, int exit_code)
 		}
 		free(data->info.file);
 	}
+}
+
+void	clean_mlx_loading_fail(t_data *data)
+{
+	clean_textures(data);
+	if (data->img)
+		mlx_destroy_image(data->mlx, data->img);
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
+}
+
+void	clean_exit(t_data *data, int exit_code, int flag)
+{
+	if (flag == 1)
+		clean_mlx_loading_fail(data);
+	clean_info(data);
 	clean_map_and_copy(data);
+	clean_ray_array(data);
+	clean_tab(data);
 	free(data);
 	exit(exit_code);
 }
 
 int	close_game(t_data *data)
 {
+	clean_textures(data);
+	if (data->img)
+		mlx_destroy_image(data->mlx, data->img);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
-	clean_exit(data, 0);
+	clean_exit(data, 0, 0);
 	return (0);
 }

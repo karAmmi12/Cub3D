@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/08 17:09:40 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 14:02:35 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ void	init_data2(t_data *data)
 	data->cell_size = 64;
 	data->win_height = 1080;
 	data->win_width = 1920;
+	data->win = NULL;
+	data->img = NULL;
+	data->addr = NULL;
 }
 
 void	init_data(t_data *data)
@@ -111,30 +114,31 @@ int	main(int ac, char **av)
 	// 5 init mlx
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
-		return (exit_read(data, "Error: mlx init failed\n"), 1);
+		return (exit_read(data, "Error: mlx init failed\n", 0), 1);
 
 	// TEXTUREs
-	init_player(data);
+	init_player(data); // mettre dans init_game
+
 	if (init_texture(data) == 1)
-		exit_read(data, "Error: texture failed\n");
+		return (exit_read(data, "Error: texture failed\n", 1), 1);
 
 	// 6 init win
 	data->win = mlx_new_window(data->mlx, data->win_width, data->win_height, "Cub3D");
 	if (data->win == NULL)
-		return (exit_read(data, "Error: mlx win failed\n"), 1);
-	data->win2 = mlx_new_window(data->mlx, data->win_width, data->win_height, "Cub2D");
-	if (data->win2 == NULL)
-		return (exit_read(data, "Error: mlx win failed\n"), 1);
+		return (exit_read(data, "Error: mlx win failed\n", 1), 1);
+	// data->win2 = mlx_new_window(data->mlx, data->win_width, data->win_height, "Cub2D"); //2D
+	// if (data->win2 == NULL) //2D
+		// return (exit_read(data, "Error: mlx win failed\n"), 1); //2D
 	// 7 init image
 	data->img = mlx_new_image(data->mlx, data->win_width, data->win_height);
 	if (data->img == NULL)
-		return (exit_read(data, "Error: mlx img failed\n"), 1);
-	data->img2 = mlx_new_image(data->mlx, data->win_width, data->win_height);
-	if (data->img2 == NULL)
-		return (exit_read(data, "Error: mlx img failed\n"), 1);
+		return (exit_read(data, "Error: mlx img failed\n", 1), 1);
+	// data->img2 = mlx_new_image(data->mlx, data->win_width, data->win_height); //2D
+	// if (data->img2 == NULL) //2D
+		// return (exit_read(data, "Error: mlx img failed\n"), 1); // 2D
 	// 8 init addr
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
-	data->addr2 = mlx_get_data_addr(data->img2, &data->bits_per_pixel2, &data->line_length2, &data->endian2);
+	// data->addr2 = mlx_get_data_addr(data->img2, &data->bits_per_pixel2, &data->line_length2, &data->endian2); //2D
 
 	// mlx loop and hook
 	mlx_loop_hook(data->mlx, perform_raycasting, data);
@@ -142,10 +146,10 @@ int	main(int ac, char **av)
 	mlx_hook(data->win, 3, 1L << 1, key_release, data);
 	mlx_hook(data->win, 4, 1L << 2, mouse_press, data);
 	mlx_hook(data->win, 5, 1L << 3, mouse_release, data);
-	mlx_hook(data->win, 6, 1L << 6, mouse_move, data);
+	// mlx_hook(data->win, 6, 1L << 6, mouse_move, data); //2D
 	mlx_hook(data->win, 17, 1L << 17, close_game, data);
 	mlx_loop(data->mlx);
 	// EXIT || CLEANNING
-	clean_exit(data, 0);
+	clean_exit(data, 0, 0);
 	return (0);
 }
