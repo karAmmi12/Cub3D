@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:15:54 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 13:29:24 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 15:01:39 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	get_map(char **file_copy, int i, t_data *data)
 	len = ft_tablen(file_copy);
 	data->info.copy_map = malloc(sizeof(char *) * (len - i + 1));
 	if (data->info.copy_map == NULL)
-		exit_read(data, "Error: Malloc error\n", 0);
+		exit_read(data, "Error\nMalloc error\n", 0);
 	while (file_copy[i] != NULL)
 	{
 		data->info.copy_map[j] = ft_strdup(file_copy[i]);
@@ -51,41 +51,6 @@ void	get_map(char **file_copy, int i, t_data *data)
 	}
 	data->info.copy_map[j] = NULL;
 }
-
-// int	get_info(char **file_copy, t_data *data)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	while (file_copy[i] != NULL)
-// 	{
-// 		j = 0;
-// 		while (is_whitespace(file_copy[i][j]))
-// 			j++;
-// 		if (file_copy[i][j] == 'N' && file_copy[i][j + 1] == 'O')
-// 			get_texture(file_copy[i], data);
-// 		else if (file_copy[i][j] == 'S' && file_copy[i][j + 1] == 'O')
-// 			get_texture(file_copy[i], data);
-// 		else if (file_copy[i][j] == 'W' && file_copy[i][j + 1] == 'E')
-// 			get_texture(file_copy[i], data);
-// 		else if (file_copy[i][j] == 'E' && file_copy[i][j + 1] == 'A')
-// 			get_texture(file_copy[i], data);
-// 		else if (file_copy[i][j] == 'F')
-// 			get_color(file_copy[i], data);
-// 		else if (file_copy[i][j] == 'C')
-// 			get_color(file_copy[i], data);
-// 		else if (file_copy[i][j] == '1')
-// 		{
-// 			get_map(file_copy, i, data);
-// 			break ;
-// 		}
-// 		else if (file_copy[i][j] != '\0')
-// 			exit_read(data, "Error: Wrong info\n");
-// 		i++;
-// 	}
-// 	return (0);
-// }
 
 int	get_info(char **file_copy, t_data *data)
 {
@@ -111,7 +76,7 @@ int	get_info(char **file_copy, t_data *data)
 			break ;
 		}
 		else if (file_copy[i][j] != '\0')
-			exit_read(data, "Error: Wrong info\n", 0);
+			exit_read(data, "Error\nWrong info\n", 0);
 	}
 	return (0);
 }

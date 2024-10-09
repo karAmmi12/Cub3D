@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:33:30 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 13:29:46 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 15:24:26 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_rays(t_data *data)
 	data->view_dst = RENDER_DISTANCE * data->cell_size;
 	data->ray_array = malloc(sizeof(t_ray) * data->ray_count);
 	if (data->ray_array == NULL)
-		exit_read(data, "Error: malloc failed\n", 0);
+		exit_read(data, "Error\nmalloc failed\n", 0);
 	angle_step = FOV_ANGLE / data->ray_count;
 	while (i < data->ray_count)
 	{
@@ -59,7 +59,7 @@ void	init_rays(t_data *data)
 	}
 	data->ray_angles = malloc(sizeof(float) * data->ray_count);
 	if (data->ray_angles == NULL)
-		exit_read(data, "Error: malloc failed\n", 0);
+		exit_read(data, "Error\nmalloc failed\n", 0);
 }
 
 void	init_player(t_data *data)
@@ -88,31 +88,6 @@ void	init_player(t_data *data)
 	}
 }
 
-int	init_texture(t_data *data)
-{
-	data->text[0].img = NULL;
-	data->text[1].img = NULL;
-	data->text[2].img = NULL;
-	data->text[3].img = NULL;
-	data->text[0].width_img = 0;
-	data->text[1].width_img = 0;
-	data->text[2].width_img = 0;
-	data->text[3].width_img = 0;
-	data->text[0].height_img = 0;
-	data->text[1].height_img = 0;
-	data->text[2].height_img = 0;
-	data->text[3].height_img = 0;
-	if (load_texture(data, &data->text[0], data->info.north) == 1)
-		return (1);
-	if (load_texture(data, &data->text[1], data->info.south) == 1)
-		return (1);
-	if (load_texture(data, &data->text[2], data->info.east) == 1)
-		return (1);
-	if (load_texture(data, &data->text[3], data->info.west) == 1)
-		return (1);
-	return (0);
-}
-
 void	init_keyboard(int keyboard[], int size)
 {
 	int	i;
@@ -131,4 +106,5 @@ void	init_game(t_data *data)
 	init_rays(data);
 	init_tab(data, data->info.copy_map);
 	init_keyboard(data->keyboard, 203);
+	init_player(data);
 }

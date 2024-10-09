@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:38:40 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 13:29:15 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 15:01:12 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ int	copy_file(t_data *data, char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		exit_read(data, "Error: File not found\n", 0);
+		exit_read(data, "Error\nFile not found\n", 0);
 	line_count = count_lines(filename);
 	if (line_count < 0)
-		exit_read(data, "Error: Could not count lines\n", 0);
+		exit_read(data, "Error\nCould not count lines\n", 0);
 	data->info.file = malloc((line_count + 1) * sizeof(char *));
 	if (data->info.file == NULL)
 		exit_read(data, "Malloc error\n", 0);

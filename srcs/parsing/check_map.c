@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:52:50 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 13:25:01 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 15:17:31 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	other_caracter(char **map, int height)
 				map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E' &&
 				map[i][j] != 'W')
 			{
-				printf("Error: Invalid character in map or Island\n");
+				printf("Error\nInvalid character in map or Island\n");
 				return (1);
 			}
 			j++;
@@ -59,7 +59,7 @@ int	handle_player_count(char **map, int height, t_data *data, t_map_vars *vars)
 	}
 	if (vars->player_count != 1)
 	{
-		printf("Error: There must be exactly one player \
+		printf("Error\nThere must be exactly one player \
 start position (N, S, E, W).\n");
 		return (1);
 	}
@@ -84,7 +84,7 @@ int	check_hole(char **map, int height)
 				flag = can_escape(map, i, j, height);
 			if (flag)
 			{
-				printf("Error: Map is not closed4\n");
+				printf("Error\nMap is not closed4\n");
 				return (1);
 			}
 			j++;
@@ -112,9 +112,7 @@ int	check_map(t_data *data)
 {
 	data->map = copy_map(data->info.copy_map, data);
 	get_map_lenght_height(data);
-	if (validate_map(data->map, data->info.map_height, data))
-		printf("OK map closed\n");
-	else
+	if (!validate_map(data->map, data->info.map_height, data))
 		clean_exit(data, 1, 0);
 	return (0);
 }

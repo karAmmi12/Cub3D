@@ -6,25 +6,11 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 14:52:18 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/08 17:17:10 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 15:34:47 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-char	*ft_strcpy(char *dest, const char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i])
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
 
 static int	get_max_line_length(char **map)
 {
@@ -92,30 +78,24 @@ void	get_map_width_height(t_data *data)
 
 	i = 0;
 	j = 0;
-	data->mapWidth = 0;
-	data->mapHeight = 0;
+	data->mapwidth = 0;
+	data->mapheight = 0;
 	while (data->info.copy_map[i][j])
 	{
-		data->mapWidth++;
+		data->mapwidth++;
 		j++;
 	}
 	while (data->info.copy_map[i])
 	{
-		data->mapHeight++;
+		data->mapheight++;
 		i++;
 	}
-	data->tab_height = data->mapHeight;
-	data->tab_width = data->mapWidth;
+	data->tab_height = data->mapheight;
+	data->tab_width = data->mapwidth;
 }
 
-// Fonction d'initialisation de la carte
 void	init_map(t_data *data)
 {
 	make_map_rectangular(data);
 	get_map_width_height(data);
-	print_map(data->info.copy_map); //visu
-	printf("pos x = %f\n", data->pos_x); //visu
-	printf("pos y = %f\n", data->pos_y); //visu
-	printf("map width = %d\n", data->mapWidth); //visu
-	printf("map height = %d\n", data->mapHeight); //visu
 }

@@ -6,12 +6,11 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:49:39 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 14:03:50 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/09 15:18:51 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
 
 void	clean_textures(t_data *data)
 {
@@ -22,7 +21,6 @@ void	clean_textures(t_data *data)
 	{
 		if (data->text[i].img)
 		{
-			printf("destroying texture %d\n", i);
 			mlx_destroy_image(data->mlx, data->text[i].img);
 		}
 		i++;
