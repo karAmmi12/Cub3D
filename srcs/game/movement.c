@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:15:09 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 16:55:25 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/10 17:45:14 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,5 @@ int	input_key(t_data *data)
 		+ data->player.pos.x;
 	data->player.view_dis_pos.y = data->player.dir.y * data->view_dst
 		+ data->player.pos.y;
-	printf("x: %f, y: %f\n", data->player.pos.x, data->player.pos.y);
 	return (0);
 }
