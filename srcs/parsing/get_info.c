@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:15:54 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 15:01:39 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/10 14:08:08 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,18 @@ int	ft_tablen(char **tab)
 	while (tab[i] != NULL)
 		i++;
 	return (i);
+}
+
+void	trim_trailing_whitespace(char *str)
+{
+	int	len;
+
+	len = strlen(str);
+	while (len > 0 && is_whitespace((unsigned char)str[len - 1]))
+	{
+		str[len - 1] = '\0';
+		len--;
+	}
 }
 
 void	get_map(char **file_copy, int i, t_data *data)

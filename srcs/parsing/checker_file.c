@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:43:19 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 15:01:05 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/10 15:39:32 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ int	check_ext_cub(char *str)
 
 int	check_ext_xpm(char *str)
 {
-	if (str[0] == '.')
+	if (str[0] != '.')
 		return (1);
+	str++;
 	while (*str != '.' && *str != '\0')
 		str++;
 	if (*str == '.')

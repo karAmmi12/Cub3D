@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:52:50 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 15:17:31 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/10 15:40:50 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	check_hole(char **map, int height)
 				flag = can_escape(map, i, j, height);
 			if (flag)
 			{
-				printf("Error\nMap is not closed4\n");
+				printf("Error\nMap is not closed\n");
 				return (1);
 			}
 			j++;

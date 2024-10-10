@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:33:30 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 15:24:26 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/10 13:37:46 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_rays(t_data *data)
 	data->view_dst = RENDER_DISTANCE * data->cell_size;
 	data->ray_array = malloc(sizeof(t_ray) * data->ray_count);
 	if (data->ray_array == NULL)
-		exit_read(data, "Error\nmalloc failed\n", 0);
+		exit_read(data, "Error\nMalloc failed\n", 0);
 	angle_step = FOV_ANGLE / data->ray_count;
 	while (i < data->ray_count)
 	{
@@ -59,7 +59,7 @@ void	init_rays(t_data *data)
 	}
 	data->ray_angles = malloc(sizeof(float) * data->ray_count);
 	if (data->ray_angles == NULL)
-		exit_read(data, "Error\nmalloc failed\n", 0);
+		exit_read(data, "Error\nMalloc failed\n", 0);
 }
 
 void	init_player(t_data *data)

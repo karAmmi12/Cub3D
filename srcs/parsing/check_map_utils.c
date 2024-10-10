@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:21:54 by kammi             #+#    #+#             */
-/*   Updated: 2024/10/09 15:00:45 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/10 13:36:44 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	**copy_map(char **map, t_data *data)
 
 	len = ft_tablen(map);
 	if (len == 0)
-		exit_read(data, "Error :\n Empty map\n", 0);
+		exit_read(data, "Error\n Empty map\n", 0);
 	copy_map = malloc(sizeof(char *) * (len + 1));
 	if (copy_map == NULL)
 		exit_read(data, "Error\nMalloc error\n", 0);

@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 15:28:43 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/10 13:35:52 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ int	main(int ac, char **av)
 
 	data = malloc(sizeof(t_data));
 	if (data == NULL)
-		return (ft_putstr_fd("Malloc error\n", 2), 1);
-	parsing(data, ac, av);
+		return (ft_putstr_fd("Error\nMalloc error\n", 2), 1);
+	if (parsing(data, ac, av) == 1)
+		return (1);
 	game(data);
 	clean_exit(data, 0, 0);
 	return (0);

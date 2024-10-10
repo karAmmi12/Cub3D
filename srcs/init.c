@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:24:59 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 15:25:14 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/10 13:20:54 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ void	init_data2(t_data *data)
 	data->win = NULL;
 	data->img = NULL;
 	data->addr = NULL;
+	data->ray_array = NULL;
+	data->tab = NULL;
+	data->ray_angles = NULL;
 }
 
 void	init_data(t_data *data)

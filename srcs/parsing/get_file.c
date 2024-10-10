@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:38:40 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 15:01:12 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/10 13:37:20 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	read_and_copy_lines(t_data *data, int fd)
 		else
 			data->info.file[i] = ft_strdup_n(line);
 		if (data->info.file[i] == NULL)
-			exit_read(data, "Malloc error\n", 0);
+			exit_read(data, "Error\nMalloc error\n", 0);
 		free(line);
 		i++;
 		line = get_next_line(fd, 0);
@@ -91,7 +91,7 @@ int	copy_file(t_data *data, char *filename)
 		exit_read(data, "Error\nCould not count lines\n", 0);
 	data->info.file = malloc((line_count + 1) * sizeof(char *));
 	if (data->info.file == NULL)
-		exit_read(data, "Malloc error\n", 0);
+		exit_read(data, "Error\nMalloc error\n", 0);
 	read_and_copy_lines(data, fd);
 	close(fd);
 	return (1);

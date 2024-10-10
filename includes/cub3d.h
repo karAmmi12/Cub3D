@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 16:12:57 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/10 14:07:30 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,6 +254,7 @@ int			can_escape(char **map, int i, int j, int height);
 char		**copy_map(char **map, t_data *data);
 void		get_map_lenght_height(t_data *data);
 int			onlywhitespace(char *str);
+void		trim_trailing_whitespace(char *str);
 
 // INIT GAME
 void		init_game(t_data *data);
