@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:54:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 13:14:57 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 17:32:32 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	render_column(t_data *data, t_ray_render_vars *v)
 	{
 		if (v->y >= 0 && v->y < data->win_height)
 		{
-			v->color = get_text_pixel(v->texture, v->tex_x, v->tex_y);
+			v->color = get_texture_pixel(v->texture, v->tex_x, v->tex_y);
 			v->x = v->tl.x;
 			while (v->x < v->br.x)
 			{
-				my_mlx_pixel_put(data, v->x, v->y, v->color);
+				ft_mlx_pixel_put(data, v->x, v->y, v->color);
 				v->x++;
 			}
 		}
@@ -41,14 +41,14 @@ static void	render_single_ray(t_data *data, t_ray *ray, int i, int slice_width)
 	v.br.x = i * slice_width + slice_width;
 	v.br.y = data->win_height / 2 + v.slice_height / 2;
 	v.texture = &data->text[ray->side_hit];
-	v.tex_x = get_tex_x(data, ray, v.texture);
+	v.tex_x = calculate_texture_x(data, ray, v.texture);
 	v.tex_y = 0;
 	v.step = v.texture->height_img / v.slice_height;
 	v.y = v.tl.y;
 	render_column(data, &v);
 }
 
-void	rays_render(t_data *data)
+void	draw_rays(t_data *data)
 {
 	const int	slice_width = data->win_width / data->ray_count;
 	int			i;

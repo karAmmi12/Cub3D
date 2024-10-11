@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:33:30 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 13:09:02 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 16:49:33 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	init_rays(t_data *data)
 	data->view_dst = RENDER_DISTANCE * data->cell_size;
 	data->ray_array = malloc(sizeof(t_ray) * data->ray_count);
 	if (data->ray_array == NULL)
-		exit_read(data, "Error\nMalloc failed\n", 0);
+		exit_read(data, "Error\nMemory allocation failed\n", 0);
 	angle_step = FOV_ANGLE / data->ray_count;
 	while (i < data->ray_count)
 	{
@@ -59,7 +59,7 @@ static void	init_rays(t_data *data)
 	}
 	data->ray_angles = malloc(sizeof(float) * data->ray_count);
 	if (data->ray_angles == NULL)
-		exit_read(data, "Error\nMalloc failed\n", 0);
+		exit_read(data, "Error\nMemory allocation failed\n", 0);
 }
 
 static void	init_player(t_data *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 13:14:35 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 17:26:23 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	calculate_collisions(t_data *data)
 	}
 }
 
-static void	creat_rays(t_data *data)
+static void	generate_rays(t_data *data)
 {
 	t_ray_create_vars	v;
 
@@ -62,13 +62,13 @@ static void	creat_rays(t_data *data)
 	}
 }
 
-int	perform_raycasting(t_data *data)
+int	execute_raycasting(t_data *data)
 {
 	input_key(data);
 	floor_and_ceiling(data);
-	creat_rays(data);
+	generate_rays(data);
 	calculate_collisions(data);
-	rays_render(data);
+	draw_rays(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
 }

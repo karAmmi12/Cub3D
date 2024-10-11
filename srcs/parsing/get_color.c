@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:52:32 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 13:30:08 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 16:45:19 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	set_color(int flag, int *color, t_data *data)
 	if (flag == 'F')
 	{
 		if (data->info.f_flag == 1)
-			exit_read(data, "Error\nCouleur de sol en double\n", 0);
+			exit_read(data, "Error\nDuplicate floor color\n", 0);
 		data->info.floor[0] = color[0];
 		data->info.floor[1] = color[1];
 		data->info.floor[2] = color[2];
@@ -62,7 +62,7 @@ static void	set_color(int flag, int *color, t_data *data)
 	else if (flag == 'C')
 	{
 		if (data->info.c_flag == 1)
-			exit_read(data, "Error\nCouleur de plafond en double\n", 0);
+			exit_read(data, "Error\nDuplicate ceiling color\n", 0);
 		data->info.celling[0] = color[0];
 		data->info.celling[1] = color[1];
 		data->info.celling[2] = color[2];
@@ -117,7 +117,7 @@ void	get_color(char *str, t_data *data)
 		num_colors = extract_colors(&str[i], color);
 		if (num_colors != 3 || num_colors == -1)
 		{
-			exit_read(data, "Error\nCode couleur non valide\n", 0);
+			exit_read(data, "Error\nInvalid color code\n", 0);
 			return ;
 		}
 		set_color(flag, color, data);

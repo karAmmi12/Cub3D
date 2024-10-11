@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:38:23 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 13:08:16 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 16:49:07 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void	get_north_texture(char *str, int *i, t_data *data)
 	while (is_whitespace(str[*i]))
 		(*i)++;
 	if (data->info.n_flag == 1)
-		exit_read(data, "Error\nTexture north in double\n", 0);
+		exit_read(data, "Error\nDuplicate north texture\n", 0);
 	tmp = ft_strdup(&str[*i]);
 	if (tmp == NULL)
-		exit_read(data, "Error\nMalloc error\n", 0);
+		exit_read(data, "Error\nMemory allocation failed\n", 0);
 	trim_trailing_whitespace(tmp);
 	data->info.north = tmp;
 	data->info.n_flag = 1;
@@ -37,10 +37,10 @@ static void	get_south_texture(char *str, int *i, t_data *data)
 	while (is_whitespace(str[*i]))
 		(*i)++;
 	if (data->info.s_flag == 1)
-		exit_read(data, "Error\nTexture south in double\n", 0);
+		exit_read(data, "Error\nDuplicate south texture\n", 0);
 	tmp = ft_strdup(&str[*i]);
 	if (tmp == NULL)
-		exit_read(data, "Error\nMalloc error\n", 0);
+		exit_read(data, "Error\nMemory allocation failed\n", 0);
 	trim_trailing_whitespace(tmp);
 	data->info.south = tmp;
 	data->info.s_flag = 1;
@@ -54,10 +54,10 @@ static void	get_west_texture(char *str, int *i, t_data *data)
 	while (is_whitespace(str[*i]))
 		(*i)++;
 	if (data->info.w_flag == 1)
-		exit_read(data, "Error\nTexture west in double\n", 0);
+		exit_read(data, "Error\nDuplicate west texture\n", 0);
 	tmp = ft_strdup(&str[*i]);
 	if (tmp == NULL)
-		exit_read(data, "Error\nMalloc error\n", 0);
+		exit_read(data, "Error\nMemory allocation failed\n", 0);
 	trim_trailing_whitespace(tmp);
 	data->info.west = tmp;
 	data->info.w_flag = 1;
@@ -71,10 +71,10 @@ static void	get_east_texture(char *str, int *i, t_data *data)
 	while (is_whitespace(str[*i]))
 		(*i)++;
 	if (data->info.e_flag == 1)
-		exit_read(data, "Error\nTexture east in double\n", 0);
+		exit_read(data, "Error\nDuplicate east texture\n", 0);
 	tmp = ft_strdup(&str[*i]);
 	if (tmp == NULL)
-		exit_read(data, "Error\nMalloc error\n", 0);
+		exit_read(data, "Error\nMemory allocation failed\n", 0);
 	trim_trailing_whitespace(tmp);
 	data->info.east = tmp;
 	data->info.e_flag = 1;

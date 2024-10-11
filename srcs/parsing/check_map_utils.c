@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:21:54 by kammi             #+#    #+#             */
-/*   Updated: 2024/10/11 12:59:01 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 16:53:22 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	copy_map_line(char **copy_map, char **map, int i, t_data *data)
 	j = 0;
 	copy_map[i] = malloc(sizeof(char) * (ft_strlen(map[i]) + 1));
 	if (copy_map[i] == NULL)
-		exit_read(data, "Error\nMalloc error\n", 0);
+		exit_read(data, "Error\nMemory allocation failed\n", 0);
 	while (map[i][j])
 	{
 		copy_map[i][j] = map[i][j];
@@ -82,7 +82,7 @@ char	**copy_map(char **map, t_data *data)
 		exit_read(data, "Error\n Empty map\n", 0);
 	copy_map = malloc(sizeof(char *) * (len + 1));
 	if (copy_map == NULL)
-		exit_read(data, "Error\nMalloc error\n", 0);
+		exit_read(data, "Error\nMemory allocation failed\n", 0);
 	i = 0;
 	while (i < len)
 	{
