@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:40:30 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 12:10:58 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 13:27:04 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	key_press(int keycode, t_data *data)
 {
 	if (keycode < 200)
 		data->keyboard[keycode] = 1;
-	if (keycode == 65307)
+	if (keycode == XK_Escape)
 		close_game(data);
 	if (keycode == KEY_LEFT)
 		data->keyboard[201] = 1;

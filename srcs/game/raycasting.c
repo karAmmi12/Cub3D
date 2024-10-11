@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 12:13:15 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 13:14:35 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	calculate_collisions(t_data *data)
+static void	calculate_collisions(t_data *data)
 {
 	t_vector2_d	origin;
 	t_vector2_d	res;
@@ -35,7 +35,7 @@ void	calculate_collisions(t_data *data)
 	}
 }
 
-void	creat_rays(t_data *data)
+static void	creat_rays(t_data *data)
 {
 	t_ray_create_vars	v;
 

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   colors_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:22:57 by kammi             #+#    #+#             */
-/*   Updated: 2024/10/11 12:12:25 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 13:11:45 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	rgb_to_mlx(int t, int r, int g, int b)
+static int	rgb_to_mlx(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
@@ -25,26 +25,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 		return ;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
-
-void	draw_rect_color(t_data *data, t_vector2_d top_left
-, t_vector2_d bottom_right, int color)
-{
-	int	x;
-	int	y;
-
-	x = top_left.x;
-	y = top_left.y;
-	while (y < bottom_right.y)
-	{
-		while (x < bottom_right.x)
-		{
-			my_mlx_pixel_put(data, x, y, color);
-			x++;
-		}
-		x = top_left.x;
-		y++;
-	}
 }
 
 void	floor_and_ceiling(t_data *data)

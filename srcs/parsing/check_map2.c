@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:00:39 by kammi             #+#    #+#             */
-/*   Updated: 2024/10/11 12:11:35 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 13:00:26 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	check_right(char **map, int i, int j)
+static int	check_right(char **map, int i, int j)
 {
 	while (map[i][j])
 	{
@@ -23,7 +23,7 @@ int	check_right(char **map, int i, int j)
 	return (0);
 }
 
-int	check_down(char **map, int i, int j, int height)
+static int	check_down(char **map, int i, int j, int height)
 {
 	while (i < height)
 	{
@@ -34,7 +34,7 @@ int	check_down(char **map, int i, int j, int height)
 	return (0);
 }
 
-int	check_left(char **map, int i, int j)
+static int	check_left(char **map, int i, int j)
 {
 	while (j >= 0)
 	{
@@ -45,7 +45,7 @@ int	check_left(char **map, int i, int j)
 	return (0);
 }
 
-int	check_up(char **map, int i, int j)
+static int	check_up(char **map, int i, int j)
 {
 	while (i >= 0)
 	{

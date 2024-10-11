@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:15:09 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 12:12:56 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 13:14:15 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	rotate_left(t_data *data)
+static int	rotate_left(t_data *data)
 {
 	double	rot_speed;
 	double	old_dir_x;
@@ -26,7 +26,7 @@ int	rotate_left(t_data *data)
 	return (0);
 }
 
-int	rotate_right(t_data *data)
+static int	rotate_right(t_data *data)
 {
 	double	rot_speed;
 	double	old_dir_x;

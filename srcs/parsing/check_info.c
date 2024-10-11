@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:46:56 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 12:11:18 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 12:57:44 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	second_check(t_data *data)
+static int	second_check(t_data *data)
 {
 	if (check_ext_xpm(data->info.north) == 1)
 		exit_read(data, "Error\nNorth texture is not a xpm file\n", 0);

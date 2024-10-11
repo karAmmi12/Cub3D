@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:24:59 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 12:10:52 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 12:54:00 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	init_texture(t_data *data)
 	return (0);
 }
 
-void	init_data2(t_data *data)
+static void	init_data2(t_data *data)
 {
 	data->pos_x = 0;
 	data->pos_y = 0;

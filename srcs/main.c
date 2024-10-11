@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 12:11:08 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 12:53:22 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	parsing(t_data *data, int ac, char **av)
+static int	parsing(t_data *data, int ac, char **av)
 {
 	if (ac != 2 || check_ext_cub(av[1]))
 		return (free(data), ft_putstr_fd("Error\nWrong arg or extension\n", 2)
@@ -41,7 +41,7 @@ int	parsing(t_data *data, int ac, char **av)
 	return (0);
 }
 
-void	game(t_data *data)
+static void	game(t_data *data)
 {
 	mlx_loop_hook(data->mlx, perform_raycasting, data);
 	mlx_hook(data->win, 2, 1L << 0, key_press, data);

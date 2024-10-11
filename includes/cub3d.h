@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/10 17:16:49 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 13:26:48 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <limits.h>
 # include <math.h>
 # include "../mlx/mlx.h"
+# include <X11/keysym.h>
 
 # define PI 3.1415926535
 # define TWO_PI 6.28318530718
@@ -49,7 +50,7 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 # define FOV_ANGLE 90
-# define RAY_COUNT 640
+# define RAY_COUNT 1920
 # define MOVE_SPEED 10
 # define ROTATE_SPEED 0.1
 # define RENDER_DISTANCE 50
@@ -235,7 +236,6 @@ typedef struct s_data
 
 // INIT DATA
 void		init_data(t_data *data);
-void		init_data2(t_data *data);
 int			init_texture(t_data *data);
 
 // PARSING
@@ -253,14 +253,10 @@ int			ft_tablen(char **tab);
 int			can_escape(char **map, int i, int j, int height);
 char		**copy_map(char **map, t_data *data);
 void		get_map_lenght_height(t_data *data);
-int			onlywhitespace(char *str);
 void		trim_trailing_whitespace(char *str);
 
 // INIT GAME
 void		init_game(t_data *data);
-void		init_player(t_data *data);
-void		init_rays(t_data *data);
-int			init_tab(t_data *data, char **map);
 int			init_texture(t_data *data);
 void		init_map(t_data *data);
 
@@ -270,8 +266,6 @@ void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int			perform_raycasting(t_data *data);
 double		degree_to_radian(double degree);
 void		rays_render(t_data *data);
-void		draw_rect_color(t_data *data, t_vector2_d top_left,
-				t_vector2_d bottom_right, int color);
 
 // VECTORS UTILS
 double		get_angle(t_vector2_d origin, int x, int y);
@@ -285,22 +279,16 @@ t_vector2_d	create_vector_d_from_origin(t_vector2_d origin,
 t_vector2_d	dda(t_data *data, t_ray *ray);
 void		initialize_dda_vars(t_data *data, t_ray *ray, t_dda_vars *v);
 void		calculate_initial_distances(t_dda_vars *v);
-void		calculate_initial_distances2(t_dda_vars *v);
 
 // COLORIAGE
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void		draw_rect_color(t_data *data, t_vector2_d top_left,
-				t_vector2_d bottom_right, int color);
 void		floor_and_ceiling(t_data *data);
-int			rgb_to_mlx(int t, int r, int g, int b);
 int			get_tex_x(t_data *data, t_ray *ray, t_text *texture);
 int			get_text_pixel(t_text *text, int x, int y);
 int			load_texture(t_data *data, t_text *text, char *path);
 
 // MOVEMENT
 int			input_key(t_data *data);
-int			rotate_left(t_data *data);
-int			rotate_right(t_data *data);
 int			move_forward(t_data *data);
 int			move_backward(t_data *data);
 int			move_left(t_data *data);

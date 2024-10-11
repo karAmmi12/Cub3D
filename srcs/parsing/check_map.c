@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:52:50 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 12:11:29 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 13:19:03 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	other_caracter(char **map, int height)
+static int	other_caracter(char **map, int height)
 {
 	int	i;
 	int	j;
@@ -37,7 +37,8 @@ int	other_caracter(char **map, int height)
 	return (0);
 }
 
-int	handle_player_count(char **map, int height, t_data *data, t_map_vars *vars)
+static int	handle_player_count(char **map, int height, t_data *data,
+t_map_vars *vars)
 {
 	vars->player_count = 0;
 	vars->i = 0;
@@ -66,7 +67,7 @@ start position (N, S, E, W).\n");
 	return (0);
 }
 
-int	check_hole(char **map, int height)
+static int	check_hole(char **map, int height)
 {
 	int	i;
 	int	j;
@@ -94,7 +95,7 @@ int	check_hole(char **map, int height)
 	return (0);
 }
 
-int	validate_map(char **map, int height, t_data *data)
+static int	validate_map(char **map, int height, t_data *data)
 {
 	t_map_vars	vars;
 

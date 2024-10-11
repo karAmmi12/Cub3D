@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:38:40 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 12:11:55 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 13:06:53 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*ft_strdup_n(const char *s)
+static char	*ft_strdup_n(const char *s)
 {
 	size_t	i;
 	size_t	len;
@@ -35,7 +35,7 @@ char	*ft_strdup_n(const char *s)
 	return (str);
 }
 
-int	count_lines( char *filename)
+static int	count_lines( char *filename)
 {
 	int		fd;
 	int		lines;
@@ -56,7 +56,7 @@ int	count_lines( char *filename)
 	return (lines);
 }
 
-void	read_and_copy_lines(t_data *data, int fd)
+static void	read_and_copy_lines(t_data *data, int fd)
 {
 	char	*line;
 	int		i;

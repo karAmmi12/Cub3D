@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:43:19 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 12:11:40 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 13:00:54 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_ext_xpm(char *str)
 	return (1);
 }
 
-int	is_directory(char *str)
+static int	is_directory(char *str)
 {
 	int	fd;
 	int	ret;

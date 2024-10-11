@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:54:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 12:13:23 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 13:14:57 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	render_column(t_data *data, t_ray_render_vars *v)
+static void	render_column(t_data *data, t_ray_render_vars *v)
 {
 	while (v->y < v->br.y)
 	{
@@ -31,7 +31,7 @@ void	render_column(t_data *data, t_ray_render_vars *v)
 	}
 }
 
-void	render_single_ray(t_data *data, t_ray *ray, int i, int slice_width)
+static void	render_single_ray(t_data *data, t_ray *ray, int i, int slice_width)
 {
 	t_ray_render_vars	v;
 

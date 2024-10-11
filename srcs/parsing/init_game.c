@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:33:30 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 12:12:11 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 13:09:02 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	init_tab(t_data *data, char **map)
+static int	init_tab(t_data *data, char **map)
 {
 	int	x;
 	int	y;
@@ -40,7 +40,7 @@ int	init_tab(t_data *data, char **map)
 	return (0);
 }
 
-void	init_rays(t_data *data)
+static void	init_rays(t_data *data)
 {
 	int		i;
 	double	angle_step;
@@ -62,7 +62,7 @@ void	init_rays(t_data *data)
 		exit_read(data, "Error\nMalloc failed\n", 0);
 }
 
-void	init_player(t_data *data)
+static void	init_player(t_data *data)
 {
 	data->player.pos.x = data->pos_x * data->cell_size + data->cell_size / 2;
 	data->player.pos.y = data->pos_y * data->cell_size + data->cell_size / 2;
@@ -88,7 +88,7 @@ void	init_player(t_data *data)
 	}
 }
 
-void	init_keyboard(int keyboard[], int size)
+static void	init_keyboard(int keyboard[], int size)
 {
 	int	i;
 

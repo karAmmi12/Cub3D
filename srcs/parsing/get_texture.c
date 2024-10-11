@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:38:23 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 12:12:06 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 13:08:16 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	get_north_texture(char *str, int *i, t_data *data)
+static void	get_north_texture(char *str, int *i, t_data *data)
 {
 	char	*tmp;
 
@@ -29,7 +29,7 @@ void	get_north_texture(char *str, int *i, t_data *data)
 	data->info.n_flag = 1;
 }
 
-void	get_south_texture(char *str, int *i, t_data *data)
+static void	get_south_texture(char *str, int *i, t_data *data)
 {
 	char	*tmp;
 
@@ -46,7 +46,7 @@ void	get_south_texture(char *str, int *i, t_data *data)
 	data->info.s_flag = 1;
 }
 
-void	get_west_texture(char *str, int *i, t_data *data)
+static void	get_west_texture(char *str, int *i, t_data *data)
 {
 	char	*tmp;
 
@@ -63,7 +63,7 @@ void	get_west_texture(char *str, int *i, t_data *data)
 	data->info.w_flag = 1;
 }
 
-void	get_east_texture(char *str, int *i, t_data *data)
+static void	get_east_texture(char *str, int *i, t_data *data)
 {
 	char	*tmp;
 

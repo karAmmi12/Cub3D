@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:21:54 by kammi             #+#    #+#             */
-/*   Updated: 2024/10/11 12:11:24 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 12:59:01 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	onlywhitespace(char *str)
+static int	onlywhitespace(char *str)
 {
 	int	i;
 
@@ -49,7 +49,7 @@ void	get_map_lenght_height(t_data *data)
 	data->info.map_height = height;
 }
 
-void	copy_map_line(char **copy_map, char **map, int i, t_data *data)
+static void	copy_map_line(char **copy_map, char **map, int i, t_data *data)
 {
 	int	j;
 

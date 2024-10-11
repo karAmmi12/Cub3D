@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 14:52:18 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 12:12:18 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 13:09:41 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	get_max_line_length(char **map)
 	return (max_len);
 }
 
-void	change_void_in_wall(t_data *data, int max_len, int i)
+static void	change_void_in_wall(t_data *data, int max_len, int i)
 {
 	int	j;
 
@@ -43,7 +43,7 @@ void	change_void_in_wall(t_data *data, int max_len, int i)
 	}
 }
 
-void	make_map_rectangular(t_data *data)
+static void	make_map_rectangular(t_data *data)
 {
 	int		max_len;
 	int		i;
@@ -71,7 +71,7 @@ void	make_map_rectangular(t_data *data)
 	}
 }
 
-void	get_map_width_height(t_data *data)
+static void	get_map_width_height(t_data *data)
 {
 	int	i;
 	int	j;

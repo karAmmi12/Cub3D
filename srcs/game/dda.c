@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:35:44 by kammi             #+#    #+#             */
-/*   Updated: 2024/10/11 12:12:40 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 13:13:39 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	update_side_dist_x(t_data *data, t_ray *ray, t_dda_vars *v)
+static void	update_side_dist_x(t_data *data, t_ray *ray, t_dda_vars *v)
 {
 	v->side_dist.x += v->delta_dist.x;
 	v->map.x += v->step.x;
@@ -23,7 +23,7 @@ void	update_side_dist_x(t_data *data, t_ray *ray, t_dda_vars *v)
 		ray->side_hit = 3;
 }
 
-void	update_side_dist_y(t_data *data, t_ray *ray, t_dda_vars *v)
+static void	update_side_dist_y(t_data *data, t_ray *ray, t_dda_vars *v)
 {
 	v->side_dist.y += v->delta_dist.y;
 	v->map.y += v->step.y;
@@ -34,7 +34,7 @@ void	update_side_dist_y(t_data *data, t_ray *ray, t_dda_vars *v)
 		ray->side_hit = 1;
 }
 
-t_vector2_d	calculate_hit_point(t_ray *ray, t_dda_vars *v)
+static t_vector2_d	calculate_hit_point(t_ray *ray, t_dda_vars *v)
 {
 	if (ray->side_hit == 2 || ray->side_hit == 3)
 	{
@@ -51,7 +51,7 @@ t_vector2_d	calculate_hit_point(t_ray *ray, t_dda_vars *v)
 	return (v->hit_point);
 }
 
-t_vector2_d	perform_dda(t_data *data, t_ray *ray, t_dda_vars *v)
+static t_vector2_d	perform_dda(t_data *data, t_ray *ray, t_dda_vars *v)
 {
 	v->ray_length = get_vector_double_len(v->origin, v->map);
 	while (v->ray_length < data->view_dst * data->view_dst)

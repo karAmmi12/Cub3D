@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:52:32 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/11 12:11:49 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 13:30:08 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 
-int	parse_color_component(char *str, int *i, long *temp)
+static int	parse_color_component(char *str, int *i, long *temp)
 {
 	int	k;
 
@@ -37,7 +37,7 @@ int	parse_color_component(char *str, int *i, long *temp)
 	return (0);
 }
 
-int	validate_color_string(char *str, int i)
+static int	validate_color_string(char *str, int i)
 {
 	while (str[i] != '\0')
 	{
@@ -48,7 +48,7 @@ int	validate_color_string(char *str, int i)
 	return (0);
 }
 
-void	set_color(int flag, int *color, t_data *data)
+static void	set_color(int flag, int *color, t_data *data)
 {
 	if (flag == 'F')
 	{
@@ -70,7 +70,7 @@ void	set_color(int flag, int *color, t_data *data)
 	}
 }
 
-int	extract_colors(char *str, int *color)
+static int	extract_colors(char *str, int *color)
 {
 	int		i;
 	int		j;
