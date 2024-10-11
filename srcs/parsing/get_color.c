@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:52:32 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/10 13:36:59 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 12:11:49 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../../includes/cub3d.h"
+#include	"cub3d.h"
 
 int	parse_color_component(char *str, int *i, long *temp)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:11:17 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/08 15:25:45 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 12:13:32 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 double	get_angle(t_vector2_d origin, int x, int y)
 {

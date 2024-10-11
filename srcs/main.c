@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:13:25 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/10 13:35:52 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 12:11:08 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 int	parsing(t_data *data, int ac, char **av)
 {

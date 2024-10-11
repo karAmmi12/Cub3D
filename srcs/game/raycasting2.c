@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:54:36 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 15:27:03 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 12:13:23 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void	render_column(t_data *data, t_ray_render_vars *v)
 {

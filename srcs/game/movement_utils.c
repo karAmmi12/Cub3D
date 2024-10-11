@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   movement_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:22:37 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/09 16:13:07 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 12:12:45 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 int	move_forward(t_data *data)
 {

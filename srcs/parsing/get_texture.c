@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:38:23 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/10 14:07:41 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 12:12:06 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void	get_north_texture(char *str, int *i, t_data *data)
 {

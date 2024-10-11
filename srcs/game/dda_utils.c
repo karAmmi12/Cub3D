@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dda_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:36:08 by kammi             #+#    #+#             */
-/*   Updated: 2024/10/08 16:51:14 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 12:12:34 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void	calculate_initial_distances2(t_dda_vars *v)
 {

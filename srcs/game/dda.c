@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:35:44 by kammi             #+#    #+#             */
-/*   Updated: 2024/10/08 16:51:09 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 12:12:40 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void	update_side_dist_x(t_data *data, t_ray *ray, t_dda_vars *v)
 {

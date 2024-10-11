@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   checker_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:43:19 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/10 15:39:32 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 12:11:40 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 int	check_ext_cub(char *str)
 {

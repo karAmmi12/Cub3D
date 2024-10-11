@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:38:40 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/10 13:37:20 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 12:11:55 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 char	*ft_strdup_n(const char *s)
 {

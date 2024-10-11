@@ -6,11 +6,11 @@
 /*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:15:09 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/10 17:45:14 by kammi            ###   ########.fr       */
+/*   Updated: 2024/10/11 12:12:56 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 int	rotate_left(t_data *data)
 {

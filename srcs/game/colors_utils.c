@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   colors_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:22:57 by kammi             #+#    #+#             */
-/*   Updated: 2024/10/09 12:56:41 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 12:12:25 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 int	rgb_to_mlx(int t, int r, int g, int b)
 {

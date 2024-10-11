@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kammi <kammi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:15:54 by apintus           #+#    #+#             */
-/*   Updated: 2024/10/10 14:08:08 by apintus          ###   ########.fr       */
+/*   Updated: 2024/10/11 12:12:00 by kammi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../../includes/cub3d.h"
+#include	"cub3d.h"
 
 int	is_whitespace(char c)
 {
